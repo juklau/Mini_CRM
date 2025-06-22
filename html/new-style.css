@@ -1,0 +1,503 @@
+
+/* Fonts */
+:root{
+    --default-font: 'Arial', sans-serif;
+}
+
+/* Couleurs principales*/
+:root{
+    --nav-hover-color: rgb(255, 0, 0); /*  a changer!!!!*/
+    --main-background-color: rgb(123, 176, 98);
+    --main-background-color2:  rgb(207, 200, 200);
+    --black-color: rgb(12, 11, 11);
+    --succes-color: rgb(23, 161, 23);
+    --danger-color: rgb(185, 26, 26);
+    --white-color: rgb(255, 255, 255);
+    --white-opal-color: rgba(255, 255, 255, 0.8); 
+    --box-shadow-color1: rgba(0, 0, 0, 0.2);
+    --gold-color: rgb(255, 215, 0);
+    --image-background-color: rgb(211, 211, 211);
+    --danger-color: rgb(185, 26, 26);
+    --background-planSite-color: rgba(25, 158, 157, 1);
+}
+
+/*********************************************************************************************
+                                   Pour tous les pages
+**********************************************************************************************/
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--default-font);
+}
+
+
+/*********************************************************************************************
+                                        Navbar
+**********************************************************************************************/
+
+.logo-CRM{
+    height: 100px;
+    overflow: hidden;
+}
+
+.navbar{
+    background-color: var(--main-background-color) !important;
+    z-index: 999999999;
+}
+
+.navbar a{
+    font-size: 18px;
+}
+
+.menu-ouvert{
+    width: 250px !important;
+    background-color: var(--main-background-color) !important;
+}
+
+#menu-btn{
+   font-size: 40px;
+}
+
+.navbarmenu ul li > a,
+.nav-link.active{
+    /* background-image: linear-gradient(var(--nav-hover-color), var(--nav-hover-color)); */
+    background-size: 0 1px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    /* transition: background-size 0.5s ease; */
+}
+
+.nav-link.active{
+    color: var(--nav-hover-color) !important;
+}
+
+.navbarmenu ul li:hover > a,
+.nav-link.active:hover{
+    color: var(--black-color) !important;
+}
+
+#logo{
+    height: 150px;
+}
+
+/*********************************************************************************************
+                                        Pour tous les pages
+**********************************************************************************************/
+
+
+main{
+    background-color: var(--main-background-color2);
+}
+
+.footer-menu a {
+    text-decoration: none;
+    transition: text-decoration 0.2s ease !important;
+}
+
+.footer-menu a:hover {
+    text-decoration: underline !important;
+}
+
+/*********************************************************************************************
+                                        Pour tous les .modulo
+**********************************************************************************************/
+
+.modulo{
+    width: 300px;
+    left: 50%;
+    top: 50%;
+    display: none;
+    z-index: 1000;
+    box-shadow: 0px 4px 8px var(--box-shadow-color1); 
+    transform: translate(-50%, -50%);
+    /* transform: translate(-50%, -130%); */
+}
+
+#profil-Modulo{
+    width: 350px;
+    /* width: 100%; */
+    box-shadow: 2px 2px 2px var(--box-shadow-color1);
+}
+
+
+.modulo p {
+    font-size: 18px;
+}
+
+.show {
+    display: block;
+}
+
+.hidden{
+    display: none;
+}
+
+.buttons button {
+      width: 80%;
+      margin: 10px 0;
+      padding: 10px;  
+}
+
+/*********************************************************************************************
+                                        Scroll Top Button
+**********************************************************************************************/
+
+.scroll-top {
+    visibility: hidden;
+    opacity: 0;
+    right: 40px;
+    bottom: 20px;
+    z-index: 99999;
+    background-color: var(--main-background-color);
+    width: 50px;
+    height: 50px;
+    transition: all 0.4s;
+}
+
+.scroll-top i {
+    font-size: 30px;
+    color: var(--white-color);
+    line-height: 0;
+}
+
+.scroll-top:hover {
+    background-color: color-mix(in srgb, var(--main-background-color), transparent 20%);
+    color: var(--white-color);
+}
+
+.scroll-top.active {
+    visibility: visible;
+    opacity: 1;
+    bottom: 15px;
+}
+
+
+/*********************************************************************************************
+                                        Tous les boutons d'application
+**********************************************************************************************/
+
+#NoContactBDD-closeModulo,
+#confirm-closeModulo,       /* page "confirmer.html */
+#confirmReussi-closeModulo,
+#delete-closeModulo,        /* page "affichage-détaillé.html */
+#deleteReussi-closeModulo,
+#ajout-closeModulo,         /* page "ajouter.html */
+#ajoutReussi-closeModulo,
+#NoContact-closeModulo{     /* page "rechercher.html */
+    width: 45px;
+    height: 45px;
+}
+
+.modulo-btn,
+#submit-btn{
+    background-color: var(--main-background-color);
+    color: var(--white-color);
+}
+
+#upload-btn,
+#remove-btn{
+    width: 100px;
+}
+
+.modulo-btn:hover,
+#submit-btn:hover{
+    background-color: var(--main-background-color);
+    border: 1px solid var(--black-color) !important;
+    color: var(--black-color);
+}
+
+
+/*********************************************************************************************
+                                        Page Ajouter des contacts
+**********************************************************************************************/
+
+
+/*********************************************************************************************
+                            Ajouter le photo du contact dans #modulo-profil
+**********************************************************************************************/
+
+#modulo-profil{
+    width: 350px;
+}  
+
+/* images de la page ajouter */
+.image-container {
+    height: 150px;
+    width: 150px;
+    background-color: var(--image-background-color);
+    border: 1px solid var(--black-color);
+}
+ 
+.image-container img {
+    width: 100%;
+    height: 100%;
+    max-width: 200px; /* Taille réduite */
+    max-height: 200px;
+    object-fit: cover;
+}
+
+
+/*********************************************************************************************
+                            Formulaire de la Page Ajouter des contacts
+**********************************************************************************************/
+
+.card-item-details{
+    box-shadow: 2px 2px 2px var(--box-shadow-color1);  
+}
+
+.profile-container {
+    width: 200px;
+    height: 200px;
+    border: 1px solid var(--black-color);
+    overflow: hidden;
+    box-shadow: 0 4px 8px var(--box-shadow-color1);
+    cursor: pointer;
+}
+
+#profile-pic{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer; /*pour remplir la boîte qu'il contienne... */
+}
+
+.information input,
+.information select,
+.information textarea{
+    width: 100%;
+    box-shadow: 2px 2px 2px var(--box-shadow-color1);
+}
+
+.star-button{
+    font-size: 50px;
+    cursor: default !important;
+    background: none;
+    color: var(--gray-color) !important;
+    border: none;
+}
+
+.star-button.checked{
+    color: var(--gold-color) !important;
+    transition: color 0.3s ease-in-out !important;
+}
+
+
+/***********************************************************************************************
+                            Page Home: afficher tous les contacts
+************************************************************************************************/
+
+#main-home{
+    min-height: 80vh;
+}
+
+.search-container{
+    box-shadow: 2px 2px 2px var(--box-shadow-color1);
+    width: 350px;
+    /* margin: auto; */
+}
+
+#recherche{
+    border: none;
+    outline: none; 
+}
+
+.accordion-item button{
+    min-width: 320px;
+}
+
+.accordion-collapse{
+    background: var(--main-background-color2) !important;
+}
+
+.accordion-button.centered {
+    display: inline;
+    justify-content: center !important;  /* force le centrage horizontal */
+    text-align: center !important;
+}
+
+.contact-card p{
+    box-shadow: 2px 2px 2px var(--box-shadow-color1);
+}
+
+#photo img{ 
+    height: 150px;
+    width: 150px;
+} 
+
+#star-btn{
+    cursor: pointer !important;
+}
+
+.infos.noms{
+    max-width: 200px;
+    margin-right: 0;
+}
+
+#affiche-details{
+    z-index: 999;
+}
+
+#editModal{
+    padding-top: 50px;
+    padding-bottom: 2rem;
+    top: 110px; 
+    left:0; 
+    right:0; 
+    bottom:0;
+    overflow-y: auto;
+    width: 95vw;
+    max-height: 90vh;
+    /* height: 100vh; */
+    /* 100% de la hauteru visible de l'écran*/
+    min-width: 300px;
+    background: var(--main-background-color2) !important;
+}
+
+#editModal input,
+#editModal select,
+#editModal textarea{
+    box-shadow: 2px 2px 2px var(--box-shadow-color1);
+}
+
+.icon-container img{
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+body.no-scroll{
+    overflow: hidden;
+    height: 100vh;
+}
+
+/***********************************************************************************************
+                                 Page de Rechercher les contacts
+************************************************************************************************/
+
+#resultat-recherche{
+    display: none;
+}
+
+.recherches-container{
+    box-shadow: 2px 2px 2px var(--box-shadow-color1);
+}
+
+select{ /* partout où il faut choisir .... */
+    /* width: 75%; ????*/
+    padding: 10px;
+    box-shadow: 2px 2px 2px var(--box-shadow-color1);
+}
+
+#body-recherche{
+    background: var(--main-background-color2);
+}
+
+
+/*********************************************************************************************
+                                        Page Contact
+**********************************************************************************************/
+
+/* input, textarea {
+    text-shadow: 0px 2px 5px var(--gray-color);
+} */
+
+/* pouar valider si le text entrée est megfelelö */
+.text-success{
+    color: var(--succes-color);
+}
+
+.text-danger{
+    color: var(--danger-color);
+}
+
+.megfelelo{
+    outline: 0.2rem solid var(--succes-color);
+    outline-offset: 0.2rem;
+}
+
+.nem-megfelelo{
+    outline: 0.2rem solid var(--danger-color);
+    outline-offset: 0.2rem;
+}
+
+
+/******************************************** Checkbox **********************************************/
+
+.costum-check label {
+    line-height: 1.5;
+    min-width: 300px;
+    border-color: 1 solid var(--black-color) !important;
+}
+
+#egyetertes + label::before{
+    content: "";
+    display: block;
+    width: 1rem; /* 8px */
+    height: 1rem;
+    background-color: var(--white-color);
+    margin-right: 1rem;
+    line-height: 1rem;
+    text-align: center;
+    font-weight: 700;
+    outline: 0.1rem solid var(--black-color);
+}
+
+#egyetertes:checked + label::before{
+    content: "X";
+    color: var(--black-color);
+    outline: 0.2rem solid var(--succes-color);
+    outline-offset: 0.2rem;
+}
+
+
+/*********************************************************************************************
+                                       Se connecter
+**********************************************************************************************/
+
+#se_connecter input{
+    box-shadow: 2px 2px 2px var(--box-shadow-color1);
+}
+
+#main-connexion{
+    min-height: 70vh;
+}
+
+/*********************************************************************************************
+                                    Plan du site
+**********************************************************************************************/
+
+#main-plan-site {
+  background-color: var(--background-planSite-color);
+  min-height: 100vh;
+}
+
+.fejlec h1{
+    padding-top: 200px;
+    font-size: 4rem;
+    font-weight: 900;
+} 
+
+#cible-a-trouver{
+    width: 100%;
+    max-width: 800px;
+}
+
+.pages-liste ul li:hover > a{
+    color: var(--danger-color) !important;
+}
+
+
+
+
+@media screen and (min-width: 991px){
+
+    .navbarmenu li{
+        border-color: transparent !important;
+    }
+    
+}
+
+
+

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>RP Mini CRM</title>
+
+       <!-- CSS de Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+        <!-- <link rel="stylesheet" href="style.css"> -->
+        <link rel="stylesheet" href="new-style.css">
+
+    </head>
+    <body class="fs-6">
+        <header id="header" class="border-bottom border-secondary" >
+            <nav class="navbar navbar-expand-lg position-fixed w-100" data-bs-theme="dark">
+                <div class="container-fluid d-flex justify-content-between">
+                    <div class="logo-CRM d-flex align-items-center">
+                        <img id="logo" src="../image/logo CRM2.jpg" alt="logo">
+                     </div>
+                    <button class="navbar-toggler border-0 me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="text-white" id="menu-btn"><i class="bi bi-list"></i></span>
+                    </button>
+                   
+                    <div class="offcanvas offcanvas-start menu-ouvert" tabindex="-1" id="navbarSupportedContent" 
+                        aria-labelledby="navbarSupportedContentLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title text-white ms-3 mt-5" id="navbarSupportedContentLabel">Menu</h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+
+                        <div class="offcanvas-body navbarmenu" >
+                            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                <li class="nav-item border-bottom border-secondary ms-3">
+                                    <a class="nav-link text-white my-2" aria-current="page" href="home.html">Home</a>
+                                </li>
+                                <li class="nav-item border-bottom border-secondary ms-3">
+                                    <a class="nav-link text-white my-2" href="ajouter.html">Ajouter un contact</a>
+                                </li>
+                                <li class="nav-item border-bottom border-secondary ms-3">
+                                    <a class="nav-link text-white my-2" href="rechercher.html">Recherche</a>
+                                </li>
+                                <li class="nav-item border-bottom border-secondary ms-3">
+                                    <a class="nav-link text-white my-2" href="nous_contacter.html">Contact</a>
+                                </li>
+                                <li class="nav-item border-bottom border-secondary ms-3">
+                                    <a class="nav-link text-white my-2" href="connexion.html">Connexion</a>
+                                </li>
+                            </ul>
+                        </div>  
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main class="py-5" id="main-home">
+            <div class="container-fluid py-5">
+                <h1 class="display-1 text-center py-5 mb-4 fw-bold mt-5">Mes Contacts</h1>
+            </div>
+            <div class="container-fluid d-flex justify-content-center col-12 col-sm-10 col-xl-8">
+                <div class="search-container mx-auto lh-lg mt-3 mb-5 ps-2 border border-black bg-white rounded-2">
+                    <i class="fa-solid fa-magnifying-glass mx-2"></i>
+                    <input class="p-1 rounded-2 fs-6" type="text" id="recherche" name="recherche" placeholder="Rechercher" title="Recherche par nom ou par entreprise...">
+                </div>
+            </div>
+            
+            <!-- confirmation que "aucun contact a trouvé dans la BDD"-->
+            <div class="modulo position-fixed bg-white p-2 rounded-3 text-center border border-black fs-6" id="NoContactBDD-Modulo" >
+                <div class="modulo-header mt-3 mb-4 d-flex justify-content-end text-center">
+                    <button class="modulo-btn btn btn-outline-secondary border border-2 rounded me-3" id="NoContactBDD-closeModulo">X</button>
+                </div>
+                <div class="modulo-body my-1">
+                    <p>Aucun contact trouvé</p>
+                </div>
+                <div class="modulo-footer d-flex justify-content-around pt-2 my-2">
+                    <button class="modulo-btn btn btn-outline-secondary btn border border-2 rounded mb-3" id="NoContactBDD-OK">OK</button>
+                </div>
+            </div>
+
+            <section class="container-contacts col-12 col-sm-10 col-xl-8 container-fluid d-flex flex-column align-items-center py-5">
+                <div id="resultat" class="container-resultats accordion col-12 col-md-10 col-lg-8 mx-auto">
+                    <!-- la place pour afficher les resultats --> 
+                    <div class="accordion-item border-0 my-3">
+                        <h2 class="accordion-header mx-auto" id="headingA">
+                            <button class="accordion-button collapsed border border-black bg-white fw-bold centered" type="button" data-bs-toggle="collapse" data-bs-target="#collapseA" aria-expanded="true" aria-controls="collapseA">
+                               A
+                            </button>
+                        </h2>
+                        <div id="collapseA" class="accordion-collapse collapse" aria-labelledby="headingA" data-bs-parent="#resultat">
+                            <div class="accordion-body alphabet" data-lettre="A">
+                                <!-- Les cards de contacts pour A seront injectés ici -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 my-3">
+                        <h2 class="accordion-header" id="headingB">
+                            <button class="accordion-button collapsed border border-black bg-white  fw-bold centered" type="button" data-bs-toggle="collapse" data-bs-target="#collapseB" aria-expanded="false" aria-controls="collapseB">
+                               B
+                            </button>
+                        </h2>
+                        <div id="collapseB" class="accordion-collapse collapse mx-0" aria-labelledby="headingB" data-bs-parent="#resultat">
+                            <div class="accordion-body alphabet" data-lettre="B">
+                                <!-- Les cards de contacts pour B seront injectés ici -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 my-3">
+                        <h2 class="accordion-header" id="headingC">
+                            <button class="accordion-button collapsed border border-black bg-white  fw-bold centered" type="button" data-bs-toggle="collapse" data-bs-target="#collapseC" aria-expanded="false" aria-controls="collapseC">
+                               C
+                            </button>
+                        </h2>
+                        <div id="collapseC" class="accordion-collapse collapse" aria-labelledby="headingC" data-bs-parent="#resultat">
+                            <div class="accordion-body alphabet" data-lettre="C">
+                                <!-- Les cards de contacts pour C seront injectés ici -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 my-3">
+                        <h2 class="accordion-header" id="headingD">
+                            <button class="accordion-button collapsed border border-black bg-white  fw-bold centered" type="button" data-bs-toggle="collapse" data-bs-target="#collapseD" aria-expanded="false" aria-controls="collapseD">
+                               D
+                            </button>
+                        </h2>
+                        <div id="collapseD" class="accordion-collapse collapse" aria-labelledby="headingD" data-bs-parent="#resultat">
+                            <div class="accordion-body alphabet" data-lettre="D">
+                                <!-- Les cards de contacts pour D seront injectés ici -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 my-3">
+                        <h2 class="accordion-header" id="headingE">
+                            <button class="accordion-button collapsed border border-black bg-white  fw-bold centered" type="button" data-bs-toggle="collapse" data-bs-target="#collapseE" aria-expanded="false" aria-controls="collapseE">
+                               E
+                            </button>
+                        </h2>
+                        <div id="collapseE" class="accordion-collapse collapse" aria-labelledby="headingE" data-bs-parent="#resultat">
+                            <div class="accordion-body alphabet" data-lettre="E">
+                                <!-- Les cards de contacts pour E seront injectés ici -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 my-3">
+                        <h2 class="accordion-header" id="headingF">
+                            <button class="accordion-button collapsed border border-black bg-whites  fw-bold centered" type="button" data-bs-toggle="collapse" data-bs-target="#collapseF" aria-expanded="false" aria-controls="collapseF">
+                               F
+                            </button>
+                        </h2>
+                        <div id="collapseF" class="accordion-collapse collapse" aria-labelledby="headingF" data-bs-parent="#resultat">
+                            <div class="accordion-body alphabet" data-lettre="F">
+                                <!-- Les cards de contacts pour F seront injectés ici -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 my-3">
+                        <h2 class="accordion-header" id="headingG">
+                            <button class="accordion-button collapsed border border-black bg-white  fw-bold centered" type="button" data-bs-toggle="collapse" data-bs-target="#collapseG" aria-expanded="false" aria-controls="collapseG">
+                               G
+                            </button>
+                        </h2>
+                        <div id="collapseG" class="accordion-collapse collapse" aria-labelledby="headingG" data-bs-parent="#resultat">
+                            <div class="accordion-body alphabet" data-lettre="G">
+                                <!-- Les cards de contacts pour G seront injectés ici -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 my-3">
+                        <h2 class="accordion-header" id="headingH">
+                            <button class="accordion-button collapsed border border-black bg-white  fw-bold centered" type="button" data-bs-toggle="collapse" data-bs-target="#collapseH" aria-expanded="false" aria-controls="collapseH">
+                               H
+                            </button>
+                        </h2>
+                        <div id="collapseH" class="accordion-collapse collapse" aria-labelledby="headingH" data-bs-parent="#resultat">
+                            <div class="accordion-body alphabet" data-lettre="H">
+                                <!-- Les cards de contacts pour H seront injectés ici -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 my-3">
+                        <h2 class="accordion-header" id="headingI">
+                            <button class="accordion-button collapsed border border-black bg-white  fw-bold centered" type="button" data-bs-toggle="collapse" data-bs-target="#collapseI" aria-expanded="false" aria-controls="collapseI">
+                               I
+                            </button>
+                        </h2>
+                        <div id="collapseI" class="accordion-collapse collapse" aria-labelledby="headingI" data-bs-parent="#resultat">
+                            <div class="accordion-body alphabet" data-lettre="I">
+                                <!-- Les cards de contacts pour I seront injectés ici -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 my-3">
+                        <h2 class="accordion-header" id="headingJ">
+                            <button class="accordion-button collapsed border border-black bg-white  fw-bold centered" type="button" data-bs-toggle="collapse" data-bs-target="#collapseJ" aria-expanded="false" aria-controls="collapseJ">
+                               J
+                            </button>
+                        </h2>
+                        <div id="collapseJ" class="accordion-collapse collapse" aria-labelledby="headingJ" data-bs-parent="#resultat">
+                            <div class="accordion-body alphabet" data-lettre="J">
+                                <!-- Les cards de contacts pour J seront injectés ici -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 my-3">
+                        <h2 class="accordion-header" id="headingK">
+                            <button class="accordion-button collapsed border border-black bg-white  fw-bold centered" type="button" data-bs-toggle="collapse" data-bs-target="#collapseK" aria-expanded="false" aria-controls="collapseK">
+                               K
+                            </button>
+                        </h2>
+                        <div id="collapseK" class="accordion-collapse collapse" aria-labelledby="headingK" data-bs-parent="#resultat">
+                            <div class="accordion-body alphabet" data-lettre="K">
+                                <!-- Les cards de contacts pour K seront injectés ici -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 my-3">
+                        <h2 class="accordion-header" id="headingL">
+                            <button class="accordion-button collapsed border border-black bg-white  fw-bold centered" type="button" data-bs-toggle="collapse" data-bs-target="#collapseL" aria-expanded="false" aria-controls="collapseL">
+                               L
+                            </button>
+                        </h2>
+                        <div id="collapseL" class="accordion-collapse collapse" aria-labelledby="headingL" data-bs-parent="#resultat">
+                            <div class="accordion-body alphabet" data-lettre="L">
+                                <!-- Les cards de contacts pour L seront injectés ici -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 my-3">
+                        <h2 class="accordion-header" id="headingM">
+                            <button class="accordion-button collapsed border border-black bg-white  fw-bold centered" type="button" data-bs-toggle="collapse" data-bs-target="#collapseM" aria-expanded="false" aria-controls="collapseM">
+                               M
+                            </button>
+                        </h2>
+                        <div id="collapseM" class="accordion-collapse collapse" aria-labelledby="headingM" data-bs-parent="#resultat">
+                            <div class="accordion-body alphabet" data-lettre="M">
+                                <!-- Les cards de contacts pour M seront injectés ici -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 my-3">
+                        <h2 class="accordion-header" id="headingN">
+                            <button class="accordion-button collapsed border border-black bg-white  fw-bold centered" type="button" data-bs-toggle="collapse" data-bs-target="#collapseN" aria-expanded="false" aria-controls="collapseN">
+                               N
+                            </button>
+                        </h2>
+                        <div id="collapseN" class="accordion-collapse collapse" aria-labelledby="headingN" data-bs-parent="#resultat">
+                            <div class="accordion-body alphabet" data-lettre="N">
+                                <!-- Les cards de contacts pour N seront injectés ici -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 my-3">
+                        <h2 class="accordion-header" id="headingO">
+                            <button class="accordion-button collapsed border border-black bg-white  fw-bold centered" type="button" data-bs-toggle="collapse" data-bs-target="#collapseO" aria-expanded="false" aria-controls="collapseO">
+                               O
+                            </button>
+                        </h2>
+                        <div id="collapseO" class="accordion-collapse collapse" aria-labelledby="headingO" data-bs-parent="#resultat">
+                            <div class="accordion-body alphabet" data-lettre="O">
+                                <!-- Les cards de contacts pour O seront injectés ici -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 my-3">
+                        <h2 class="accordion-header" id="headingP">
+                            <button class="accordion-button collapsed border border-black bg-white  fw-bold centered" type="button" data-bs-toggle="collapse" data-bs-target="#collapseP" aria-expanded="false" aria-controls="collapseP">
+                               P
+                            </button>
+                        </h2>
+                        <div id="collapseP" class="accordion-collapse collapse" aria-labelledby="headingP" data-bs-parent="#resultat">
+                            <div class="accordion-body alphabet" data-lettre="P">
+                                <!-- Les cards de contacts pour P seront injectés ici -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 my-3">
+                        <h2 class="accordion-header" id="headingQ">
+                            <button class="accordion-button collapsed border border-black bg-white  fw-bold centered" type="button" data-bs-toggle="collapse" data-bs-target="#collapseQ" aria-expanded="false" aria-controls="collapseQ">
+                               Q
+                            </button>
+                        </h2>
+                        <div id="collapseQ" class="accordion-collapse collapse" aria-labelledby="headingQ" data-bs-parent="#resultat">
+                            <div class="accordion-body alphabet" data-lettre="Q">
+                                <!-- Les cards de contacts pour Q seront injectés ici -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 my-3">
+                        <h2 class="accordion-header" id="headingR">
+                            <button class="accordion-button collapsed border border-black bg-white  fw-bold centered" type="button" data-bs-toggle="collapse" data-bs-target="#collapseR" aria-expanded="false" aria-controls="collapseR">
+                               R
+                            </button>
+                        </h2>
+                        <div id="collapseR" class="accordion-collapse collapse" aria-labelledby="headingR" data-bs-parent="#resultat">
+                            <div class="accordion-body alphabet" data-lettre="R">
+                                <!-- Les cards de contacts pour R seront injectés ici -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 my-3">
+                        <h2 class="accordion-header" id="headingS">
+                            <button class="accordion-button collapsed border border-black bg-white  fw-bold centered" type="button" data-bs-toggle="collapse" data-bs-target="#collapseS" aria-expanded="false" aria-controls="collapseS">
+                               S
+                            </button>
+                        </h2>
+                        <div id="collapseS" class="accordion-collapse collapse" aria-labelledby="headingS" data-bs-parent="#resultat">
+                            <div class="accordion-body alphabet" data-lettre="S">
+                                <!-- Les cards de contacts pour S seront injectés ici -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 my-3">
+                        <h2 class="accordion-header" id="headingT">
+                            <button class="accordion-button collapsed border border-black bg-white  fw-bold centered" type="button" data-bs-toggle="collapse" data-bs-target="#collapseT" aria-expanded="false" aria-controls="collapseT">
+                               T
+                            </button>
+                        </h2>
+                        <div id="collapseT" class="accordion-collapse collapse" aria-labelledby="headingT" data-bs-parent="#resultat">
+                            <div class="accordion-body alphabet" data-lettre="T">
+                                <!-- Les cards de contacts pour T seront injectés ici -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 my-3">
+                        <h2 class="accordion-header" id="headingU">
+                            <button class="accordion-button collapsed border border-black bg-white  fw-bold centered" type="button" data-bs-toggle="collapse" data-bs-target="#collapseU" aria-expanded="false" aria-controls="collapseU">
+                               U
+                            </button>
+                        </h2>
+                        <div id="collapseU" class="accordion-collapse collapse" aria-labelledby="headingU" data-bs-parent="#resultat">
+                            <div class="accordion-body alphabet" data-lettre="U">
+                                <!-- Les cards de contacts pour U seront injectés ici -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 my-3">
+                        <h2 class="accordion-header" id="headingV">
+                            <button class="accordion-button collapsed border border-black bg-white  fw-bold centered" type="button" data-bs-toggle="collapse" data-bs-target="#collapseV" aria-expanded="false" aria-controls="collapseV">
+                               V
+                            </button>
+                        </h2>
+                        <div id="collapseV" class="accordion-collapse collapse" aria-labelledby="headingV" data-bs-parent="#resultat">
+                            <div class="accordion-body alphabet" data-lettre="V">
+                                <!-- Les cards de contacts pour V seront injectés ici -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 my-3">
+                        <h2 class="accordion-header" id="headingW">
+                            <button class="accordion-button collapsed border border-black bg-white  fw-bold centered" type="button" data-bs-toggle="collapse" data-bs-target="#collapseW" aria-expanded="false" aria-controls="collapseW">
+                               W
+                            </button>
+                        </h2>
+                        <div id="collapseW" class="accordion-collapse collapse" aria-labelledby="headingW" data-bs-parent="#resultat">
+                            <div class="accordion-body alphabet" data-lettre="W">
+                                <!-- Les cards de contacts pour W seront injectés ici -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 my-3">
+                        <h2 class="accordion-header" id="headingX">
+                            <button class="accordion-button collapsed border border-black bg-white  fw-bold centered" type="button" data-bs-toggle="collapse" data-bs-target="#collapseX" aria-expanded="false" aria-controls="collapseX">
+                               X
+                            </button>
+                        </h2>
+                        <div id="collapseX" class="accordion-collapse collapse" aria-labelledby="headingX" data-bs-parent="#resultat">
+                            <div class="accordion-body alphabet" data-lettre="X">
+                                <!-- Les cards de contacts pour X seront injectés ici -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 my-3">
+                        <h2 class="accordion-header" id="headingY">
+                            <button class="accordion-button collapsed border border-black bg-white  fw-bold centered" type="button" data-bs-toggle="collapse" data-bs-target="#collapseY" aria-expanded="false" aria-controls="collapseY">
+                               Y
+                            </button>
+                        </h2>
+                        <div id="collapseY" class="accordion-collapse collapse" aria-labelledby="headingY" data-bs-parent="#resultat">
+                            <div class="accordion-body alphabet" data-lettre="Y">
+                                <!-- Les cards de contacts pour Y seront injectés ici -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 my-3">
+                        <h2 class="accordion-header" id="headingZ">
+                            <button class="accordion-button collapsed border border-black bg-white  fw-bold centered" type="button" data-bs-toggle="collapse" data-bs-target="#collapseZ" aria-expanded="false" aria-controls="collapseZ">
+                               Z
+                            </button>
+                        </h2>
+                        <div id="collapseZ" class="accordion-collapse collapse" aria-labelledby="headingZ" data-bs-parent="#resultat">
+                            <div class="accordion-body alphabet" data-lettre="Z">
+                                <!-- Les cards de contacts pour Z seront injectés ici -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section">
+                <!-- Modal caché modositas-->
+                 <div id="affiche-details" class="bg-warning px-5 col-6 d-none">
+                    <div id="editModal" class="card-item-details position-fixed flex-column justify-content-center align-items-start mx-auto">
+                    <!-- afficher le modal pour modifier le contenu des contacts -->
+                    </div>
+                </div>
+                
+                <!-- confirmation de la modification du contact par l'utilisateur-->
+                <div class="modulo position-fixed bg-white p-2 rounded-3 text-center border border-black fs-6" id="confirm-Modulo" >
+                    <div class="modulo-header mt-2 mb-4 d-flex justify-content-end text-center">
+                        <button class="modulo-btn btn btn-outline-secondary border border-2 rounded me-3" id="confirm-closeModulo">X</button>
+                    </div>
+                    <div class="modulo-body my-1">
+                        <p>Confirmez-vous les modifications ?</p>
+                    </div>
+                    <div class="modulo-footer d-flex justify-content-around pt-2 my-2">
+                        <button class="modulo-btn btn btn-outline-secondary btn border border-2 rounded" id="confirmNo">Non</button>
+                        <button class="modulo-btn btn btn-outline-secondary btn border border-2 rounded" id="confirmYes">Oui</button>
+                    </div>
+                </div>
+
+                <!-- confirmation de modification réussi-->
+                <div class="modulo position-fixed bg-white p-2 rounded-3 text-center border border-black fs-6" id="confirmReussi-Modulo" >
+                    <div class="modulo-header mt-2 mb-4 d-flex justify-content-end text-center">
+                        <button class="modulo-btn btn btn-outline-secondary border border-2 rounded me-3" id="confirmReussi-closeModulo">X</button>
+                    </div>
+                    <div class="modulo-body my-1">
+                        <p>Modification réussie !</p>
+                    </div>
+                    <div class="modulo-footer pt-2 my-2">
+                        <button class="modulo-btn btn btn-outline-secondary btn border border-2 rounded" id="confirmOK">OK</button>
+                    </div>
+                </div>
+
+                <!-- confirmation de la suppression du contact par l'utilisateur-->
+                <div class="modulo position-fixed bg-white p-2 rounded-3 text-center border border-black fs-6" id="delete-Modulo" >
+                    <div class="modulo-header mt-2 mb-4 d-flex justify-content-end text-center">
+                        <button class="modulo-btn btn btn-outline-secondary border border-2 rounded me-3" id="delete-closeModulo">X</button>
+                    </div>
+                    <div class="modulo-body my-1">
+                        <p>Confirmez-vous la suppression ?</p>
+                    </div>
+                    <div class="modulo-footer d-flex justify-content-around pt-2 my-2">
+                        <button class="modulo-btn btn btn-outline-secondary btn border border-2 rounded" id="deleteNo">Non</button>
+                        <button class="modulo-btn btn btn-outline-secondary btn border border-2 rounded" id="deleteYes">Oui</button>
+                    </div>
+                </div>
+
+                <!-- la confirmation de suppression réussi-->
+                <div class="modulo position-fixed bg-white p-2 rounded-3 text-center border border-black fs-6" id="deleteReussi-Modulo" >
+                    <div class="modulo-header mt-2 mb-4 d-flex justify-content-end text-center">
+                        <button class="modulo-btn btn btn-outline-secondary border border-2 rounded me-3" id="deleteReussi-closeModulo">X</button>
+                    </div>
+                    <div class="modulo-body my-1">
+                        <p>Le contact a bien été supprimé</p>
+                    </div>
+                    <div class="modulo-footer pt-2 my-2">
+                        <button class="modulo-btn btn btn-outline-secondary btn border border-2 rounded" id="deleteOK">OK</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- link de script  -->
+        <script src="/js/affiche_contacts.js"></script>
+        <script src="/js/modifier.js"></script>
+        <script src="/js/rechercher_par_nom_entreprise.js"></script>
+
+        <!-- script de Bootstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+        
+    </body>
+
+    <!-- Footer -->
+    <footer class="footer container-fluid text-center text-white bg-dark p-0 fs-5" >
+        <div class="container-fluid border-top border-secondary">
+            <section class="pt-3">
+                <div class="row g-0 py-4 col-12 justify-content-center">
+                     <div class="col-6 col-md-12 d-flex flex-column flex-md-row justify-content-center justify-content-md-around">
+                        <div class="col-12 col-md-auto pt-1 footer-menu">
+                            <h6 class="font-weight-bold mx-2">
+                                <a href="A_propos.html" class="text-white text-decoration-none fs-5">À propos</a>
+                            </h6>
+                        </div>
+                        <div class="col-12 col-md-auto py-1 pt-1 footer-menu">
+                            <h6 class="font-weight-bold mx-2">
+                                <a href="plan_du_site.html" class="text-white text-decoration-none fs-5">Plan du site</a>
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        
+            <hr class="my-3" />
+
+            <section class="py-4">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8">
+                        <p><strong>Designed by </strong></p>
+                        <p><strong>Klaudia Juhasz & Arnaud Biarese</strong></p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="text-center py-5 bg-black" > © 2025 Copyright</div>
+
+        <!-- Scroll Top -->
+        <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center rounded-circle position-fixed"><i class="bi bi-arrow-up-short"></i></a>
+
+    </footer>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>RP Mini CRM</title>
+
+       <!-- CSS de Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+        <!-- <link rel="stylesheet" href="style.css"> -->
+        <link rel="stylesheet" href="new-style.css">
+
+    </head>
+    <body class="fs-6">
+        <header id="header" class="border-bottom border-secondary" >
+            <nav class="navbar navbar-expand-lg position-fixed w-100" data-bs-theme="dark">
+                <div class="container-fluid d-flex justify-content-between">
+                    <div class="logo-CRM d-flex align-items-center">
+                        <img id="logo" src="../image/logo CRM2.jpg" alt="logo">
+                     </div>
+                    <button class="navbar-toggler border-0 me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="text-white" id="menu-btn"><i class="bi bi-list"></i></span>
+                    </button>
+                   
+                    <div class="offcanvas offcanvas-start menu-ouvert" tabindex="-1" id="navbarSupportedContent" 
+                        aria-labelledby="navbarSupportedContentLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title text-white ms-3 mt-5" id="navbarSupportedContentLabel">Menu</h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+
+                        <div class="offcanvas-body navbarmenu" >
+                            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                <li class="nav-item border-bottom border-secondary ms-3">
+                                    <a class="nav-link text-white my-2" aria-current="page" href="home.html">Home</a>
+                                </li>
+                                <li class="nav-item border-bottom border-secondary ms-3">
+                                    <a class="nav-link text-white my-2" href="ajouter.html">Ajouter un contact</a>
+                                </li>
+                                <li class="nav-item border-bottom border-secondary ms-3">
+                                    <a class="nav-link text-white my-2" href="rechercher.html">Recherche</a>
+                                </li>
+                                <li class="nav-item border-bottom border-secondary ms-3">
+                                    <a class="nav-link text-white my-2" href="nous_contacter.html">Contact</a>
+                                </li>
+                                <li class="nav-item border-bottom border-secondary ms-3">
+                                    <a class="nav-link text-white my-2" href="connexion.html">Connexion</a>
+                                </li>
+                            </ul>
+                        </div>  
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main class="py-3" id="main-plan-site">
+            <section class="container pt-5 pb-4">
+                <div class="contenu container-fluid ">
+                    <div class="text-container">
+                        <div class="fejlec">
+                            <h1>Plan du site</h1>
+                            <h2>Vous vous êtes perdu??? Ne vous inquiétez pas!</h2>
+                            <h3 class="display-6 fw-bold pt-5">
+                                Voici les principales pages de mon site pour vous aider à retrouver votre cible.
+                            </h3>
+                        </div>
+
+                        <div class="row flex-column flex-md-row mt-5">
+                            <div class="col-12 col-lg-8">
+                                <img class="img-fluid m-auto mt-2 pt-1 mb-4" id="cible-a-trouver" src="/image/plan-du_site.png" alt="cible à trouver" title="Source: https://fr.123rf.com/">
+                            </div>
+                             <div class="col-12 col-lg-4 pages-liste pt-5 mt-5 fw-bolder text-start fs-5 lh-lg">
+                                <ul class="list-unstyled ms-3">
+                                    <li>◈<a class="text-black fst-italic" href="home.html">Home</a></li>
+                                    <li>◈<a class="text-black fst-italic" href="ajouter.html">Ajouter un contact</a></li>
+                                    <li>◈<a class="text-black fst-italic" href="rechercher.html">Recherche</a></li>
+                                    <li>◈<a class="text-black" href="nous_contacter.html">Contact</a></li>
+                                    <li>◈<a class="text-black" href="connexion.html">Connexion</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- script de Bootstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+
+    </body>
+
+    <!-- Footer -->
+    <footer class="footer container-fluid text-center text-white bg-dark p-0 fs-5" >
+        <div class="container-fluid border-top border-secondary">
+            <section class="pt-3">
+                <div class="row g-0 py-4 col-12 justify-content-center">
+                     <div class="col-6 col-md-12 d-flex flex-column flex-md-row justify-content-center justify-content-md-around">
+                        <div class="col-12 col-md-auto pt-1 footer-menu">
+                            <h6 class="font-weight-bold mx-2">
+                                <a href="A_propos.html" class="text-white text-decoration-none fs-5">À propos</a>
+                            </h6>
+                        </div>
+                        <div class="col-12 col-md-auto py-1 pt-1 footer-menu">
+                            <h6 class="font-weight-bold mx-2">
+                                <a href="plan_du_site.html" class="text-white text-decoration-none fs-5">Plan du site</a>
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        
+            <hr class="my-3" />
+
+            <section class="py-4">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8">
+                        <p><strong>Designed by </strong></p>
+                        <p><strong>Klaudia Juhasz & Arnaud Biarese</strong></p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="text-center py-5 bg-black" > © 2025 Copyright</div>
+
+        <!-- Scroll Top -->
+        <!-- <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center rounded-circle position-fixed"><i class="bi bi-arrow-up-short"></i></a> -->
+
+    </footer>
+</html>

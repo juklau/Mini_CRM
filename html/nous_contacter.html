@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>RP Mini CRM</title>
+
+        <!-- CSS de Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+        <!-- <link rel="stylesheet" href="style.css"> -->
+        <link rel="stylesheet" href="new-style.css">
+    </head>
+
+    <body class="fs-6">
+        <header id="header" class="border-bottom border-secondary" >
+            <nav class="navbar navbar-expand-lg position-fixed w-100" data-bs-theme="dark">
+                <div class="container-fluid d-flex justify-content-between">
+                    <div class="logo-CRM d-flex align-items-center">
+                        <img id="logo" src="../image/logo CRM2.jpg" alt="logo">
+                     </div>
+                    <button class="navbar-toggler border-0 me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="text-white" id="menu-btn"><i class="bi bi-list"></i></span>
+                    </button>
+                   
+                    <div class="offcanvas offcanvas-start menu-ouvert" tabindex="-1" id="navbarSupportedContent" 
+                        aria-labelledby="navbarSupportedContentLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title text-white ms-3 mt-5" id="navbarSupportedContentLabel">Menu</h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+
+                        <div class="offcanvas-body navbarmenu" >
+                            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                <li class="nav-item border-bottom border-secondary ms-3">
+                                    <a class="nav-link text-white my-2" aria-current="page" href="home.html">Home</a>
+                                </li>
+                                <li class="nav-item border-bottom border-secondary ms-3">
+                                    <a class="nav-link text-white my-2" href="ajouter.html">Ajouter un contact</a>
+                                </li>
+                                <li class="nav-item border-bottom border-secondary ms-3">
+                                    <a class="nav-link text-white my-2" href="rechercher.html">Recherche</a>
+                                </li>
+                                <li class="nav-item border-bottom border-secondary ms-3">
+                                    <a class="nav-link text-white my-2" href="nous_contacter.html">Contact</a>
+                                </li>
+                                <li class="nav-item border-bottom border-secondary ms-3">
+                                    <a class="nav-link text-white my-2" href="connexion.html">Connexion</a>
+                                </li>
+                            </ul>
+                        </div>  
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main class="fs-6">
+            <div class="container-fluid py-5 mt-5">
+                <h1 class="display-1 text-center py-5 mb-4 fw-bold mt-5">Nous contacter</h1>
+            </div>
+
+            <div class="container text-center fs-5 fw-bold fst-italic" id="remplir">
+                <p>Veuillez remplir ce formulaire pour nous contacter</p>
+            </div>
+
+            <section class="container d-flex justify-content-center align-items-center py-5">
+                <div class="container py-3 d-flex justify-content-center">
+                    <form action="https://formspree.io/f/xaneaygb" method="POST" id="contact-form">
+                        <div class="mb-3">
+                            <label class="form-label fs-5" for="nom">Nom*</label>
+                            <input class="form-control border-secondary" type="text" name="nom" id="nom" required>
+                            <small id="small-nom"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fs-5" for="email">Email*</label>
+                            <input class="form-control border-secondary" type="email" name="email" id="email" required>
+                            <small></small>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fs-5" for="sujet">Sujet*</label>
+                            <input class="form-control border-secondary" type="text" name="sujet" id="sujet" required>
+                            <small class="fw-medium fst-italic"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fs-5" for="message">Message*</label>
+                            <textarea class="form-control border-secondary" name="message" id="message" cols="30" rows="10" required></textarea>
+                            <small></small>
+                        </div>
+                        <div class="mt-3 mb-5">
+                            <p>* Champ Obligatoire</p>
+                        </div>
+                        <div class="costum-check">
+                            <input class="d-none" type="checkbox" id="egyetertes" name="egyetertes">
+                            <label class="position-relative d-flex align-items-center" for="egyetertes" id="check-label">J'accepte que mes données servent uniquement à me recontacter.</label>
+                            <!-- <label for="egyetertes"><a class="fst-italic" href="mentions_legales.html"><span>(Voir Mentions Légales)</span></a></label> -->
+                        </div>
+                        <div class="col-md-12 d-flex justify-content-center py-5">
+                            <button class="btn btn-outline-secondary btn-lg border border-2 rounded" id="submit-btn" type="submit" >Envoyer</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+    
+        <!-- link de script  -->
+        <script src="/js/nous_contacter.js"></script>
+
+        <!-- script de Bootstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+    </body>
+
+    <!-- Footer -->
+    <footer class="footer container-fluid text-center text-white bg-dark p-0 fs-5" >
+        <div class="container-fluid border-top border-secondary">
+            <section class="pt-3 ">
+                <div class="row g-0 py-4 col-12 justify-content-center">
+                     <div class="col-6 col-md-12 d-flex flex-column flex-md-row justify-content-center justify-content-md-around">
+                        <div class="col-12 col-md-auto pt-1 footer-menu">
+                            <h6 class="font-weight-bold mx-2">
+                               <a href="A_propos.html" class="text-white text-decoration-none fs-5">À propos</a>
+                            </h6>
+                        </div>
+                        <div class="col-12 col-md-auto py-1 pt-1 footer-menu">
+                            <h6 class="font-weight-bold mx-2">
+                                <a href="plan_du_site.html" class="text-white text-decoration-none fs-5">Plan du site</a>
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        
+            <hr class="my-3" />
+
+            <section class="py-4">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8">
+                        <p><strong>Designed by </strong></p>
+                        <p><strong>Klaudia Juhasz & Arnaud Biarese</strong></p>
+                    </div>
+                </div>
+            </section>
+        
+        </div>
+        <div class="text-center py-5 bg-black" > © 2025 Copyright</div>
+
+        <!-- Scroll Top -->
+        <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center rounded-circle position-fixed"><i class="bi bi-arrow-up-short"></i></a>
+
+    </footer>
+</html>
