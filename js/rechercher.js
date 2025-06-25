@@ -185,6 +185,9 @@ document.querySelector("#btn-rechercher").addEventListener("click", function(){
 
                     const isFavoris = contact.fields.Favoris === 1;
 
+                    //appeler le fonction du DOM.js
+                    // infosModifier.innerHTML = get_insert_dom(contact, photoURL);
+
                     infosModifier.innerHTML = `
                         <div class="container bg-white border border-black col-10 col-md-8 col-xl-6">
                             <div class="modulo position-fixed bg-white p-2 rounded-3 text-center border border-black" id="profil-Modulo" >

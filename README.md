@@ -34,6 +34,7 @@ En cliquant sur un contact, vous pouvez le modifier ou le supprimer.
 
 - HTML5, CSS3, JavaScript
 - Framework Bootstrap pour la mise en page responsive
+- Postman pour vérifier le fonctionnement de mes requêtes 
 - API Airtable pour la gestion des données
 - API Cloudinary pour héberger les images et leur attribuer une URL accessible.
 - Font Awesome pour les icônes
@@ -41,27 +42,25 @@ En cliquant sur un contact, vous pouvez le modifier ou le supprimer.
 ## 📁 Structure principale
 
     ```
-      MINI_CRM/
-        ├── html/
-        │   ├── A_propos.html -> Présentation de l'application
-        │   ├── ajouter.html -> Formulaire d'ajout
-        │   ├── connexion.html -> pour l'instant cette page ne fonctionne pas
-        │   ├── home.html -> Page d'accueil (liste des contacts)
-        │   ├── nous_contacter.html -> Nous rejoindre
-        │   ├── plan_du_site.html -> Si vous êtes "perdu"
-        │   ├── rechercher.html -> Recherche avancé avec filtres multicritères
-        │   ├── new-style.css -> Fichier CSS
-        │     
-        ├── js  -> Scripts de recherche, interaction DOM, API
-        │   ├── affiche_contacts.js  
-        |   ├── ajouter.js
-        |   ├── modifier.js
-        |   ├── nous_contacter.js
-        |   ├── rechercher_par_nom_entreprise.js
-        |   ├── rechercher.js
-        |   ├── se-connecter.js
-        |
-        ├── image
+   MINI_CRM/
+		├── html/
+		│   ├── A_propos.html              # Présentation de l'application
+		│   ├── ajouter.html               # Formulaire d'ajout de contact
+		│   ├── connexion.html             # Page de connexion (non fonctionnelle pour le moment)
+		│   ├── home.html                  # Page d'accueil affichant tous les contacts
+		│   ├── nous_contacter.html        # Formulaire de contact
+		│   ├── plan_du_site.html          # Plan du site pour faciliter la navigation
+		│   ├── rechercher.html            # Recherche avancée multicritères
+		│   └── new-style.css              # Feuille de style centralisée
+		├── js/
+		│   ├── affiche_contacts.js        # Affichage dynamique des contacts depuis l’API Airtable
+		│   ├── ajouter.js                 # Script pour l’ajout d’un contact
+		│   ├── modifier.js                # Script de modification de contact
+		│   ├── nous_contacter.js          # Gestion du formulaire de contact
+		│   ├── rechercher.js              # Fonction de recherche générale
+		│   ├── rechercher_par_nom_entreprise.js # Recherche spécifique par entreprise
+		│   └── se-connecter.js            # Script prévu pour la connexion (non finalisé)
+
     ```
 
 

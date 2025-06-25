@@ -179,6 +179,9 @@ fetch("https://api.airtable.com/v0/app0YvWUy1t2JUWEd/Mini%20CRM?view=Grid%20view
 
                     const isFavoris = contact.fields.Favoris === 1;
 
+                    //appeler le fonction du DOM.js
+                    // infosModifier.innerHTML = infosModifier.innerHTML = get_insert_dom(contact, photoURL);
+                    
                     infosModifier.innerHTML = `
                         <div class="container bg-white border border-black col-10 col-md-8 col-xl-6">
                             <div class="modulo position-fixed bg-white p-2 rounded-3 text-center border border-black" id="profil-Modulo" >
