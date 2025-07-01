@@ -1,10 +1,8 @@
 /* il faut faire encore:
     => page connexion
-    => page a propos
+    => optimiser le code en utilisant DOM.js
     => mettre en secret le API code
-    => design!
     => proteger contre injection SQL
-    => optimiser la page de recherche
 */
 
 
@@ -21,11 +19,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     form.nom.addEventListener("change", function(){
         validNom(this);
     });
-
-    //écouter la modification actuel du prénom -- MAJD KITOROLNI!!!!!
-    // form.prenom.addEventListener("change", function(){
-    //     validPrenom(this);
-    // });
 
     //écouter la modification actuel de l'email
     form.email.addEventListener("change", function(){

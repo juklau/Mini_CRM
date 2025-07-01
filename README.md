@@ -41,7 +41,7 @@ En cliquant sur un contact, vous pouvez le modifier ou le supprimer.
 
 ## 📁 Structure principale
 
-    ```
+```
    MINI_CRM/
 		├── html/
 		│   ├── A_propos.html              # Présentation de l'application
@@ -61,7 +61,7 @@ En cliquant sur un contact, vous pouvez le modifier ou le supprimer.
 		│   ├── rechercher_par_nom_entreprise.js # Recherche spécifique par entreprise
 		│   └── se-connecter.js            # Script prévu pour la connexion (non finalisé)
 
-    ```
+```
 
 
 ## 🔒 Sécurité et données
