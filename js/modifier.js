@@ -92,8 +92,8 @@ document.addEventListener("click", function(event){
                 const pageCourant = window.location.pathname;
                  console.log("Page actuelle :", pageCourant);
 
-                if(pageCourant.includes("home.html")){
-                    window.location.href = "home.html";
+                if(pageCourant.includes("index.html")){
+                    window.location.href = "index.html";
                     
                 }else if(pageCourant.includes("rechercher.html")){
                     window.location.href = "rechercher.html";
@@ -105,13 +105,13 @@ document.addEventListener("click", function(event){
         //pour rester sur la bonne page
         const pageCourant = window.location.pathname;
 
-        if(pageCourant.includes("home.html")){
-            window.location.href = "home.html";
+        if(pageCourant.includes("index.html")){
+            window.location.href = "index.html";
         }else if(pageCourant.includes("rechercher.html")){
             window.location.href = "rechercher.html";
         }
         
-        //  window.location.href = "home.html";
+        //  window.location.href = "index.html";
         //  window.location.href = `modifier.html?id=${contactId}`;
     }
 });
@@ -258,6 +258,6 @@ document.addEventListener("click", function(event){
 
 document.addEventListener("click", function(event){
     if(event.target.id === "deleteOK" || event.target.id === "deleteReussi-closeModulo"){
-        window.location.href = `home.html`;
+        window.location.href = `index.html`;
     } 
 });

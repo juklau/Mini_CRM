@@ -324,7 +324,7 @@ document.querySelector("#recherche").addEventListener("input", function () {
 
             document.addEventListener("click", function (event){
                 if(event.target.id === "NoContactBDD-closeModulo" || event.target.id === "NoContactBDD-OK" ){
-                    window.location.href = "home.html";
+                    window.location.href = "index.html";
                 }
             })
 

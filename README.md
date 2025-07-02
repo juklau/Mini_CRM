@@ -6,7 +6,7 @@
 Mini CRM est une application web intuitive dédiée à la gestion des contacts clients, prospects et partenaires. Elle permet d’ajouter, rechercher, modifier, supprimer et classer facilement tous les profils liés à votre activité.
 
 ### Lancement du Mini CRM
-Dans cette application, plusieurs contacts sont déjà enregistrés. Pour les consulter, il suffit de lancer l’application depuis la page `home.html`
+Dans cette application, plusieurs contacts sont déjà enregistrés. Pour les consulter, il suffit de lancer l’application depuis la page `index.html`
 
 ## 🚀 Fonctionnalités
 
@@ -47,7 +47,7 @@ En cliquant sur un contact, vous pouvez le modifier ou le supprimer.
 		│   ├── A_propos.html              # Présentation de l'application
 		│   ├── ajouter.html               # Formulaire d'ajout de contact
 		│   ├── connexion.html             # Page de connexion (non fonctionnelle pour le moment)
-		│   ├── home.html                  # Page d'accueil affichant tous les contacts
+		│   ├── index.html                  # Page d'accueil affichant tous les contacts
 		│   ├── nous_contacter.html        # Formulaire de contact
 		│   ├── plan_du_site.html          # Plan du site pour faciliter la navigation
 		│   ├── rechercher.html            # Recherche avancée multicritères

@@ -95,7 +95,7 @@ document.addEventListener("click", function(event){
         document.getElementById("confirmAjoutReussi-Modulo").classList.add("show");
         document.addEventListener("click", function(event){
             if(event.target.id === "ajoutOK" || event.target.id === "ajoutReussi-closeModulo"){
-                window.location.href = `home.html`;
+                window.location.href = `index.html`;
             } 
         });
     }else if(event.target.id === "ajoutNo" || event.target.id === "ajout-closeModulo"){
