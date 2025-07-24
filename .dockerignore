@@ -1,0 +1,11 @@
+
+
+
+
+
+config.js
+
+.vscode/s
+.git/
+__pycache__/
+*.pyc

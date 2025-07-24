@@ -31,7 +31,7 @@ document.addEventListener("click", function(event){
         }
 
         const myHeaders = new Headers();
-        myHeaders.append("Authorization", "Bearer pat1hXtYN9Gd2grIe.8f87d9609b33bc4a0b21b2e9b38d22cb777363aef96579095898b16f9516a2f9");
+        myHeaders.append("Authorization", CONFIG.API_KEY);
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("Cookie", "brw=brwP5dTKIEAUqvTmM; AWSALBTG=ITi/fbHG7IlJgD3xaTn3MpZhQIe/9PxRn5wTkr7VbxtjkE3Vz9brZcpkLxRdw7XDE6BxfY2hph/udQSaTP8EyeZguxhdEf7CpvTcKh2yBu3VTESSjr8jp4pbaE/sNuk1sXxXyYX+IPWUXM0UMUXewoYqBm0gr6cRTBCet5zwMYvXmBGopoU=; AWSALBTGCORS=ITi/fbHG7IlJgD3xaTn3MpZhQIe/9PxRn5wTkr7VbxtjkE3Vz9brZcpkLxRdw7XDE6BxfY2hph/udQSaTP8EyeZguxhdEf7CpvTcKh2yBu3VTESSjr8jp4pbaE/sNuk1sXxXyYX+IPWUXM0UMUXewoYqBm0gr6cRTBCet5zwMYvXmBGopoU=");
 
@@ -230,7 +230,7 @@ document.addEventListener("click", function(event){
 document.addEventListener("click", function(event){
     if(event.target.id === "deleteYes" && contactId){
         const myHeaders = new Headers();
-        myHeaders.append("Authorization", "Bearer pat1hXtYN9Gd2grIe.8f87d9609b33bc4a0b21b2e9b38d22cb777363aef96579095898b16f9516a2f9");
+        myHeaders.append("Authorization", CONFIG.API_KEY);
         myHeaders.append("Cookie", "brw=brwP5dTKIEAUqvTmM; brwConsent=opt-out; AWSALBTG=m6IoUSNJR3Fbwr+ggMzFVtD/EQSUwfvoql5olwvGpkqLtWbmxTRBKOtHKJuIs/1ngQTJcvb5VPx0bkUqJaF0v8qZ0rmJGuqPCO0FJBDm8t3lXmIik1ygwY4eS0Qi7GfU1Sa2Q9YAH7AU/PiYYpwFy+TSdoG+qLyFOLz0FdENFkDAh0cYhZ4=; AWSALBTGCORS=m6IoUSNJR3Fbwr+ggMzFVtD/EQSUwfvoql5olwvGpkqLtWbmxTRBKOtHKJuIs/1ngQTJcvb5VPx0bkUqJaF0v8qZ0rmJGuqPCO0FJBDm8t3lXmIik1ygwY4eS0Qi7GfU1Sa2Q9YAH7AU/PiYYpwFy+TSdoG+qLyFOLz0FdENFkDAh0cYhZ4=");
 
         const requestOptions = {
