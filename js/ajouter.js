@@ -23,30 +23,16 @@ document.getElementById('ajouter-btn').addEventListener("click", async function 
 
 document.addEventListener("click", function(event){
     if(event.target.id === "ajoutYes"){
-        const myHeaders = new Headers();
-        myHeaders.append("Authorization", CONFIG.API_KEY);
-        myHeaders.append("Content-Type", "application/json");
+        // const myHeaders = new Headers(); =>regi kod
+        // myHeaders.append("Authorization", CONFIG.API_KEY);
+        // myHeaders.append("Content-Type", "application/json");
+
+        // appel la fonction du outils.js
+        const myHeaders = createHeaders(true);
         myHeaders.append("Cookie", "brw=brwP5dTKIEAUqvTmM; brwConsent=opt-out; AWSALBTG=8ytnFXplo4lqx0/Mqucb/kk00RLN+bUiaOUcdSsaqN+QGQChN3BIOdma6Mvvg0ygyC8uXbIl2V9K2TLEyvoZrY8ZNCEOtxeDwIs3Pk1NeXLtvRBDPI0zGkrS79ilC0m67ndqm5bH4UTjI8WG3FV6FxQhBnW/Ptu2d9/ZUWZuB3lEdWYkAP0=; AWSALBTGCORS=8ytnFXplo4lqx0/Mqucb/kk00RLN+bUiaOUcdSsaqN+QGQChN3BIOdma6Mvvg0ygyC8uXbIl2V9K2TLEyvoZrY8ZNCEOtxeDwIs3Pk1NeXLtvRBDPI0zGkrS79ilC0m67ndqm5bH4UTjI8WG3FV6FxQhBnW/Ptu2d9/ZUWZuB3lEdWYkAP0=");
 
         const raw = JSON.stringify({
-        "records": [
-            {
-            "fields": {
-                "Nom": document.getElementById("nom").value,
-                "Prénom": document.getElementById("prenom").value,
-                "Entreprise": document.getElementById("entreprise").value,
-                "Email": document.getElementById("email").value,
-                "Téléphone": document.getElementById("tel").value,
-                "Type de contact": document.getElementById("type-contact").value,
-                "Date de relance": document.getElementById("date").value,
-                "Statut de relance": document.getElementById("statut").value,
-                "Note": document.getElementById("note").value,
-                "Favoris": document.getElementById("star-btn").classList.contains("checked") ? 1 : 0,
-                "Photo": profileImageUrl ? [{ "url": profileImageUrl }] : [] 
-            }
-            }
-        ]
-        });
+        "records": [{"fields": getContactFormData(profileImageUrl)}]});
 
         const requestOptions = {
             method: "POST", //requête pour créer dans la BDD !!!!
@@ -110,57 +96,25 @@ document.getElementById("upload-btn").addEventListener("click", function() {
     document.getElementById("file-input").click();
 });
 
- //ajouter un événement "change" pour détecter quand l'utilisateur choisit un fichier
-document.addEventListener("change", function(event) {
+//ajouter un événement "change" pour détecter quand l'utilisateur choisit un fichier
+document.addEventListener("change", async function(event) {
     if(event.target.id === "file-input"){
         const file = event.target.files[0];
         //vérification si un fichier a été bien sélectionné, sinon
         if(!file) return;
 
-        console.log("fichier sélectionné: ", file);
+        const uploadeUrl = await uploadToCloudinary(file)
+       
+        if(uploadeUrl){
+            profileImageUrl = uploadeUrl;
 
-        // préparation l'envoir de l'image à Cloudinary
-        const formData = new FormData();
-        formData.append("file", file); // on ajoute le photo dans "formData"
-        
-        //code PID de upload preset : 12d6cf6f-19b1-4ec8-b871-1f175c50bb51
-        //on ajoute l'Upload Preset configuré sur Cloudinary, le "photos_profil"
-        formData.append("upload_preset", "photos_profil");
-
-        //envoie de l'image à Cloudinary
-        fetch("https://api.cloudinary.com/v1_1/dsblrrl1i/image/upload", {
-            method: "POST",
-            body: formData
-        })
-            .then(response => response.json())//la réponse est converti en json
-            .then(data => {
-                if(data.secure_url){
-                    console.log(" Image hébergée sur Cloudinary :", data.secure_url);
-                    profileImageUrl = data.secure_url;
-                    
-                    // Mettre à jour l’image affichée
-                    document.getElementById("profile-pic").src = data.secure_url;
-                    document.getElementById("modulo-profile-pic").src = data.secure_url;
-                }else{
-                    console.error("Erreur : L'URL de l'image n'a pas été récupérée !");
-                } 
-            })
-            .catch(error => console.error(" Erreur lors de l'upload à Cloudinary :", error));
-
+            // Mettre à jour l’image affichée
+            document.getElementById("profile-pic").src = uploadeUrl;
+            document.getElementById("modulo-profile-pic").src = uploadeUrl;
+        }
     }
 });
 
-// document.getElementById("file-input").addEventListener("change", function(event) {
-//     const file = event.target.files[0];
-//     if (file) {
-//         const reader = new FileReader();
-//         reader.onload = function(e) {
-//             document.getElementById("profile-pic").src = e.target.result;
-//             document.getElementById("modulo-profile-pic").src = e.target.result;
-//         };
-//     reader.readAsDataURL(file);
-//     }
-// });
  
 /***********************************************************************************************
                             suppression d'image et rétablir image par défaut

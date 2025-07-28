@@ -4,10 +4,8 @@ document.querySelector("#btn-rechercher").addEventListener("click", function(){
     let typeContact = document.getElementById("search").value;
     let statutRelance =  document.getElementById("search2").value;
 
-    const myHeaders = new Headers();
-
-    myHeaders.append("Authorization", CONFIG.API_KEY);
-    myHeaders.append("Content-Type", "application/json");
+    // appel la fonction du outils.js
+    const myHeaders = createHeaders(true);
     myHeaders.append("Cookie", "brw=brwP5dTKIEAUqvTmM; brwConsent=opt-out; AWSALBTG=2t5l0cFN2s9klbKqfoQ2EHSF/SuU52mIvl/lMT/nk9AXWTBg/JYiL3+vlW8wZaH66B9wgvsUwT7OwMpDvqutCMeO7Y+P+RTmYSbTGmfOJlYWbkGeSZ8NxhmZq0GHtQr1waCdoLD8aRYQnT/prQ3pVERJribCLWfxwZbTME2+PQCxllU6keI=; AWSALBTGCORS=2t5l0cFN2s9klbKqfoQ2EHSF/SuU52mIvl/lMT/nk9AXWTBg/JYiL3+vlW8wZaH66B9wgvsUwT7OwMpDvqutCMeO7Y+P+RTmYSbTGmfOJlYWbkGeSZ8NxhmZq0GHtQr1waCdoLD8aRYQnT/prQ3pVERJribCLWfxwZbTME2+PQCxllU6keI=");
 
     

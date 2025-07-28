@@ -5,158 +5,153 @@
     => proteger contre injection SQL
 */
 
-
 /*======================================================================================== */
-/*                              Formulaire sur la page Contact */
+/*                           UJ   Formulaire sur la page Contact */
 /* ======================================================================================== */
 
+
+function validerField({inputId, regex, errorMsg, errorSelector}){
+    const input = document.getElementById(inputId);
+    const feedback =  errorSelector ? document.querySelector(errorSelector) : input.nextElementSibling;
+
+    if(!regex.test(input.value)){
+        feedback.innerHTML = errorMsg;
+        feedback.classList.remove("text-success");
+        feedback.classList.add("text-danger");
+        input.classList.remove("megfelelo");
+        input.classList.add("nem-megfelelo");
+        return false;
+    }else{
+        feedback.innerHTML = " ";
+        feedback.classList.remove("text-danger");
+        feedback.classList.add("text-success");
+        input.classList.remove("nem-megfelelo");
+        input.classList.add("megfelelo");
+        return true;
+    }
+}
+
+const validNom = () => validerField({
+    inputId: "nom",
+    regex: /^[A-Z]{1}[a-zA-Z\s\-]{2,50}$/,
+    errorMsg: "Veuillez saisir un nom valide commençant par une majuscule",
+    errorSelector: "#small-nom"
+});
+
+const validEmail = () => validerField({
+    inputId: "email",
+    regex: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-z]{2,10}$/,
+    errorMsg: "Veuillez saisir une adresse email valide"
+});
+
+const validSujet = () => validerField({
+    inputId: "sujet",
+    regex: /^[a-zA-Z0-9'\s]{5,50}$/,
+    errorMsg: "Veuillez entrer minimum 5 caractères sans caractères spéciaux"
+});
+
+const validMessage = () => validerField({
+    inputId: "message",
+    regex: /^[a-zA-Z0-9 ._()!:;,?%'"^\\s]{3,500}$/,
+    errorMsg: "Veuillez entrer minimum 5 caractères"
+});
+
+const validCheckbox = function(){
+let inputCheckBox = document.getElementById("egyetertes");
+    if(inputCheckBox.checked){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 const form = document.querySelector("#contact-form");
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener("DOMContentLoaded", () => {
 
-    // const form = document.querySelector("#contact-form");
-
-    //écouter la modification actuel du nom
-    form.nom.addEventListener("change", function(){
-        validNom(this);
-    });
-
-    //écouter la modification actuel de l'email
-    form.email.addEventListener("change", function(){
-        validEmail(this);
-    });
-
-    //écouter la modification actuel du sujet
-    form.sujet.addEventListener("change", function(){
-        validSujet(this);
-    });
-
-    //écouter la modification actuel du message
-    form.message.addEventListener("change", function(){
-        validMessage(this);
-    });
-
-    form.egyetertes.addEventListener("change", function(){
-        validCheckbox(this);
-    })
+    form.nom.addEventListener("change", validNom);
+    form.email.addEventListener("change", validEmail);
+    form.sujet.addEventListener("change",validSujet);
+    form.message.addEventListener("change",validMessage);
+    form.egyetertes.addEventListener("change",validCheckbox);
 })
 
-// ************************Validation NOM******************************************************
-const validNom = function(){
 
-    let inputNom = document.querySelector("#nom");
-    //Creation de la reg exp pour la validation nom
-    let nomRegExp = new RegExp('^[A-Z]{1}[a-zA-Z\\s\\-]{2,50}$', "g");
-   
-    //récuperation de la balise SMALL
-    let smallNom = document.getElementById("small-nom");
-    
-    //test de l'expression reguliere
-    if(!nomRegExp.test(inputNom.value)){
-        smallNom.innerHTML = "Veuillez saisir un nom valide commençant par une lettre majuscule";
-        smallNom.classList.remove("text-success");
-        smallNom.classList.add("text-danger");
-        inputNom.classList.remove("megfelelo");
-        inputNom.classList.add("nem-megfelelo");
-        return false;
-    }else{
-        smallNom.innerHTML = " ";
-        smallNom.classList.remove("text-danger");
-        smallNom.classList.add("text-success"); 
-        inputNom.classList.remove("nem-megfelelo");
-        inputNom.classList.add("megfelelo");
-        return true
+form.addEventListener("submit", function(e) {
+    //empêche le rechargement de page
+    e.preventDefault();
+    if (validNom() && validEmail() && validSujet() && validMessage() && validCheckbox()) {
+
+        const formData = new FormData(this);
+
+        fetch("https://formspree.io/f/xaneaygb", {
+            method: "POST", 
+            body: formData,
+            headers: {
+                'Accept' : 'application.json'
+            }
+        })
+        .then(reponse =>{
+            if(reponse.ok){
+                const confirmation = document.getElementById("form-confirmation");
+
+                confirmation.classList.remove("hidden");
+                confirmation.classList.add("visible");
+                
+                //vider le formulaire
+                form.reset();
+
+                document.querySelectorAll(".megfelelo, .nem-megfelelo").forEach(el => {
+                    el.classList.remove("megfelelo", "nem-megfelelo");
+                })
+
+            }else{
+                 return reponse.json().then(data => {
+                    // throw => interrompre le fonctionnement normal et "donne" le control au catch
+                    throw new Error(data.error || "Erreur lors de l'envoi.");
+                });
+            }
+        })
+        .catch(error =>{
+            console.error("Erreur Formspree: ", error);
+            alert("Une erreur est survenu lors de l'envoi.Veuillez réessayer.")
+        })
+
+    }else {
+        console.warn("Formulaire invalide !");
     }
-};
-
-// ************************Validation EMAIL******************************************************
-const validEmail = function(){
     
-    let inputEmail = document.querySelector("#email");
-    let emailRegExp = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', "g");
-    let spanEmail = inputEmail.nextElementSibling;
-    
-    if(emailRegExp.test(inputEmail.value)){
-        spanEmail.innerHTML = " ";
-        spanEmail.classList.remove("text-danger");
-        spanEmail.classList.add("text-success");
-        inputEmail.classList.remove("nem-megfelelo");
-        inputEmail.classList.add("megfelelo");
-        return true
-    }else{
-        spanEmail.innerHTML = "Veuillez saisir une adresse email valide.";
-        spanEmail.classList.remove("text-success");
-        spanEmail.classList.add("text-danger");
-        inputEmail.classList.remove("megfelelo");
-        inputEmail.classList.add("nem-megfelelo");
-        return false;
-    }
-};
+});
 
-// ************************Validation SUJET******************************************************
-const validSujet = function(){
-   
-    let inputSujet = document.querySelector("#sujet");
-    let sujetRegExp = new RegExp('^[a-zA-Z0-9\'\\s]{5,50}$', "g");
-    let spanSujet = inputSujet.nextElementSibling;
-    
-    if(!sujetRegExp.test(inputSujet.value)){
-        spanSujet.innerHTML = "Veuillez entrer minimum 5 caractères sans les caractères spéciaux";
-        spanSujet.classList.remove("text-success");
-        spanSujet.classList.add("text-danger");
-        inputSujet.classList.remove("megfelelo");
-        inputSujet.classList.add("nem-megfelelo");
-        return false;
-    }else{
-        spanSujet.innerHTML = " ";
-        spanSujet.classList.remove("text-danger");
-        spanSujet.classList.add("text-success");
-        inputSujet.classList.remove("nem-megfelelo");
-        inputSujet.classList.add("megfelelo");
-        return true;
-    }
-};
 
-// ************************Validation MESSAGE******************************************************
-const validMessage = function(){
-    
-    let inputMessage = document.querySelector("#message");
-    let messageRegExp = new RegExp('^[a-zA-Z0-9.-_()!:;,?%\'\"\^\\s]{2,500}$', "g");
-    let smallMessage = inputMessage.nextElementSibling;
-    
-    if(inputMessage.value.length < 3){
-        smallMessage.innerHTML = "Veuillez entrer minimum 5 caractères sans les caractères spéciaux";
-        smallMessage.classList.remove("text-success");
-        smallMessage.classList.add("text-danger");
-        inputMessage.classList.remove("megfelelo");
-        inputMessage.classList.add("nem-megfelelo")
-        return false;
-    }else if(!messageRegExp.test(inputMessage.value)){
-        smallMessage.innerHTML = "Votre texte n'est pas conform avec un text normal. Veuillez enlever les caractères spéciaux";
-        smallMessage.classList.remove("text-success");
-        smallMessage.classList.add("text-danger");
-        inputMessage.classList.remove("megfelelo");
-        inputMessage.classList.add("nem-megfelelo")
-        return false;
-    }else{
-        smallMessage.innerHTML = " ";
-        smallMessage.classList.remove("text-danger");
-        smallMessage.classList.add("text-success");
-        inputMessage.classList.remove("nem-megfelelo");
-        inputMessage.classList.add("megfelelo"); 
-        return true;
-    };
-};
 
-// ************************************ Validation CHECKBOX *******************************************
 
- const validCheckbox = function(){
-    let inputCheckBox = document.getElementById("egyetertes");
-        if(inputCheckBox.checked){
-            return true;
-        }else{
-            return false;
-        }
- }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*======================================================================================== */
+/*                           régi darab kod*/
+/* ======================================================================================== */
+
+
 
 // az ALAP ellenorzes volt ez
 // function validCheckbox(){
@@ -173,39 +168,26 @@ const validMessage = function(){
 
 // ******************************* Validation de L'ENVOI EMAIL ******************************************
 
-const inputs = document.querySelectorAll("input");
+// const inputs = document.querySelectorAll("input");
 
 //Ecouter la soumission du formulaire
-document.getElementById("contact-form").addEventListener("submit", function(e) {
-    e.preventDefault();
+// document.getElementById("contact-form").addEventListener("submit", function(e) {
+//     e.preventDefault();
 
-    if(validNom(form.nom) && validEmail(form.email) && validSujet(form.sujet) && validMessage(form.message) && validCheckbox()){
-        form.submit();
+//     if(validNom(form.nom) && validEmail(form.email) && validSujet(form.sujet) && validMessage(form.message) && validCheckbox()){
+//         form.submit();
 
-        //pour vider les champs apres la validation
-        for(let i = 0; i < inputs.length; i++){
-            document.getElementsByTagName("input")[i].value = "";
-        };
-        document.getElementById("message").value = ""; 
+//         //pour vider les champs apres la validation
+//         for(let i = 0; i < inputs.length; i++){
+//             document.getElementsByTagName("input")[i].value = "";
+//         };
+//         document.getElementById("message").value = ""; 
 
-        //ne fonctionne pas encore
-        // document.getElementById("egyetertes").value = "";
-    }else{
-        console.log("il ne fonctionne pas");
-    }
-});
+//         //ne fonctionne pas encore
+//         // document.getElementById("egyetertes").value = "";
+//     }else{
+//         console.log("il ne fonctionne pas");
+//     }
+// });
 
 
-/* ======================================================================================== */
-/*                          Activation du bouton "scroll top"*/
-/* ======================================================================================== */
-
-window.addEventListener("scroll", function(){
-    let scrollTopBtn = document.getElementById("scroll-top");
-
-    if(window.scrollY > 200){
-        scrollTopBtn.classList.add("active");
-    }else{
-        scrollTopBtn.classList.remove("active");
-    }
-})

@@ -20,11 +20,18 @@ function triABulles(arr){
 }
 
 
-/***********************************************************************************************
-                afficher le premier alphabet où il y a un contact
-************************************************************************************************/
+
+function createHeaders(isJson= false){
+    const headers =  new Headers();
+    headers.append("Authorization", CONFIG.API_KEY);
+    if(isJson) {
+        headers.append("Content-Type", "application/json");
+    }
+    return headers;
+}
 
 
+//afficher le premier alphabet où il y a un contact
 function affichePremierAlphabetContact(alphabetBlock){
 
     for(const block of alphabetBlock){
@@ -148,6 +155,99 @@ function afficherContacts({contacts, resultatDiv, containerSelector, infosModifi
 
     return lettresAvecContacts;
 }
+
+
+//extraire les valeurs d'une formulaire
+function getContactFormData(photoUrl){
+    return{
+        "Nom": document.getElementById("nom").value,
+        "Prénom": document.getElementById("prenom").value,
+        "Entreprise": document.getElementById("entreprise").value,
+        "Email": document.getElementById("email").value,
+        "Téléphone": document.getElementById("tel").value,
+        "Type de contact": document.getElementById("type-contact").value,
+        "Date de relance": document.getElementById("date").value,
+        "Statut de relance": document.getElementById("statut").value,
+        "Note": document.getElementById("note").value,
+        "Favoris": document.getElementById("star-btn").classList.contains("checked") ? 1 : 0 ,
+        "Photo" : photoUrl ? [{ "url": photoUrl }] : []
+        // "Photo" : photoUrl && !photoUrl.startsWith("data:") ? [{"url": photoUrl}] : [] //le bon format pour Airtable
+    }
+}
+
+
+//mettre les photos dans Cloudinary
+// certaines opérations prennent du temps (comme fetch, lire un fichier, etc.), 
+// et éviter de bloquer le reste du code pendant ce temps
+async function uploadToCloudinary(file){
+    console.log("fichier sélectionné: ", file);
+
+    const formData = new FormData();
+    formData.append("file", file); // on ajoute le photo dans "formData"
+    formData.append("upload_preset", "photos_profil");
+
+    try{
+        const response = await fetch("https://api.cloudinary.com/v1_1/dsblrrl1i/image/upload", {
+            method: "POST",
+            body: formData
+        })
+
+        const data = await response.json();
+        if(data.secure_url){
+            console.log(" Image hébergée sur Cloudinary :", data.secure_url);
+            return data.secure_url;
+        }else{
+            console.error("Erreur : L'URL de l'image n'a pas été récupérée !");
+            return null;
+        }
+    }catch(error){
+        console.error(" Erreur lors de l'upload à Cloudinary :", error);
+        return null;
+    }
+}
+
+
+
+//REGI KOD, ami àt lett alakitva fonctionnà:
+// if(event.target.id === "file-input"){
+//     const file = event.target.files[0];
+//     //vérification si un fichier a été bien sélectionné, sinon
+//     if(!file) return;
+
+//     console.log("fichier sélectionné: ", file);
+
+//     // préparation l'envoir de l'image à Cloudinary
+//     const formData = new FormData();
+//     formData.append("file", file); // on ajoute le photo dans "formData"
+    
+//     //code PID de upload preset : 12d6cf6f-19b1-4ec8-b871-1f175c50bb51
+//     //on ajoute l'Upload Preset configuré sur Cloudinary, le "photos_profil"
+//     formData.append("upload_preset", "photos_profil");
+
+//     //envoie de l'image à Cloudinary
+//     fetch("https://api.cloudinary.com/v1_1/dsblrrl1i/image/upload", {
+//         method: "POST",
+//         body: formData
+//     })
+//         .then(response => response.json())//la réponse est converti en json
+//         .then(data => {
+//             if(data.secure_url){
+//                 console.log(" Image hébergée sur Cloudinary :", data.secure_url);
+//                 profileImageUrl = data.secure_url;
+                
+//                 // Mettre à jour l’image affichée
+//                 document.getElementById("profile-pic").src = data.secure_url;
+//                 document.getElementById("modulo-profile-pic").src = data.secure_url;
+//             }else{
+//                 console.error("Erreur : L'URL de l'image n'a pas été récupérée !");
+//             } 
+//         })
+//         .catch(error => console.error(" Erreur lors de l'upload à Cloudinary :", error));
+
+// }
+
+
+
 
 /* ======================================================================================== */
 /*                          Activation du bouton "scroll top"*/

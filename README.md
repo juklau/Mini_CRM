@@ -55,8 +55,10 @@ En cliquant sur un contact, vous pouvez le modifier ou le supprimer.
 		├── js/
 		│   ├── affiche_contacts.js        # Affichage dynamique des contacts depuis l’API Airtable
 		│   ├── ajouter.js                 # Script pour l’ajout d’un contact
+		|	├── DOM.js					   # Script DOM pour optimisation des codes
 		│   ├── modifier.js                # Script de modification de contact
 		│   ├── nous_contacter.js          # Gestion du formulaire de contact
+		|	├── outils.js				   # Script des fonctions réutilisables
 		│   ├── rechercher.js              # Fonction de recherche générale
 		│   ├── rechercher_par_nom_entreprise.js # Recherche spécifique par entreprise
 		│   └── se-connecter.js            # Script prévu pour la connexion (non finalisé)

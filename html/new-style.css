@@ -32,7 +32,6 @@
     font-family: var(--default-font);
 }
 
-
 /*********************************************************************************************
                                         Navbar
 **********************************************************************************************/
@@ -86,7 +85,6 @@
                                         Pour tous les pages
 **********************************************************************************************/
 
-
 main{
     background-color: var(--main-background-color2);
 }
@@ -120,7 +118,6 @@ main{
     /* width: 100%; */
     box-shadow: 2px 2px 2px var(--box-shadow-color1);
 }
-
 
 .modulo p {
     font-size: 18px;
@@ -173,7 +170,6 @@ main{
     bottom: 15px;
 }
 
-
 /*********************************************************************************************
                                         Tous les boutons d'application
 **********************************************************************************************/
@@ -208,11 +204,9 @@ main{
     color: var(--black-color);
 }
 
-
 /*********************************************************************************************
                                         Page Ajouter des contacts
 **********************************************************************************************/
-
 
 /*********************************************************************************************
                             Ajouter le photo du contact dans #modulo-profil
@@ -237,7 +231,6 @@ main{
     max-height: 200px;
     object-fit: cover;
 }
-
 
 /*********************************************************************************************
                             Formulaire de la Page Ajouter des contacts
@@ -284,7 +277,6 @@ main{
     color: var(--gold-color) !important;
     transition: color 0.3s ease-in-out !important;
 }
-
 
 /***********************************************************************************************
                             Page Home: afficher tous les contacts
@@ -397,7 +389,6 @@ select{ /* partout où il faut choisir .... */
     background: var(--main-background-color2);
 }
 
-
 /*********************************************************************************************
                                         Page Contact
 **********************************************************************************************/
@@ -421,6 +412,10 @@ select{ /* partout où il faut choisir .... */
     outline-offset: 0.2rem;
 }
 
+.visible{
+    display: block;
+    color: var(--succes-color);
+}
 
 /******************************************** Checkbox **********************************************/
 
@@ -449,7 +444,6 @@ select{ /* partout où il faut choisir .... */
     outline: 0.2rem solid var(--succes-color);
     outline-offset: 0.2rem;
 }
-
 
 /*********************************************************************************************
                                        Se connecter
@@ -489,8 +483,6 @@ select{ /* partout où il faut choisir .... */
 }
 
 
-
-
 @media screen and (min-width: 991px){
 
     .navbarmenu li{
@@ -498,6 +490,3 @@ select{ /* partout où il faut choisir .... */
     }
     
 }
-
-
-

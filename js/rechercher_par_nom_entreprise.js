@@ -13,8 +13,8 @@ document.querySelector("#recherche").addEventListener("input", function () {
         return;
     }
 
-    const myHeaders = new Headers();
-    myHeaders.append("Authorization", CONFIG.API_KEY);
+    // appel la fonction du outils.js
+    const myHeaders = createHeaders();
     myHeaders.append("Content-Type", "application/json");
 
     fetch(`https://api.airtable.com/v0/app0YvWUy1t2JUWEd/Mini%20CRM?filterByFormula=OR(FIND('${searchTerme}', {Nom}), FIND('${searchTerme}', {Entreprise}))`, {
