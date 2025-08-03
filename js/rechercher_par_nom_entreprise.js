@@ -1,5 +1,3 @@
-
-
 document.querySelector("#recherche").addEventListener("input", function () {
     const searchTerme = document.getElementById("recherche").value.trim();
     const resultatDiv = document.getElementById("resultat");
@@ -66,7 +64,6 @@ document.querySelector("#recherche").addEventListener("input", function () {
                 if (!inserted) {
                     console.warn("Lettre non trouvée dans accordéon :", lettre);
                 }
-
 
                 /***********************************************************************************************
                         Récuperation les informations du contact selectionné

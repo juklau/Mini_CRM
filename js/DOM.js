@@ -1,5 +1,3 @@
-
-
 // constants réutilisable
 const resultatDiv = document.getElementById("resultat");
 const afficheDetails = document.getElementById("affiche-details");
@@ -46,8 +44,6 @@ function createContactCard(contact, photoURL){
     return creationCard;
 }
 
-
-
 function get_insert_dom(contact, photoURL, isFavoris)
 {
     let insertion = `
@@ -91,7 +87,7 @@ function get_insert_dom(contact, photoURL, isFavoris)
                                         <label class="form-label fw-bolder" for="nom">Nom:</label>
                                     </div>
                                     <div class="col-12 col-sm-8">
-                                        <input class="form-control border-black" type="text" name="nom" id="nom" value="${contact.fields.Nom || ''}">
+                                        <input class="form-control border-black" type="text" name="nom" id="nom" required value="${contact.fields.Nom || ''}">
                                     </div>
                                 </div> 
                             </div>
@@ -104,7 +100,7 @@ function get_insert_dom(contact, photoURL, isFavoris)
                                         <label class="form-label fw-bolder" for="prenom">Prénom:</label>
                                     </div>
                                     <div class="col-12 col-sm-8">
-                                        <input class="form-control border-black" type="text" name="prenom" id="prenom" value="${contact.fields.Prénom || ''}"> 
+                                        <input class="form-control border-black" type="text" name="prenom" id="prenom" required value="${contact.fields.Prénom || ''}"> 
                                     </div>
                                 </div> 
                             </div>
@@ -130,7 +126,7 @@ function get_insert_dom(contact, photoURL, isFavoris)
                                         <label class="form-label fw-bolder" for="email">Email:</label>
                                     </div>
                                     <div class="col-12 col-sm-8">
-                                        <input class="form-control border-black" type="email" name="email" id="email" value="${contact.fields.Email || ''}">
+                                        <input class="form-control border-black" type="email" name="email" id="email" required value="${contact.fields.Email || ''}">
                                     </div>
                                 </div> 
                             </div>
@@ -143,7 +139,7 @@ function get_insert_dom(contact, photoURL, isFavoris)
                                         <label class="form-label fw-bolder" for="tel">Telephone:</label>
                                     </div>
                                     <div class="col-12 col-sm-8">
-                                        <input class="form-control border-black" type="tel" name="tel" id="tel" value="${contact.fields.Téléphone || ''}">
+                                        <input class="form-control border-black" type="tel" name="tel" id="tel" required value="${contact.fields.Téléphone || ''}">
                                     </div>
                                 </div> 
                             </div>
@@ -234,5 +230,3 @@ function get_insert_dom(contact, photoURL, isFavoris)
 // }else{
 //         starButton.classList.remove("checked");
 // }
-
-

@@ -62,7 +62,12 @@ document.addEventListener("click", function(event){
         fetch("https://api.airtable.com/v0/app0YvWUy1t2JUWEd/Mini%20CRM", requestOptions)
             .then((response) => response.json())
             .then((result) => console.log(result))
-            .catch((error) => console.error("Erreur lors de la mise à jour: ",error));
+            .catch((error) => {
+                console.error("Erreur lors de la mise à jour: ",error);
+                alert("Erreur lors de la modification. Vérifiez les données");
+                // document.getElementById("ajout-Modulo").disabled =  false //réactiver le bouton en cas d'échec
+
+            });
 
          // fermer la modulo après validation
         document.getElementById("confirm-Modulo").classList.remove("show");
@@ -87,9 +92,6 @@ document.addEventListener("click", function(event){
         });      
     }else if(event.target.id === "confirmNo" || event.target.id === "confirm-closeModulo"){
 
-        //pour rester sur la bonne page
-        const pageCourant = window.location.pathname;
-
         if(pageCourant.includes("index.html")){
             window.location.href = "index.html";
         }else if(pageCourant.includes("rechercher.html")){
@@ -101,7 +103,6 @@ document.addEventListener("click", function(event){
     }
 });
 
-
 /***********************************************************************************************
                                  mettre en favoris le contact
 ************************************************************************************************/
@@ -112,7 +113,6 @@ document.addEventListener("click", function(event){
             event.target.classList.toggle("checked");
     }
 });
-
 
 /***********************************************************************************************
                                 modifier le photo du contact
@@ -181,7 +181,6 @@ document.addEventListener("change", async function(event) {
         }
     }
 });
-   
 
 /***********************************************************************************************
                             supprimer le contact concerné
@@ -192,7 +191,6 @@ document.addEventListener("click", function(event){
         document.getElementById("delete-Modulo").classList.add("show");
     }
 });
-
 
 document.addEventListener("click", function(event){
     contactId = document.getElementById("editModal").dataset.contactid
@@ -218,12 +216,10 @@ document.addEventListener("click", function(event){
         //ouvrir le modulo de confirmation de la suppression
         document.getElementById("deleteReussi-Modulo").classList.add("show");
         
-
     }else if(event.target.id === "deleteNo" || event.target.id === "delete-closeModulo"){
             document.getElementById("delete-Modulo").classList.remove("show");
     }
 });
-
 
 document.addEventListener("click", function(event){
     if(event.target.id === "deleteOK" || event.target.id === "deleteReussi-closeModulo"){

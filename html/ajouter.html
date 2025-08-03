@@ -76,6 +76,24 @@
                 </div>
             </div>
 
+            <!-- en cas d'erreur de validation -->
+            <div class="modulo position-fixed bg-white p-2 rounded-3 text-center border border-black fs-6" id="erreur-Modulo" >
+                <div class="modulo-header mt-2 mb-4 d-flex justify-content-end text-center">
+                    <button class="modulo-btn btn btn-outline-secondary border border-2 rounded me-3" id="erreur-closeModulo">X</button>
+                </div>
+                <div class="modulo-body my-1">
+                    <p>Certains champs sont invalides <br>
+                        ou  <br>
+                        contiennent des caractères interdits(<, >, ", `, =, ;) <br>
+                        ou <br>
+                        le nom/prénom commence par un lettre minuscule.
+                    </p>                
+                </div>
+                <div class="modulo-footer pt-2 my-2">
+                    <button class="modulo-btn btn btn-outline-secondary btn border border-2 rounded" id="erreurOK">OK</button>
+                </div>
+            </div>
+
             <!-- confirmation de la réussite de l'ajoute contact kesz FAIT-->
             <div class="modulo position-fixed bg-white p-2 rounded-3 text-center border border-black fs-6" id="confirmAjoutReussi-Modulo" >
                 <div class="modulo-header mt-2 mb-4 d-flex justify-content-end text-center">
@@ -126,7 +144,7 @@
                                         <label class="form-label fw-bolder" for="nom">Nom:</label>
                                     </div>
                                     <div class="col-12 col-sm-8">
-                                        <input class="form-control border-black" type="text" name="nom" id="nom" placeholder="Nom">
+                                        <input class="form-control border-black" type="text" name="nom" id="nom" required placeholder="Nom">
                                     </div>
                                 </div> 
                             </div>
@@ -138,7 +156,7 @@
                                         <label class="form-label fw-bolder" for="prenom">Prénom:</label>
                                     </div>
                                     <div class="col-12 col-sm-8">
-                                        <input class="form-control border-black" type="text" name="prenom" id="prenom" placeholder="Prénom"> 
+                                        <input class="form-control border-black" type="text" name="prenom" id="prenom" required placeholder="Prénom"> 
                                     </div>
                                 </div> 
                             </div>
@@ -162,7 +180,7 @@
                                         <label class="form-label fw-bolder" for="email">Email:</label>
                                     </div>
                                     <div class="col-12 col-sm-8">
-                                        <input class="form-control border-black" type="email" name="email" id="email" placeholder="Email">
+                                        <input class="form-control border-black" type="email" name="email" id="email" required placeholder="Email">
                                     </div>
                                 </div> 
                             </div>
@@ -174,7 +192,7 @@
                                         <label class="form-label fw-bolder" for="tel">Telephone:</label>
                                     </div>
                                     <div class="col-12 col-sm-8">
-                                        <input class="form-control border-black" type="tel" name="tel" id="tel" placeholder="Téléphone">
+                                        <input class="form-control border-black" type="tel" name="tel" id="tel" required placeholder="Téléphone">
                                     </div>
                                 </div> 
                             </div>

@@ -1,14 +1,13 @@
 /* il faut faire encore:
     => page connexion
-    => optimiser le code en utilisant DOM.js
-    => mettre en secret le API code
+    => optimiser le code en utilisant DOM.js =>ok
+    => mettre en secret le API code =>ok
     => proteger contre injection SQL
 */
 
 /*======================================================================================== */
 /*                           UJ   Formulaire sur la page Contact */
 /* ======================================================================================== */
-
 
 function validerField({inputId, regex, errorMsg, errorSelector}){
     const input = document.getElementById(inputId);
@@ -75,7 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
     form.egyetertes.addEventListener("change",validCheckbox);
 })
 
-
 form.addEventListener("submit", function(e) {
     //empêche le rechargement de page
     e.preventDefault();
@@ -126,33 +124,9 @@ form.addEventListener("submit", function(e) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*======================================================================================== */
 /*                           régi darab kod*/
 /* ======================================================================================== */
-
-
-
 // az ALAP ellenorzes volt ez
 // function validCheckbox(){
 //     document.getElementById("egyetertes").addEventListener("change", function(){
@@ -189,5 +163,3 @@ form.addEventListener("submit", function(e) {
 //         console.log("il ne fonctionne pas");
 //     }
 // });
-
-

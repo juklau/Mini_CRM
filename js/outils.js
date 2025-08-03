@@ -1,5 +1,3 @@
-
-
 //faire un tri à bulles (math)
 function triABulles(arr){
     let taille = arr.length;
@@ -19,8 +17,6 @@ function triABulles(arr){
     return arr;
 }
 
-
-
 function createHeaders(isJson= false){
     const headers =  new Headers();
     headers.append("Authorization", CONFIG.API_KEY);
@@ -29,7 +25,6 @@ function createHeaders(isJson= false){
     }
     return headers;
 }
-
 
 //afficher le premier alphabet où il y a un contact
 function affichePremierAlphabetContact(alphabetBlock){
@@ -53,7 +48,6 @@ function affichePremierAlphabetContact(alphabetBlock){
         };
     }
 }
-
 
 //afficher les contacts sous forme de cartes
 function afficherContacts({contacts, resultatDiv, containerSelector, infosModifier, afficheDetails}){
@@ -109,7 +103,6 @@ function afficherContacts({contacts, resultatDiv, containerSelector, infosModifi
             resultatDiv.appendChild(card);
         }
 
-        
         /***********************************************************************************************
                     Récuperation les informations du contact selectionné
         ************************************************************************************************/     
@@ -152,29 +145,109 @@ function afficherContacts({contacts, resultatDiv, containerSelector, infosModifi
             });
         }   
     });
-
     return lettresAvecContacts;
 }
 
+function isSafeInput(str){
+    const unsafePattern = /[<>"=;`]/g;
+    return !unsafePattern.test(str);
+}
+
+function validNom(str) {
+    const nomRegex = /^[A-Z]{1}[a-zA-Z\s\-]{2,50}$/;
+    return nomRegex.test(str)
+};
+
+function sanitizeInput(str) {
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+}
+
+function validateEmail(email) {
+    //"[^\s@]+" => Une ou plusieurs lettres qui ne sont ni un espace ni un @
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function validatePhone(phone) {
+    const phoneRegex = /^\+?[0-9\s\-]{7,20}$/;
+    return phoneRegex.test(phone);
+}
 
 //extraire les valeurs d'une formulaire
 function getContactFormData(photoUrl){
-    return{
-        "Nom": document.getElementById("nom").value,
-        "Prénom": document.getElementById("prenom").value,
-        "Entreprise": document.getElementById("entreprise").value,
-        "Email": document.getElementById("email").value,
-        "Téléphone": document.getElementById("tel").value,
-        "Type de contact": document.getElementById("type-contact").value,
-        "Date de relance": document.getElementById("date").value,
-        "Statut de relance": document.getElementById("statut").value,
-        "Note": document.getElementById("note").value,
-        "Favoris": document.getElementById("star-btn").classList.contains("checked") ? 1 : 0 ,
-        "Photo" : photoUrl ? [{ "url": photoUrl }] : []
-        // "Photo" : photoUrl && !photoUrl.startsWith("data:") ? [{"url": photoUrl}] : [] //le bon format pour Airtable
+    
+    // .trim() => supprimer les espaces au début et à la fin d'une chaîne de caractère
+    const nom = sanitizeInput(document.getElementById("nom").value.trim());
+    const prenom =  sanitizeInput(document.getElementById("prenom").value.trim());
+    const entreprise=  sanitizeInput(document.getElementById("entreprise").value.trim());
+    const email = document.getElementById("email").value;
+    const tel = document.getElementById("tel").value;
+    const typeContact = document.getElementById("type-contact").value;
+    const date =  document.getElementById("date").value;
+    const statutRelance = document.getElementById("statut").value;
+    const note = sanitizeInput(document.getElementById("note").value.trim());
+    const favoris =  document.getElementById("star-btn").classList.contains("checked") ? 1 : 0;
+    const imageUrl =  photoUrl ? [{ "url": photoUrl }] : []
+    // "Photo" : photoUrl && !photoUrl.startsWith("data:") ? [{"url": photoUrl}] : [] //le bon format pour Airtable
+
+    if(!nom || !prenom || !validNom(nom) || !validNom(prenom) || !isSafeInput(entreprise) || !isSafeInput(note) ||  !validateEmail(email) || !validatePhone(tel)) {
+        // alert("Certains champs sont invalides ou contiennent des caractères interdits(<, >, \", `, =, ;).");
+        // afficher le message d'erreur
+        document.getElementById("erreur-Modulo").classList.add("show");
+        
+        document.addEventListener("click", function(event){
+            if(event.target.id === "erreurOK" || event.target.id === "erreur-closeModulo"){
+                document.getElementById("erreur-Modulo").classList.remove("show");
+
+                const pageCourant = window.location.pathname;
+
+                if(pageCourant.includes("index.html")){
+                    window.location.href = "index.html";
+                }else if(pageCourant.includes("ajouter.html")){
+                    window.location.href = "ajouter.html";
+                }
+            } 
+        });
+        throw new Error("Invalid input");
     }
+
+    return {
+        "Nom" : nom,
+        "Prénom" : prenom,
+        "Entreprise" : entreprise,
+        "Email" : email,
+        "Téléphone" : tel,
+        "Type de contact": typeContact,
+        "Date de relance": date,
+        "Statut de relance": statutRelance,
+        "Note": note,
+        "Favoris": favoris,
+        "Photo" : imageUrl
+    };
 }
 
+
+
+
+//extraire les valeurs d'une formulaire
+// function getContactFormData(photoUrl){ majd kitorolni ha jo
+//     return{
+//         "Nom": document.getElementById("nom").value,
+//         "Prénom": document.getElementById("prenom").value,
+//         "Entreprise": document.getElementById("entreprise").value,
+//         "Email": document.getElementById("email").value,
+//         "Téléphone": document.getElementById("tel").value,
+//         "Type de contact": document.getElementById("type-contact").value,
+//         "Date de relance": document.getElementById("date").value,
+//         "Statut de relance": document.getElementById("statut").value,
+//         "Note": document.getElementById("note").value,
+//         "Favoris": document.getElementById("star-btn").classList.contains("checked") ? 1 : 0 ,
+//         "Photo" : photoUrl ? [{ "url": photoUrl }] : []
+//         // "Photo" : photoUrl && !photoUrl.startsWith("data:") ? [{"url": photoUrl}] : [] //le bon format pour Airtable
+//     }
+// }
 
 //mettre les photos dans Cloudinary
 // certaines opérations prennent du temps (comme fetch, lire un fichier, etc.), 
@@ -205,6 +278,8 @@ async function uploadToCloudinary(file){
         return null;
     }
 }
+
+
 
 
 

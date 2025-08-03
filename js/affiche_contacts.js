@@ -1,4 +1,3 @@
-
 // requestAnimationFrame('dotenv').config(); => c'est il faut si j'utilise node.js!!!!
 
 /***********************************************************************************************
@@ -92,5 +91,3 @@ fetch("https://api.airtable.com/v0/app0YvWUy1t2JUWEd/Mini%20CRM?view=Grid%20view
 
     // Vérification si l'ID est bien récupéré
     // console.log("ID du contact :", contactId); 
-
-

@@ -1,4 +1,3 @@
-
 document.querySelector("#btn-rechercher").addEventListener("click", function(){
   
     let typeContact = document.getElementById("search").value;
@@ -8,7 +7,6 @@ document.querySelector("#btn-rechercher").addEventListener("click", function(){
     const myHeaders = createHeaders(true);
     myHeaders.append("Cookie", "brw=brwP5dTKIEAUqvTmM; brwConsent=opt-out; AWSALBTG=2t5l0cFN2s9klbKqfoQ2EHSF/SuU52mIvl/lMT/nk9AXWTBg/JYiL3+vlW8wZaH66B9wgvsUwT7OwMpDvqutCMeO7Y+P+RTmYSbTGmfOJlYWbkGeSZ8NxhmZq0GHtQr1waCdoLD8aRYQnT/prQ3pVERJribCLWfxwZbTME2+PQCxllU6keI=; AWSALBTGCORS=2t5l0cFN2s9klbKqfoQ2EHSF/SuU52mIvl/lMT/nk9AXWTBg/JYiL3+vlW8wZaH66B9wgvsUwT7OwMpDvqutCMeO7Y+P+RTmYSbTGmfOJlYWbkGeSZ8NxhmZq0GHtQr1waCdoLD8aRYQnT/prQ3pVERJribCLWfxwZbTME2+PQCxllU6keI=");
 
-    
     // pour remplacer "if"!!
     const apiURL = (typeContact !== "Tous" &&  statutRelance !== "Tous") //vérification l'activité des filtres
         // "AND" => inclusion des 2 filtres
@@ -22,7 +20,6 @@ document.querySelector("#btn-rechercher").addEventListener("click", function(){
         // les 2 sont "Tous" => pas de filtre!!
         : "https://api.airtable.com/v0/app0YvWUy1t2JUWEd/Mini%20CRM?view=Grid%20view"
     
-   
     fetch(apiURL, {
         method: "GET",
         headers: myHeaders,
@@ -88,8 +85,3 @@ document.querySelector("#btn-rechercher").addEventListener("click", function(){
     })
     .catch((error) => console.error("Erreur lors de la récupération des contacts :", error));
 });
-
-
-
-
-

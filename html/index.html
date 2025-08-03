@@ -459,6 +459,24 @@
                     </div>
                 </div>
 
+                <!-- en cas d'erreur de validation -->
+                <div class="modulo position-fixed bg-white p-2 rounded-3 text-center border border-black fs-6" id="erreur-Modulo" >
+                    <div class="modulo-header mt-2 mb-4 d-flex justify-content-end text-center">
+                        <button class="modulo-btn btn btn-outline-secondary border border-2 rounded me-3" id="erreur-closeModulo">X</button>
+                    </div>
+                    <div class="modulo-body my-1">
+                        <p>Certains champs sont invalides <br>
+                            ou  <br>
+                            contiennent des caractères interdits(<, >, ", `, =, ;) <br>
+                            ou <br>
+                            le nom/prénom commence par un lettre minuscule.
+                        </p>
+                    </div>
+                    <div class="modulo-footer pt-2 my-2">
+                        <button class="modulo-btn btn btn-outline-secondary btn border border-2 rounded" id="erreurOK">OK</button>
+                    </div>
+                </div>
+
                 <!-- confirmation de la suppression du contact par l'utilisateur-->
                 <div class="modulo position-fixed bg-white p-2 rounded-3 text-center border border-black fs-6" id="delete-Modulo" >
                     <div class="modulo-header mt-2 mb-4 d-flex justify-content-end text-center">

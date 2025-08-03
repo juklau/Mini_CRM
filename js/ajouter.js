@@ -1,5 +1,3 @@
-
-
 /***********************************************************************************************
                                      Page ajouter le contact
 ************************************************************************************************/
@@ -9,7 +7,6 @@ document.querySelector(".star-button").addEventListener("click", function() {
             this.classList.toggle("checked");
 });
 
-
 /***********************************************************************************************
                             enregistrer dans la base de donnée le contact
 ************************************************************************************************/
@@ -18,11 +15,12 @@ document.querySelector(".star-button").addEventListener("click", function() {
 let profileImageUrl = "";
 
 document.getElementById('ajouter-btn').addEventListener("click", async function () {
+    this.disabled = true; // désactiver pendant la requête
     document.getElementById("ajout-Modulo").classList.add("show");
 });
 
 document.addEventListener("click", function(event){
-    if(event.target.id === "ajoutYes"){
+    if(event.target.id === "ajoutYes"){ 
         // const myHeaders = new Headers(); =>regi kod
         // myHeaders.append("Authorization", CONFIG.API_KEY);
         // myHeaders.append("Content-Type", "application/json");
@@ -44,7 +42,11 @@ document.addEventListener("click", function(event){
         fetch("https://api.airtable.com/v0/app0YvWUy1t2JUWEd/Mini%20CRM", requestOptions)
             .then((response) => response.text())
             .then((result) => console.log(result))
-            .catch((error) => console.error(error));
+            .catch((error) => { 
+                console.error(error)
+                alert("Erreur lors de l'ajout. Vérifiez les données");
+                document.getElementById("ajout-Modulo").disabled =  false //réactiver le bouton en cas d'échec
+            });
 
         //pour vider les champs apres la validation
         const inputs = document.querySelectorAll("input");
@@ -78,7 +80,6 @@ document.addEventListener("click", function(event){
 
 const moduloProfil = document.getElementById("modulo-profil");
 const profilContainer = document.querySelector(".profile-container")
-
 
 document.getElementById("profile-pic").addEventListener("click", function() {
     moduloProfil.classList.add("show");
@@ -115,7 +116,6 @@ document.addEventListener("change", async function(event) {
     }
 });
 
- 
 /***********************************************************************************************
                             suppression d'image et rétablir image par défaut
 ************************************************************************************************/
@@ -124,5 +124,3 @@ document.getElementById("remove-btn").addEventListener("click", function() {
     document.getElementById("profile-pic").src = "../image/profil_par_default.png";
     document.getElementById("modulo-profile-pic").src = "../image/profil_par_default.png";
 });
-
-
