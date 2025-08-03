@@ -111,7 +111,7 @@ form.addEventListener("submit", function(e) {
         })
         .catch(error =>{
             console.error("Erreur Formspree: ", error);
-            alert("Une erreur est survenu lors de l'envoi.Veuillez réessayer.")
+            alert("Une erreur est survenu lors de l'envoi. Veuillez réessayer.")
         })
 
     }else {

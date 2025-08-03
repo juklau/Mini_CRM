@@ -153,7 +153,7 @@ function isSafeInput(str){
     return !unsafePattern.test(str);
 }
 
-function validNom(str) {
+function valideNom(str) { //la page modif, ajoute
     const nomRegex = /^[A-Z]{1}[a-zA-Z\s\-]{2,50}$/;
     return nomRegex.test(str)
 };
@@ -164,7 +164,7 @@ function sanitizeInput(str) {
     return div.innerHTML;
 }
 
-function validateEmail(email) {
+function validateEmail(email) { //la page modif, ajoute
     //"[^\s@]+" => Une ou plusieurs lettres qui ne sont ni un espace ni un @
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -192,7 +192,7 @@ function getContactFormData(photoUrl){
     const imageUrl =  photoUrl ? [{ "url": photoUrl }] : []
     // "Photo" : photoUrl && !photoUrl.startsWith("data:") ? [{"url": photoUrl}] : [] //le bon format pour Airtable
 
-    if(!nom || !prenom || !validNom(nom) || !validNom(prenom) || !isSafeInput(entreprise) || !isSafeInput(note) ||  !validateEmail(email) || !validatePhone(tel)) {
+    if(!nom || !prenom || !valideNom(nom) || !valideNom(prenom) || !isSafeInput(entreprise) || !isSafeInput(note) ||  !validateEmail(email) || !validatePhone(tel)) {
         // alert("Certains champs sont invalides ou contiennent des caractères interdits(<, >, \", `, =, ;).");
         // afficher le message d'erreur
         document.getElementById("erreur-Modulo").classList.add("show");
@@ -228,27 +228,6 @@ function getContactFormData(photoUrl){
     };
 }
 
-
-
-
-//extraire les valeurs d'une formulaire
-// function getContactFormData(photoUrl){ majd kitorolni ha jo
-//     return{
-//         "Nom": document.getElementById("nom").value,
-//         "Prénom": document.getElementById("prenom").value,
-//         "Entreprise": document.getElementById("entreprise").value,
-//         "Email": document.getElementById("email").value,
-//         "Téléphone": document.getElementById("tel").value,
-//         "Type de contact": document.getElementById("type-contact").value,
-//         "Date de relance": document.getElementById("date").value,
-//         "Statut de relance": document.getElementById("statut").value,
-//         "Note": document.getElementById("note").value,
-//         "Favoris": document.getElementById("star-btn").classList.contains("checked") ? 1 : 0 ,
-//         "Photo" : photoUrl ? [{ "url": photoUrl }] : []
-//         // "Photo" : photoUrl && !photoUrl.startsWith("data:") ? [{"url": photoUrl}] : [] //le bon format pour Airtable
-//     }
-// }
-
 //mettre les photos dans Cloudinary
 // certaines opérations prennent du temps (comme fetch, lire un fichier, etc.), 
 // et éviter de bloquer le reste du code pendant ce temps
@@ -279,8 +258,18 @@ async function uploadToCloudinary(file){
     }
 }
 
+//  Affichage de fênetre "active"
+document.addEventListener("DOMContentLoaded", function(){
+    let navLinks = document.querySelectorAll(".nav-link")
+    let currentUrl = window.location.href;
 
+    navLinks.forEach(link => { 
 
+        if(link.href === currentUrl){
+            link.classList.add("active");
+        }
+    });
+});
 
 
 //REGI KOD, ami àt lett alakitva fonctionnà:

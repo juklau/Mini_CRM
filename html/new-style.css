@@ -72,7 +72,7 @@ body{
     background-position: 0 100%;
 }
 .nav-link.active{
-    color: var(--nav-hover-color) !important;
+    color: var(--black-color) !important;
 }
 .navbarmenu ul li:hover > a,
 .nav-link.active:hover{
@@ -81,6 +81,7 @@ body{
 #logo{
     height: var(--width-height-150);
 }
+
 
 /*********************************************************************************************
                                         Pour tous les pages
@@ -301,7 +302,7 @@ main{
     width: 95vw;
     max-height: 90vh;
     /* height: 100vh; */
-    /* 100% de la hauteru visible de l'écran*/
+    /* 100% de la hauteur visible de l'écran*/
     min-width: var(--width-height-300);
     background: var(--main-background-color2) !important;
 }
