@@ -203,6 +203,7 @@ function getContactFormData(photoUrl){
 
                 const pageCourant = window.location.pathname;
 
+                // retrourner sur la page actuel...
                 if(pageCourant.includes("index.html")){
                     window.location.href = "index.html";
                 }else if(pageCourant.includes("ajouter.html")){

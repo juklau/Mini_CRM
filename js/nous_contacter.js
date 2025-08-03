@@ -9,6 +9,7 @@
 /*                           UJ   Formulaire sur la page Contact */
 /* ======================================================================================== */
 
+// fonction"générale" pour valider les champs
 function validerField({inputId, regex, errorMsg, errorSelector}){
     const input = document.getElementById(inputId);
     const feedback =  errorSelector ? document.querySelector(errorSelector) : input.nextElementSibling;

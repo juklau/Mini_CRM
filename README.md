@@ -98,13 +98,12 @@ Pour toute question, suggestion ou demande de support, utilisez le [formulaire d
 
 - Voici le line de mon fichier Figma:
     https://www.figma.com/design/9ogs0Hg8QeLXew9DdNP9AC/Klaudia-Juhasz-s-team-library?node-id=3314-2&p=f&t=7k7QL8tza0XojF4D-0 
-
     (Cette maquette a connu plusieurs améliorations depuis sa conception.)
 - README.md
 - Commentaires dans mes codes
 
 - Documentation officielles externes :
-        *Airtable API Docs
-        *Cloudinary Documentation
-        *Bootstrap Docs
-        *Font Awesome Docs
+    - Airtable API Docs
+    - Cloudinary Documentation
+    - Bootstrap Docs
+    - Font Awesome Docs
