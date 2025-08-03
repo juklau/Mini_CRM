@@ -52,7 +52,7 @@ const validSujet = () => validerField({
 
 const validMessage = () => validerField({
     inputId: "message",
-    regex: /^[a-zA-Z0-9 ._()!:;,?%'"^\\s]{3,500}$/,
+    regex: /^[a-zA-Z0-9 ._()!:;,?%'"^ \t\n\r]{5,500}$/,
     errorMsg: "Veuillez entrer minimum 5 caractères"
 });
 

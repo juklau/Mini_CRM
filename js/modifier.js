@@ -91,6 +91,8 @@ document.addEventListener("click", function(event){
             } 
         });      
     }else if(event.target.id === "confirmNo" || event.target.id === "confirm-closeModulo"){
+        // il faut déclarer sinon pageCourant "is not defined"!
+        const pageCourant = window.location.pathname;
 
         if(pageCourant.includes("index.html")){
             window.location.href = "index.html";
