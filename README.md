@@ -6,14 +6,15 @@
 Mini CRM est une application web intuitive dédiée à la gestion des contacts clients, prospects et partenaires. Elle permet d’ajouter, rechercher, modifier, supprimer et classer facilement tous les profils liés à votre activité.
 
 ### Lancement du Mini CRM
-Dans cette application, plusieurs contacts sont déjà enregistrés. Pour les consulter, il suffit de lancer l’application depuis la page `index.html`
+Dans cette application, plusieurs contacts sont déjà enregistrés. 
+Pour les consulter, il suffit de lancer l’application depuis la page `index.html`
 
 ## 🚀 Fonctionnalités
 
 - 🔍 **Recherche dynamique** par nom ou entreprise
 - ➕ **Ajout de nouveaux contacts** avec photo, informations complètes et statut
 - 📝 **Modification des données** de contact via une interface ergonomique
-- 🗑️ **Suppression sécurisée** avec confirmation utilisateur
+- 🗑️ **Suppression sécurisée** avec confirmation de l'utilisateur
 - 📂 **Classement alphabétique** des contacts avec interface en accordéon
 - 🌟 **Favoris** : marquer un contact comme important
 - 📅 **Date de relance et statut de suivi**
@@ -30,14 +31,17 @@ En cliquant sur un contact, vous pouvez le modifier ou le supprimer.
 - **Page de Recherche** avec filtres multicritères
 - **Pages statiques** : Connexion, À propos, Contact
 
+
 ## 🧰 Technologies utilisées
 
-- HTML5, CSS3, JavaScript
-- Framework Bootstrap pour la mise en page responsive
-- Postman pour vérifier le fonctionnement de mes requêtes 
-- API Airtable pour la gestion des données
-- API Cloudinary pour héberger les images et leur attribuer une URL accessible.
-- Font Awesome pour les icônes
+- **HTML5, CSS3, JavaScript** – Langages de base pour le développement web
+- **Bootstrap** – Framework CSS pour une mise en page responsive
+- **Postman** – Outil de test des requêtes HTTP (GET, POST, etc.)
+- **API Airtable** – Pour la gestion et le stockage des données
+- **API Cloudinary** – Pour l’hébergement des images avec génération d’URL accessibles
+- **Font Awesome** – Pour l’utilisation d’icônes vectorielles
+- **Assistance de l’intelligence artificielle (IA)** – Pour la correction, l’optimisation ou la génération de portions de code
+
 
 ## 📁 Structure principale
 
@@ -47,7 +51,7 @@ En cliquant sur un contact, vous pouvez le modifier ou le supprimer.
 		│   ├── A_propos.html              # Présentation de l'application
 		│   ├── ajouter.html               # Formulaire d'ajout de contact
 		│   ├── connexion.html             # Page de connexion (non fonctionnelle pour le moment)
-		│   ├── index.html                  # Page d'accueil affichant tous les contacts
+		│   ├── index.html                 # Page d'accueil affichant tous les contacts
 		│   ├── nous_contacter.html        # Formulaire de contact
 		│   ├── plan_du_site.html          # Plan du site pour faciliter la navigation
 		│   ├── rechercher.html            # Recherche avancée multicritères
@@ -68,7 +72,7 @@ En cliquant sur un contact, vous pouvez le modifier ou le supprimer.
 
 ## 🔒 Sécurité et données
 
-Toutes les requêtes vers la base de données sont actuellement sécurisées par un jeton d’authentification API unique et visible. 
+Toutes les requêtes vers la base de données sont actuellement sécurisées par un jeton d’authentification API unique et non-visible. 
 La prochaine étape consistera à implémenter un système de connexion utilisateur avec un jeton d’authentification API propre à chaque compte, afin d’améliorer la sécurité et le fonctionnement global de l’application.
 La gestion des données personnelles respecte le RGPD.
 
@@ -84,7 +88,7 @@ Pour toute question, suggestion ou demande de support, utilisez le [formulaire d
 
 ## 🧩 Code source
 
-- HTML / CSS / JavaScript : l’ensemble des fichiers se trouvent probablement dans un dossier projet local (ou sur un dépôt GitHub si tu en as un).
+- HTML / CSS / JavaScript : l’ensemble des fichiers présents dans le dossier MINI-CRM.
 - Scripts JavaScript : pour l’interaction avec Airtable, la recherche, la gestion des favoris, etc.
 - API Airtable : utilisée pour récupérer et manipuler les données de contact.
 - API Cloudinary : pour héberger les images de profil.
@@ -93,7 +97,7 @@ Pour toute question, suggestion ou demande de support, utilisez le [formulaire d
 ## 📘 Documentation
 
 - Voici le line de mon fichier Figma:
-    https://www.figma.com/design/9ogs0Hg8QeLXew9DdNP9AC/Klaudia-Juhasz-s-team-library?node-id=3314-2&p=f&t=ice7l1j8TohSXNEv-0 
+    https://www.figma.com/design/9ogs0Hg8QeLXew9DdNP9AC/Klaudia-Juhasz-s-team-library?node-id=3314-2&p=f&t=7k7QL8tza0XojF4D-0 
 
     (Cette maquette a connu plusieurs améliorations depuis sa conception.)
 - README.md
