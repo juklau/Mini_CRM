@@ -1,15 +1,20 @@
-version: "3.9"
+# version: "3.9" il faut faire sans la version
 services:
   web:
     image: mini-crm
+    working_dir: /app
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "8080:80"
     volumes:
+      - .:/app
       - ./html:/usr/share/nginx/html
       - ./js:/usr/share/nginx/html/js
-    restart: unless-stopped
-    #redémarrage automatiquement SAUF si l'utilisateur l'a arrrêté manuellement
+      - ./image:/usr/share/nginx/html/image
 
+    #redémarrage automatiquement SAUF si l'utilisateur l'a arrrêté manuellement
+    restart: unless-stopped
+   
+#kitoroltem az 'images' mappat, ami az 'image' mappa alatt volt=> ha lenne valami a Dockerrel

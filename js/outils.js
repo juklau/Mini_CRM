@@ -154,7 +154,7 @@ function isSafeInput(str){
 }
 
 function valideNom(str) { //la page modif, ajoute
-    const nomRegex = /^[A-Z]{1}[a-zA-Z\s\-]{2,50}$/;
+    const nomRegex = /^[A-Z]{1}[a-zA-Z\s\-']{2,50}$/;
     return nomRegex.test(str)
 };
 

@@ -15,7 +15,12 @@ document.querySelector("#recherche").addEventListener("input", function () {
     const myHeaders = createHeaders();
     myHeaders.append("Content-Type", "application/json");
 
-    fetch(`https://api.airtable.com/v0/app0YvWUy1t2JUWEd/Mini%20CRM?filterByFormula=OR(FIND('${searchTerme}', {Nom}), FIND('${searchTerme}', {Entreprise}))`, {
+    // pour éviter les erreurs avec des apostrophes dans les noms O'hara
+    const searchLower = searchTerme.toLowerCase().replace(/'/g, "\\'");
+
+
+    // LOWER({Nom}) => convertir le champ Nom en minuscules
+    fetch(`https://api.airtable.com/v0/app0YvWUy1t2JUWEd/Mini%20CRM?filterByFormula=OR(FIND('${searchLower}', LOWER({Nom})), FIND('${searchLower}', LOWER({Entreprise})))`, {
         method: "GET",
         headers: myHeaders
     })
