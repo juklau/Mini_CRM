@@ -12,7 +12,7 @@
 // fonction"générale" pour valider les champs
 function validerField({inputId, regex, errorMsg, errorSelector}){
     const input = document.getElementById(inputId);
-    const feedback =  errorSelector ? document.querySelector(errorSelector) : input.nextElementSibling;
+    const feedback = errorSelector ? document.querySelector(errorSelector) : input.nextElementSibling;
 
     if(!regex.test(input.value)){
         feedback.innerHTML = errorMsg;
@@ -65,6 +65,9 @@ let inputCheckBox = document.getElementById("egyetertes");
     }
 }
 
+
+//DOMContentLoaded => attendre que le DOM soit chargé html
+//window.onload => attendre que toute la page soit chargée (html, css, js, images...)
 const form = document.querySelector("#contact-form");
 document.addEventListener("DOMContentLoaded", () => {
 

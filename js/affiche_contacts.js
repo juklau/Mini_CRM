@@ -4,13 +4,13 @@
             Récuperation les contacts de la base de donnée pour afficher sur la page home
 ************************************************************************************************/
 
-// appel la fonction du outils.js
+// appel la fonction du outils.js ?????
 const myHeaders = createHeaders();
 myHeaders.append("Cookie", "brw=brwP5dTKIEAUqvTmM; brwConsent=opt-out; AWSALBTG=ITi/fbHG7IlJgD3xaTn3MpZhQIe/9PxRn5wTkr7VbxtjkE3Vz9brZcpkLxRdw7XDE6BxfY2hph/udQSaTP8EyeZguxhdEf7CpvTcKh2yBu3VTESSjr8jp4pbaE/sNuk1sXxXyYX+IPWUXM0UMUXewoYqBm0gr6cRTBCet5zwMYvXmBGopoU=; AWSALBTGCORS=ITi/fbHG7IlJgD3xaTn3MpZhQIe/9PxRn5wTkr7VbxtjkE3Vz9brZcpkLxRdw7XDE6BxfY2hph/udQSaTP8EyeZguxhdEf7CpvTcKh2yBu3VTESSjr8jp4pbaE/sNuk1sXxXyYX+IPWUXM0UMUXewoYqBm0gr6cRTBCet5zwMYvXmBGopoU=");
 
 const requestOptions = {
     method: "GET", //pour récuperer les données
-    headers: myHeaders,
+    headers: myHeaders, 
     redirect: "follow"
 };
 
@@ -34,7 +34,7 @@ fetch("https://api.airtable.com/v0/app0YvWUy1t2JUWEd/Mini%20CRM?view=Grid%20view
             })
         }
 
-        //trier le contact par alphabet un utilisant le fonction triABulles créé plus haut..
+        //trier le contact par alphabet un utilisant le fonction triABulles créé plus haut..=> dans
         //appeler le fonction du outils.js
         const contactsTries = triABulles(contacts);
         

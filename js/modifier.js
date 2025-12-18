@@ -1,4 +1,4 @@
-let contactId = null;
+let contactId = null; //=> variable partagé dans tout le fichier
 
  /***********************************************************************************************
                                     modification du contact
@@ -32,9 +32,10 @@ document.addEventListener("click", function(event){
         }
 
         const myHeaders = createHeaders(true);
+        //??? lehet hogy nem kell for Airtable
         myHeaders.append("Cookie", "brw=brwP5dTKIEAUqvTmM; AWSALBTG=ITi/fbHG7IlJgD3xaTn3MpZhQIe/9PxRn5wTkr7VbxtjkE3Vz9brZcpkLxRdw7XDE6BxfY2hph/udQSaTP8EyeZguxhdEf7CpvTcKh2yBu3VTESSjr8jp4pbaE/sNuk1sXxXyYX+IPWUXM0UMUXewoYqBm0gr6cRTBCet5zwMYvXmBGopoU=; AWSALBTGCORS=ITi/fbHG7IlJgD3xaTn3MpZhQIe/9PxRn5wTkr7VbxtjkE3Vz9brZcpkLxRdw7XDE6BxfY2hph/udQSaTP8EyeZguxhdEf7CpvTcKh2yBu3VTESSjr8jp4pbaE/sNuk1sXxXyYX+IPWUXM0UMUXewoYqBm0gr6cRTBCet5zwMYvXmBGopoU=");
 
-        //récupération du photo choisi par l'utilisateur
+        // récupération du photo choisi par l'utilisateur
         // récuperation l'image hébergé sur Cloudinary _uj!!!
         const photoElement = document.getElementById("profile-pic");
         const photoUrl = photoElement ? photoElement.src : null;
@@ -44,7 +45,7 @@ document.addEventListener("click", function(event){
         const raw = JSON.stringify({
             "records": [{
                 "id": `${contactId}`,
-                "fields": getContactFormData(photoUrl)  
+                "fields": getContactFormData(photoUrl)   //récupere les champs du formulaire et renvoie un objet
                 }
             ]
         });
@@ -60,8 +61,8 @@ document.addEventListener("click", function(event){
         // console.log("Photo envoyée à Airtable :", photoUrl && !photoUrl.startsWith("data:") ? [{ "url": photoUrl }] : []);
 
         fetch("https://api.airtable.com/v0/app0YvWUy1t2JUWEd/Mini%20CRM", requestOptions)
-            .then((response) => response.json())
-            .then((result) => console.log(result))
+            .then((response) => response.json())  //=> transformer la réponse en objet js
+            .then((result) => console.log(result))  //=> résultat envoyé par Airtable
             .catch((error) => {
                 console.error("Erreur lors de la mise à jour: ",error);
                 alert("Erreur lors de la modification. Vérifiez les données");
@@ -89,7 +90,9 @@ document.addEventListener("click", function(event){
                     window.location.href = "rechercher.html";
                 }
             } 
-        });      
+        }); 
+    
+    //si user refuse ou annule la modification     
     }else if(event.target.id === "confirmNo" || event.target.id === "confirm-closeModulo"){
         // il faut déclarer sinon pageCourant "is not defined"!
         const pageCourant = window.location.pathname;
@@ -136,7 +139,7 @@ document.addEventListener("click", function(event) {
 
     //fermer le mini-modulo photo
     if(event.target.id === "close-btn-image-ajout" ){
-        //vérification si j'arrive ouvrir le modulo pour changer l'image
+        // ???vérification si j'arrive fermer le modulo pour changer l'image
         if(moduloProfil && profilContainer){
             moduloProfil.classList.remove("show");
             profilContainer.classList.remove("hidden");
@@ -166,23 +169,26 @@ document.addEventListener("click", function(event) {
 });
 
 //ajouter un événement "change" pour détecter quand l'utilisateur choisit un fichier
-document.addEventListener("change", async function(event) {
-    if(event.target.id === "file-input"){
-        const file = event.target.files[0];
-        //vérification si un fichier a été bien sélectionné, sinon
-        if(!file) return;
+// document.addEventListener("change", async function(event) {
+//     if(event.target.id === "file-input"){
+//         const file = event.target.files[0];
+//         //vérification si un fichier a été bien sélectionné, sinon
+//         if(!file) return;
 
-        const uploadeUrl = await uploadToCloudinary(file)
+//         const uploadeUrl = await uploadToCloudinary(file)
        
-        if(uploadeUrl){
-            profileImageUrl = uploadeUrl;
+//         if(uploadeUrl){
+//             profileImageUrl = uploadeUrl;
 
-            // Mettre à jour l’image affichée
-            document.getElementById("profile-pic").src = uploadeUrl;
-            document.getElementById("modulo-profile-pic").src = uploadeUrl;
-        }
-    }
-});
+//             // Mettre à jour l’image affichée
+//             document.getElementById("profile-pic").src = uploadeUrl;
+//             document.getElementById("modulo-profile-pic").src = uploadeUrl;
+//         }
+//     }
+// });
+
+let profileImageUrl = "";
+bindPhotoUpload((url) => profileImageUrl = url);
 
 /***********************************************************************************************
                             supprimer le contact concerné
@@ -195,14 +201,14 @@ document.addEventListener("click", function(event){
 });
 
 document.addEventListener("click", function(event){
-    contactId = document.getElementById("editModal").dataset.contactid
+    contactId = document.getElementById("editModal").dataset.contactid //=> récupération l'id du contact
     if(event.target.id === "deleteYes" && contactId){
         // appel la fonction du outils.js
         const myHeaders = createHeaders();
         myHeaders.append("Cookie", "brw=brwP5dTKIEAUqvTmM; brwConsent=opt-out; AWSALBTG=m6IoUSNJR3Fbwr+ggMzFVtD/EQSUwfvoql5olwvGpkqLtWbmxTRBKOtHKJuIs/1ngQTJcvb5VPx0bkUqJaF0v8qZ0rmJGuqPCO0FJBDm8t3lXmIik1ygwY4eS0Qi7GfU1Sa2Q9YAH7AU/PiYYpwFy+TSdoG+qLyFOLz0FdENFkDAh0cYhZ4=; AWSALBTGCORS=m6IoUSNJR3Fbwr+ggMzFVtD/EQSUwfvoql5olwvGpkqLtWbmxTRBKOtHKJuIs/1ngQTJcvb5VPx0bkUqJaF0v8qZ0rmJGuqPCO0FJBDm8t3lXmIik1ygwY4eS0Qi7GfU1Sa2Q9YAH7AU/PiYYpwFy+TSdoG+qLyFOLz0FdENFkDAh0cYhZ4=");
 
         const requestOptions = {
-            method: "DELETE", //requête pour supprimer de la BDD !!!!
+            method: "DELETE", //requête pour supprimer de la BDD !!!! =>/Table/{recordId}
             headers: myHeaders,
             redirect: "follow"
         };

@@ -2,7 +2,7 @@
                                      Page ajouter le contact
 ************************************************************************************************/
 
-/*mettre en favoris le contact */
+//mettre en favoris le contact 
 document.querySelector(".star-button").addEventListener("click", function() {
             this.classList.toggle("checked");
 });
@@ -12,7 +12,7 @@ document.querySelector(".star-button").addEventListener("click", function() {
 ************************************************************************************************/
 
 //variable global pour l'image
-let profileImageUrl = "";
+let profileImageUrl = "";  //stockage de l'URL Cloudinary de la photo de profil
 
 document.getElementById('ajouter-btn').addEventListener("click", async function () {
     this.disabled = true; // désactiver pendant la requête
@@ -30,9 +30,9 @@ document.addEventListener("click", function(event){
         myHeaders.append("Cookie", "brw=brwP5dTKIEAUqvTmM; brwConsent=opt-out; AWSALBTG=8ytnFXplo4lqx0/Mqucb/kk00RLN+bUiaOUcdSsaqN+QGQChN3BIOdma6Mvvg0ygyC8uXbIl2V9K2TLEyvoZrY8ZNCEOtxeDwIs3Pk1NeXLtvRBDPI0zGkrS79ilC0m67ndqm5bH4UTjI8WG3FV6FxQhBnW/Ptu2d9/ZUWZuB3lEdWYkAP0=; AWSALBTGCORS=8ytnFXplo4lqx0/Mqucb/kk00RLN+bUiaOUcdSsaqN+QGQChN3BIOdma6Mvvg0ygyC8uXbIl2V9K2TLEyvoZrY8ZNCEOtxeDwIs3Pk1NeXLtvRBDPI0zGkrS79ilC0m67ndqm5bH4UTjI8WG3FV6FxQhBnW/Ptu2d9/ZUWZuB3lEdWYkAP0=");
 
         const raw = JSON.stringify({
-        "records": [{"fields": getContactFormData(profileImageUrl)}]});
+        "records": [{"fields": getContactFormData(profileImageUrl)}]}); //=>outils.js
 
-        const requestOptions = {
+        const requestOptions = { 
             method: "POST", //requête pour créer dans la BDD !!!!
             headers: myHeaders,
             body: raw,
@@ -48,7 +48,7 @@ document.addEventListener("click", function(event){
                 document.getElementById("ajout-Modulo").disabled =  false //réactiver le bouton en cas d'échec
             });
 
-        //pour vider les champs apres la validation
+        //pour vider les champs apres la validation, et remettre les selects à vide
         const inputs = document.querySelectorAll("input");
 
         for(let i = 0; i < inputs.length; i++){
@@ -97,24 +97,27 @@ document.getElementById("upload-btn").addEventListener("click", function() {
     document.getElementById("file-input").click();
 });
 
-//ajouter un événement "change" pour détecter quand l'utilisateur choisit un fichier
-document.addEventListener("change", async function(event) {
-    if(event.target.id === "file-input"){
-        const file = event.target.files[0];
-        //vérification si un fichier a été bien sélectionné, sinon
-        if(!file) return;
+//ajouter un événement "change" pour détecter quand l'utilisateur choisit un fichier => régi kod =>outils.js ben van most
+// document.addEventListener("change", async function(event) {
+//     if(event.target.id === "file-input"){
+//         const file = event.target.files[0];
+//         //vérification si un fichier a été bien sélectionné, sinon
+//         if(!file) return;
 
-        const uploadeUrl = await uploadToCloudinary(file)
+//         const uploadeUrl = await uploadToCloudinary(file)
        
-        if(uploadeUrl){
-            profileImageUrl = uploadeUrl;
+//         if(uploadeUrl){
+//             profileImageUrl = uploadeUrl;
 
-            // Mettre à jour l’image affichée
-            document.getElementById("profile-pic").src = uploadeUrl;
-            document.getElementById("modulo-profile-pic").src = uploadeUrl;
-        }
-    }
-});
+//             // Mettre à jour l’image affichée
+//             document.getElementById("profile-pic").src = uploadeUrl;
+//             document.getElementById("modulo-profile-pic").src = uploadeUrl;
+//         }
+//     }
+// });
+
+
+bindPhotoUpload((url) => profileImageUrl = url);
 
 /***********************************************************************************************
                             suppression d'image et rétablir image par défaut

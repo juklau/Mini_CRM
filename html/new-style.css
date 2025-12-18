@@ -94,7 +94,7 @@ main{
     transition: text-decoration 0.2s ease !important;
 }
 .footer-menu a:hover {
-    text-decoration: underline !important;
+    text-decoration: underline !important; 
 }
 
 /*********************************************************************************************

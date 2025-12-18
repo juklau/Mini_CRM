@@ -1,4 +1,4 @@
-//faire un tri à bulles (math)
+//faire un tri à bulles (math) alphabet
 function triABulles(arr){
     let taille = arr.length;
     let swapped; //boolean => s'il y a une échange entre les lettres
@@ -39,7 +39,7 @@ function affichePremierAlphabetContact(alphabetBlock){
 
             collapseDiv.classList.add("show");
 
-            //changer le bouton qu'il soit plus "collapsed"
+            //changer le bouton qu'il soit plus "collapsed" => synchronisation pour accessibilité et cohérence Bootstrap
             button.classList.remove("collapsed");
             button.setAttribute("aria-expanded", "true");
 
@@ -49,10 +49,11 @@ function affichePremierAlphabetContact(alphabetBlock){
     }
 }
 
+//génération DOM + regroupement par lettre + la fiche de contact
 //afficher les contacts sous forme de cartes
 function afficherContacts({contacts, resultatDiv, containerSelector, infosModifier, afficheDetails}){
 
-    //création une ensemble vide (SET) pour stocker les lettres de l'alphabet 
+    //création une ensemble vide (SET) pour stocker les lettres de l'alphabet => pas de doublon
     const lettresAvecContacts = new Set();
     // attache le gestionnaire de clic seulement si le bon container est présent
     const container = document.querySelector(containerSelector);
@@ -74,6 +75,7 @@ function afficherContacts({contacts, resultatDiv, containerSelector, infosModifi
         //     }
         // });
 
+        //sélection le bon container de lettre dans l'accordéon
         const alphabetDiv = document.querySelector(`.accordion-body[data-lettre="${lettre}"]`);
         
         const card = document.createElement("div");
@@ -100,7 +102,7 @@ function afficherContacts({contacts, resultatDiv, containerSelector, infosModifi
             //ajouter le card sous la bonne lettre
             alphabetDiv.appendChild(card);
         }else{
-            resultatDiv.appendChild(card);
+            resultatDiv.appendChild(card);  // => fallback, ha nincs meg a megfelelő betű
         }
 
         /***********************************************************************************************
@@ -145,9 +147,12 @@ function afficherContacts({contacts, resultatDiv, containerSelector, infosModifi
             });
         }   
     });
+
+    //renvoie l'ensemble des lettres qui ont des contacts
     return lettresAvecContacts;
 }
 
+//refuse les caractères spéciaux pout éviter l'injection Sql
 function isSafeInput(str){
     const unsafePattern = /[<>"=;`]/g;
     return !unsafePattern.test(str);
@@ -158,6 +163,7 @@ function valideNom(str) { //la page modif, ajoute
     return nomRegex.test(str)
 };
 
+//transformation des caractères spéciaux en entités HTML
 function sanitizeInput(str) {
     const div = document.createElement("div");
     div.textContent = str;
@@ -229,12 +235,13 @@ function getContactFormData(photoUrl){
     };
 }
 
-//mettre les photos dans Cloudinary
+// mettre les photos dans Cloudinary
 // certaines opérations prennent du temps (comme fetch, lire un fichier, etc.), 
-// et éviter de bloquer le reste du code pendant ce temps
+// et éviter de bloquer le reste du code pendant ce temps => async/wait
 async function uploadToCloudinary(file){
     console.log("fichier sélectionné: ", file);
 
+    // préparation l'envoir de l'image à Cloudinary
     const formData = new FormData();
     formData.append("file", file); // on ajoute le photo dans "formData"
     formData.append("upload_preset", "photos_profil");
@@ -254,7 +261,7 @@ async function uploadToCloudinary(file){
             return null;
         }
     }catch(error){
-        console.error(" Erreur lors de l'upload à Cloudinary :", error);
+        console.error("Erreur lors de l'upload à Cloudinary :", error);
         return null;
     }
 }
@@ -311,6 +318,29 @@ document.addEventListener("DOMContentLoaded", function(){
 
 // }
 
+/* ======================================================================================== */
+/*                         Upload d'un image => modifier.js et ajouter.js
+/* ======================================================================================== */
+
+function bindPhotoUpload(setUrlCallback) {
+  document.addEventListener("change", async (event) => {  //=> async pour attendre await
+
+    if (event.target.id !== "file-input") return;
+
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const url = await uploadToCloudinary(file);
+    if (!url) return;
+
+    document.getElementById("profile-pic").src = url;
+    document.getElementById("modulo-profile-pic").src = url;
+
+    setUrlCallback(url);
+    //dans ajouter.js => stocker dans profileImageUrl le url
+    //dans modifier.js => pas besoin de stocker dans une variable globale, on récupère directement dans getContactFormData
+  });
+}
 
 
 

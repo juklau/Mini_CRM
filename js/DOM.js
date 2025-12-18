@@ -3,6 +3,7 @@ const resultatDiv = document.getElementById("resultat");
 const afficheDetails = document.getElementById("affiche-details");
 const infosModifier = document.getElementById("editModal");
 
+// créer contact card => petit aperçu dans la liste des contacts
 function createContactCard(contact, photoURL){
 
     let creationCard = `
@@ -44,7 +45,8 @@ function createContactCard(contact, photoURL){
     return creationCard;
 }
 
-function get_insert_dom(contact, photoURL, isFavoris)
+// vréer le DOM pour la section de modification du contact
+function get_insert_dom(contact, photoURL, isFavoris) 
 {
     let insertion = `
                 <div class="container bg-white border border-black col-10 col-md-8 col-xl-6">
@@ -153,6 +155,7 @@ function get_insert_dom(contact, photoURL, isFavoris)
                                     </div>
                                     <div class="col-12 col-sm-8">
                                         <select class="form-select border-black" id="type-contact" name="type-contact">
+                                            <!-- préremplissage automatique des champs avec la valeur actuelle-->
                                             <option value="Client" ${contact.fields["Type de contact"] === "Client" ? "selected" : ""}>Client</option>
                                             <option value="Prospect" ${contact.fields["Type de contact"] === "Prospect" ? "selected" : ""}>Prospect</option>
                                             <option value="Partenaire" ${contact.fields["Type de contact"] === "Partenaire" ? "selected" : ""}>Partenaire</option>

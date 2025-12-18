@@ -54,7 +54,7 @@ document.querySelector("#btn-rechercher").addEventListener("click", function(){
             })
         }
 
-        //trier le contact par alphabet un utilisant le fonction triABulles créé plus haut..
+        //trier le contact par alphabet un utilisant le fonction triABulles créé plus haut.. => il est dans outils.js
         const contactsTries = triABulles(contacts);
 
         //afficher les contacts sous forme de cartes

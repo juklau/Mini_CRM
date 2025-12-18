@@ -3,6 +3,7 @@ document.querySelector("#recherche").addEventListener("input", function () {
     const resultatDiv = document.getElementById("resultat");
     const accordionBlocks = document.querySelectorAll(".accordion-body.alphabet");
 
+    //si user efface la recherche => réafficher tout et sortir
     if (searchTerme === "") {
         // Réaffiche tout si recherche vide
         accordionBlocks.forEach(block => {
@@ -15,11 +16,13 @@ document.querySelector("#recherche").addEventListener("input", function () {
     const myHeaders = createHeaders();
     myHeaders.append("Content-Type", "application/json");
 
-    // pour éviter les erreurs avec des apostrophes dans les noms O'hara
+    // pour éviter les erreurs avec des apostrophes dans les noms O'hara!! => échapper les apostrophes
     const searchLower = searchTerme.toLowerCase().replace(/'/g, "\\'");
 
 
     // LOWER({Nom}) => convertir le champ Nom en minuscules
+    // filterByFormula => filtre côté Airtable
+    // FIND(a, b)=> revoie a dans b s'il est trouvé
     fetch(`https://api.airtable.com/v0/app0YvWUy1t2JUWEd/Mini%20CRM?filterByFormula=OR(FIND('${searchLower}', LOWER({Nom})), FIND('${searchLower}', LOWER({Entreprise})))`, {
         method: "GET",
         headers: myHeaders
@@ -29,7 +32,7 @@ document.querySelector("#recherche").addEventListener("input", function () {
             const contacts = triABulles(data.records);
             const lettresAvecContacts = new Set();
 
-            // Vider tous les accordéons
+            // Vider tous les accordéons et les masquer  => effacer l'ancien résultat 
             accordionBlocks.forEach(block => {
                 block.innerHTML = "";
 
