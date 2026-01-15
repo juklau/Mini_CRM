@@ -14,11 +14,15 @@
         <!-- <link rel="stylesheet" href="style.css"> -->
         <link rel="stylesheet" href="new-style.css">
 
+        <!-- pour protéger la page -->
+        <script src="/js/config.js"></script>
+        <script src="/js/connection.js"></script> 
+
     </head>
     <body class="fs-6"> 
         <header id="header" class="border-bottom border-secondary" >
-            <nav class="navbar navbar-expand-lg position-fixed w-100 px-xl-5" data-bs-theme="dark">
-                <div class="container-fluid d-flex justify-content-between px-xl-5">
+            <nav class="navbar navbar-expand-lg position-fixed w-100" data-bs-theme="dark">
+                <div class="container-fluid container-xxl d-flex justify-content-lg-between">
                     <div class="logo-CRM d-flex align-items-center ps-xl-5">
                         <img id="logo" src="../image/logo CRM2.jpg" alt="logo">
                      </div>
@@ -36,19 +40,32 @@
                         <div class="offcanvas-body navbarmenu" >
                             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                                 <li class="nav-item border-bottom border-secondary ms-3">
-                                    <a class="nav-link text-white my-2" aria-current="page" href="index.html">Home</a>
+                                    <a class="nav-link text-white my-2" aria-current="page" href="index.html">
+                                        <i class="bi bi-house-door me-2"></i>Home
+                                    </a>
                                 </li>
                                 <li class="nav-item border-bottom border-secondary ms-3">
-                                    <a class="nav-link text-white my-2" href="ajouter.html">Ajouter un contact</a>
+                                    <a class="nav-link text-white my-2" href="ajouter.html">
+                                        <i class="bi bi-person-plus me-2"></i>Ajouter un contact
+                                    </a>
                                 </li>
                                 <li class="nav-item border-bottom border-secondary ms-3">
-                                    <a class="nav-link text-white my-2" href="rechercher.html">Recherche</a>
+                                    <a class="nav-link text-white my-2" href="rechercher.html">
+                                        <i class="bi bi-search me-2"></i>Recherche
+                                    </a>
                                 </li>
                                 <li class="nav-item border-bottom border-secondary ms-3">
-                                    <a class="nav-link text-white my-2" href="nous_contacter.html">Contact</a>
+                                    <a class="nav-link text-white my-2" href="nous_contacter.html">
+                                        <i class="bi bi-envelope me-2"></i>Contact
+                                    </a>
                                 </li>
-                                <li class="nav-item border-bottom border-secondary ms-3">
+                                <!-- <li class="nav-item border-bottom border-secondary ms-3">
                                     <a class="nav-link text-white my-2" href="connexion.html">Connexion</a>
+                                </li> -->
+                                <li class="nav-item border-bottom border-secondary ms-3" id="logout-nav">
+                                    <a class="nav-link text-white my-2" href="#" onclick="logout(); return false;">
+                                        <i class="bi bi-box-arrow-right me-2"></i>Déconnexion
+                                    </a>
                                 </li>
                             </ul>
                         </div>  
@@ -81,8 +98,9 @@
                 </div>
             </div>
 
-            <section class="container-contacts col-12 col-sm-10 col-xl-8 container-fluid d-flex flex-column align-items-center py-5">
-                <div id="resultat" class="container-resultats accordion col-12 col-md-10 col-lg-8 mx-auto">
+            <!-- ket sor modositva!!!! -->
+            <section class="container-contacts col-12 col-sm-10 col-lg-12 container-fluid d-flex flex-column align-items-center py-5">
+                <div id="resultat" class="container-resultats accordion col-12 col-sm-12 col-md-10 col-lg-12 mx-auto">
                     <!-- la place pour afficher les resultats --> 
                     <div class="accordion-item border-0 my-3">
                         <h2 class="accordion-header mx-auto" id="headingA">
@@ -509,7 +527,8 @@
         <!-- link de script  -->
         <script src="/js/DOM.js"></script>
         <script src="/js/outils.js"></script>
-        <script src="/js/config.js"></script>
+        <!-- <script src="/js/config.js"></script>
+        <script src="/js/connection.js"></script> -->
         <script src="/js/affiche_contacts.js"></script>
         <script src="/js/modifier.js"></script>
         <script src="/js/rechercher_par_nom_entreprise.js"></script>

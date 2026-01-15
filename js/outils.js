@@ -1,3 +1,7 @@
+/***********************************************************************************************
+                                FONCTIONS UTILITAIRES
+************************************************************************************************/
+
 //faire un tri à bulles (math) alphabet
 function triABulles(arr){
     let taille = arr.length;
@@ -17,6 +21,7 @@ function triABulles(arr){
     return arr;
 }
 
+
 function createHeaders(isJson= false){
     const headers =  new Headers();
     headers.append("Authorization", CONFIG.API_KEY);
@@ -25,6 +30,7 @@ function createHeaders(isJson= false){
     }
     return headers;
 }
+
 
 //afficher le premier alphabet où il y a un contact
 function affichePremierAlphabetContact(alphabetBlock){
@@ -48,6 +54,7 @@ function affichePremierAlphabetContact(alphabetBlock){
         };
     }
 }
+
 
 //génération DOM + regroupement par lettre + la fiche de contact
 //afficher les contacts sous forme de cartes
@@ -152,42 +159,14 @@ function afficherContacts({contacts, resultatDiv, containerSelector, infosModifi
     return lettresAvecContacts;
 }
 
-//refuse les caractères spéciaux pout éviter l'injection Sql
-function isSafeInput(str){
-    const unsafePattern = /[<>"=;`]/g;
-    return !unsafePattern.test(str);
-}
-
-function valideNom(str) { //la page modif, ajoute
-    const nomRegex = /^[A-Z]{1}[a-zA-Z\s\-']{2,50}$/;
-    return nomRegex.test(str)
-};
-
-//transformation des caractères spéciaux en entités HTML
-function sanitizeInput(str) {
-    const div = document.createElement("div");
-    div.textContent = str;
-    return div.innerHTML;
-}
-
-function validateEmail(email) { //la page modif, ajoute
-    //"[^\s@]+" => Une ou plusieurs lettres qui ne sont ni un espace ni un @
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
-
-function validatePhone(phone) {
-    const phoneRegex = /^\+?[0-9\s\-]{7,20}$/;
-    return phoneRegex.test(phone);
-}
 
 //extraire les valeurs d'une formulaire
 function getContactFormData(photoUrl){
     
     // .trim() => supprimer les espaces au début et à la fin d'une chaîne de caractère
     const nom = sanitizeInput(document.getElementById("nom").value.trim());
-    const prenom =  sanitizeInput(document.getElementById("prenom").value.trim());
-    const entreprise=  sanitizeInput(document.getElementById("entreprise").value.trim());
+    const prenom = sanitizeInput(document.getElementById("prenom").value.trim());
+    const entreprise= sanitizeInput(document.getElementById("entreprise").value.trim());
     const email = document.getElementById("email").value;
     const tel = document.getElementById("tel").value;
     const typeContact = document.getElementById("type-contact").value;
@@ -198,26 +177,63 @@ function getContactFormData(photoUrl){
     const imageUrl =  photoUrl ? [{ "url": photoUrl }] : []
     // "Photo" : photoUrl && !photoUrl.startsWith("data:") ? [{"url": photoUrl}] : [] //le bon format pour Airtable
 
-    if(!nom || !prenom || !valideNom(nom) || !valideNom(prenom) || !isSafeInput(entreprise) || !isSafeInput(note) ||  !validateEmail(email) || !validatePhone(tel)) {
-        // alert("Certains champs sont invalides ou contiennent des caractères interdits(<, >, \", `, =, ;).");
-        // afficher le message d'erreur
-        document.getElementById("erreur-Modulo").classList.add("show");
+    console.log("Valeurs récupérées:", {
+        nom, prenom, entreprise, email, tel, note
+    });
+    //-------------- validation tous les champs ---------------------------
+
+    let hasErrors = false;
+
+    //valider le nom
+    const nomErrors = validateNom(nom, "nom");
+    if(!showFieldError("nom", nomErrors)) hasErrors = true;
+
+    //valider le prénom
+    const prenomErrors = validateNom(prenom, "prénom");
+    if(!showFieldError("prenom", prenomErrors)) hasErrors = true;
+
+    //valider l'entreprise
+    const entrepriseErrors = validateEntreprise(entreprise);
+    if(!showFieldError("entreprise", entrepriseErrors)) hasErrors = true;
+
+    //valider email
+    const emailErrors = validateEmail(email);
+    if(!showFieldError("email", emailErrors)) hasErrors = true;
+
+    //valider tel
+    const telErrors = validateTelephone(tel);
+    if(!showFieldError("tel", telErrors)) hasErrors = true;
+
+    //valider note
+    const noteError = validateNote(note);
+    if(!showFieldError("note", noteError)) hasErrors = true;
+
+    //si erreurs => afficher modal et lancer une exception
+    if(hasErrors){
+
+        // console.warn(`${errorCount} champ(s) invalide(s) détecté(s)`);
         
-        document.addEventListener("click", function(event){
-            if(event.target.id === "erreurOK" || event.target.id === "erreur-closeModulo"){
-                document.getElementById("erreur-Modulo").classList.remove("show");
-
-                const pageCourant = window.location.pathname;
-
-                // retrourner sur la page actuel...
-                if(pageCourant.includes("index.html")){
-                    window.location.href = "index.html";
-                }else if(pageCourant.includes("ajouter.html")){
-                    window.location.href = "ajouter.html";
+        // Afficher la modale d'erreur
+        const erreurModulo = document.getElementById("erreur-Modulo");
+        if (erreurModulo) {
+            erreurModulo.classList.add("show");
+        }
+        
+        // Gérer la fermeture de la modale
+        const closeErrorModal = function(event) {
+            if (event.target.id === "erreurOK" || event.target.id === "erreur-closeModulo") {
+                const erreurModulo = document.getElementById("erreur-Modulo");
+                if (erreurModulo) {
+                    erreurModulo.classList.remove("show");
                 }
-            } 
-        });
-        throw new Error("Invalid input");
+                // Retirer l'écouteur après utilisation
+                document.removeEventListener("click", closeErrorModal);
+            }
+        };
+        
+        document.addEventListener("click", closeErrorModal);
+
+        throw new Error("Validation failed");
     }
 
     return {
@@ -234,6 +250,7 @@ function getContactFormData(photoUrl){
         "Photo" : imageUrl
     };
 }
+
 
 // mettre les photos dans Cloudinary
 // certaines opérations prennent du temps (comme fetch, lire un fichier, etc.), 
@@ -280,66 +297,30 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 
-//REGI KOD, ami àt lett alakitva fonctionnà:
-// if(event.target.id === "file-input"){
-//     const file = event.target.files[0];
-//     //vérification si un fichier a été bien sélectionné, sinon
-//     if(!file) return;
-
-//     console.log("fichier sélectionné: ", file);
-
-//     // préparation l'envoir de l'image à Cloudinary
-//     const formData = new FormData();
-//     formData.append("file", file); // on ajoute le photo dans "formData"
-    
-//     //code PID de upload preset : 12d6cf6f-19b1-4ec8-b871-1f175c50bb51
-//     //on ajoute l'Upload Preset configuré sur Cloudinary, le "photos_profil"
-//     formData.append("upload_preset", "photos_profil");
-
-//     //envoie de l'image à Cloudinary
-//     fetch("https://api.cloudinary.com/v1_1/dsblrrl1i/image/upload", {
-//         method: "POST",
-//         body: formData
-//     })
-//         .then(response => response.json())//la réponse est converti en json
-//         .then(data => {
-//             if(data.secure_url){
-//                 console.log(" Image hébergée sur Cloudinary :", data.secure_url);
-//                 profileImageUrl = data.secure_url;
-                
-//                 // Mettre à jour l’image affichée
-//                 document.getElementById("profile-pic").src = data.secure_url;
-//                 document.getElementById("modulo-profile-pic").src = data.secure_url;
-//             }else{
-//                 console.error("Erreur : L'URL de l'image n'a pas été récupérée !");
-//             } 
-//         })
-//         .catch(error => console.error(" Erreur lors de l'upload à Cloudinary :", error));
-
-// }
 
 /* ======================================================================================== */
 /*                         Upload d'un image => modifier.js et ajouter.js
 /* ======================================================================================== */
 
 function bindPhotoUpload(setUrlCallback) {
-  document.addEventListener("change", async (event) => {  //=> async pour attendre await
 
-    if (event.target.id !== "file-input") return;
+    document.addEventListener("change", async (event) => {  //=> async pour attendre await
 
-    const file = event.target.files?.[0];
-    if (!file) return;
+        if (event.target.id !== "file-input") return;
 
-    const url = await uploadToCloudinary(file);
-    if (!url) return;
+        const file = event.target.files?.[0];
+        if (!file) return;
 
-    document.getElementById("profile-pic").src = url;
-    document.getElementById("modulo-profile-pic").src = url;
+        const url = await uploadToCloudinary(file);
+        if (!url) return;
 
-    setUrlCallback(url);
-    //dans ajouter.js => stocker dans profileImageUrl le url
-    //dans modifier.js => pas besoin de stocker dans une variable globale, on récupère directement dans getContactFormData
-  });
+        document.getElementById("profile-pic").src = url;
+        document.getElementById("modulo-profile-pic").src = url;
+
+        setUrlCallback(url);
+        //dans ajouter.js => stocker dans profileImageUrl le url
+        //dans modifier.js => pas besoin de stocker dans une variable globale, on récupère directement dans getContactFormData
+    });
 }
 
 
