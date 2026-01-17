@@ -108,7 +108,6 @@ function validateNom(nom, fieldName = "nom"){
     }
 
     return errors;
-
 }
 
 //validation de l'entreprise
@@ -271,6 +270,76 @@ function validatePassword(password) {
     return errors;
 }
 
+//validation du type de contact (select)
+function validateTypeContact(typeContact) {
+    const errors = [];
+    
+    if (!typeContact || typeContact === '' || typeContact === '-----') {
+        errors.push("Veuillez sélectionner un type de contact");
+        return errors;
+    }
+    
+    // vérifier que c'est une valeur valide
+    const validTypes = ['Client', 'Prospect', 'Partenaire'];
+    if (!validTypes.includes(typeContact)) {
+        errors.push("Type de contact invalide");
+    }
+    
+    return errors;
+}
+
+
+//validation de la date de relance
+function validateDateRelance(date) {
+    const errors = [];
+    
+    if (!date || date.trim() === '') {
+        return errors; // Champ optionnel ??????
+    }
+    
+    // érifier le format de la date (YYYY-MM-DD)
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!dateRegex.test(date)) {
+        errors.push("Format de date invalide");
+        return errors;
+    }
+    
+    // vérifier que la date est valide
+    const dateObj = new Date(date);
+    if (isNaN(dateObj.getTime())) {
+        errors.push("Date invalide");
+        return errors;
+    }
+    
+    // vérifier que la date n'est pas dans le passé => plus tard
+    // const today = new Date();
+    // today.setHours(0, 0, 0, 0);
+    // if (dateObj < today) {
+    //     errors.push("La date de relance ne peut pas être dans le passé");
+    // }
+    
+    return errors;
+}
+
+
+//validation du statut de relance (select)
+function validateStatutRelance(statut) {
+    const errors = [];
+    
+    if (!statut || statut === '' || statut === '-----') {
+        errors.push("Veuillez sélectionner un statut de relance");
+        return errors;
+    }
+    
+    // Vérifier que c'est une valeur valide
+    const validStatuts = ['A relancer', 'Fait'];
+    if (!validStatuts.includes(statut)) {
+        errors.push("Statut de relance invalide");
+    }
+    
+    return errors;
+}
+
 //afficher les erreurs dans un champ
 function showFieldError(fieldId, errors){
     const smallElement = document.getElementById(`small-${fieldId}`);
@@ -296,5 +365,3 @@ function clearAllErrors() {
         element.classList.remove('text-danger');
     });
 }
-
-

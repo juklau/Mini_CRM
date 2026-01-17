@@ -19,8 +19,10 @@ async function hashPassword(password) {
         .join('');
 }
 
+/***********************************************************************************************
+                             valider le formulaire de connexion
+************************************************************************************************/
 
-//valider le formulaire de connexion
 function validateLoginForm(username, password) {
 
     let isValid = true;
@@ -150,7 +152,10 @@ async function updateLastLogin(userId){
 }
 
 
-//fonction pricipale de connexion
+/***********************************************************************************************
+                             fonction pricipale de connexion
+************************************************************************************************/
+
 async function handleLogin(event){
 
     event.preventDefault();

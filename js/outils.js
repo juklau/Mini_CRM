@@ -55,9 +55,11 @@ function affichePremierAlphabetContact(alphabetBlock){
     }
 }
 
+/***********************************************************************************************
+                         Afficher les contacts sous forme de cartes
+************************************************************************************************/
 
 //génération DOM + regroupement par lettre + la fiche de contact
-//afficher les contacts sous forme de cartes
 function afficherContacts({contacts, resultatDiv, containerSelector, infosModifier, afficheDetails}){
 
     //création une ensemble vide (SET) pour stocker les lettres de l'alphabet => pas de doublon
@@ -113,7 +115,7 @@ function afficherContacts({contacts, resultatDiv, containerSelector, infosModifi
         }
 
         /***********************************************************************************************
-                    Récuperation les informations du contact selectionné
+                                Gestion du clic sur un contact
         ************************************************************************************************/     
        
         //"event.target" => élément qui a été cliqué
@@ -130,6 +132,11 @@ function afficherContacts({contacts, resultatDiv, containerSelector, infosModifi
 
                 //appeler le fonction du DOM.js
                 infosModifier.innerHTML = get_insert_dom(contact, photoURL, isFavoris);
+
+                // Attacher les validations au formulaire dynamique
+                if (typeof attachValidationListeners === 'function') {
+                    attachValidationListeners();
+                }
                 
                 // afficher le conteneur
                 afficheDetails.classList.remove("d-none");
@@ -159,8 +166,10 @@ function afficherContacts({contacts, resultatDiv, containerSelector, infosModifi
     return lettresAvecContacts;
 }
 
+/***********************************************************************************************
+                         Extraire les valeurs d'une formulaire
+************************************************************************************************/
 
-//extraire les valeurs d'une formulaire
 function getContactFormData(photoUrl){
     
     // .trim() => supprimer les espaces au début et à la fin d'une chaîne de caractère
@@ -178,7 +187,7 @@ function getContactFormData(photoUrl){
     // "Photo" : photoUrl && !photoUrl.startsWith("data:") ? [{"url": photoUrl}] : [] //le bon format pour Airtable
 
     console.log("Valeurs récupérées:", {
-        nom, prenom, entreprise, email, tel, note
+        nom, prenom, entreprise, email, tel, typeContact, date, statutRelance, note
     });
     //-------------- validation tous les champs ---------------------------
 
@@ -203,6 +212,18 @@ function getContactFormData(photoUrl){
     //valider tel
     const telErrors = validateTelephone(tel);
     if(!showFieldError("tel", telErrors)) hasErrors = true;
+
+        //valider type de contact
+    const typeContactErrors = validateTypeContact(typeContact);
+    if (!showFieldError("type-contact", typeContactErrors)) hasErrors = true;
+
+    //valider date de relance (optionnel)???
+    const dateErrors = validateDateRelance(date);
+    if (!showFieldError("date", dateErrors)) hasErrors = true;
+
+    //valider statut de relance
+    const statutErrors = validateStatutRelance(statutRelance);
+    if (!showFieldError("statut", statutErrors)) hasErrors = true;
 
     //valider note
     const noteError = validateNote(note);
@@ -243,7 +264,7 @@ function getContactFormData(photoUrl){
         "Email" : email,
         "Téléphone" : tel,
         "Type de contact": typeContact,
-        "Date de relance": date,
+        "Date de relance": date || null,
         "Statut de relance": statutRelance,
         "Note": note,
         "Favoris": favoris,
@@ -251,8 +272,10 @@ function getContactFormData(photoUrl){
     };
 }
 
+/***********************************************************************************************
+                          Mettre les photos dans Cloudinary
+************************************************************************************************/
 
-// mettre les photos dans Cloudinary
 // certaines opérations prennent du temps (comme fetch, lire un fichier, etc.), 
 // et éviter de bloquer le reste du code pendant ce temps => async/wait
 async function uploadToCloudinary(file){
@@ -297,7 +320,6 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 
-
 /* ======================================================================================== */
 /*                         Upload d'un image => modifier.js et ajouter.js
 /* ======================================================================================== */
@@ -322,7 +344,6 @@ function bindPhotoUpload(setUrlCallback) {
         //dans modifier.js => pas besoin de stocker dans une variable globale, on récupère directement dans getContactFormData
     });
 }
-
 
 
 /* ======================================================================================== */

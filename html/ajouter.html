@@ -18,11 +18,11 @@
         <script src="/js/config.js"></script>
         <script src="/js/connection.js"></script>
 
-    </head>
+    </head> 
     <body class="fs-6">
         <header id="header" class="border-bottom border-secondary" >
-            <nav class="navbar navbar-expand-lg position-fixed w-100" data-bs-theme="dark">
-                <div class="container-fluid container-xxl d-flex justify-content-lg-between">
+            <nav class="navbar navbar-expand-lg position-fixed w-100 " data-bs-theme="dark">
+                <div class="container-fluid container-xxl d-flex justify-content-lg-between  ">
                     <div class="logo-CRM d-flex align-items-center ps-xl-5">
                         <img id="logo" src="../image/logo CRM2.jpg" alt="logo">
                      </div>
@@ -36,6 +36,17 @@
                             <h5 class="offcanvas-title text-white ms-3 mt-5" id="navbarSupportedContentLabel">Menu</h5>
                             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>
+
+                        <!-- Informations utilisateur connecté -->
+                        <li class="nav-item border-bottom border-secondary ms-3" id="user-info-nav" style="display: none;">
+                            <div class="nav-link text-white my-2 d-flex align-items-center">
+                                <i class="bi bi-person-circle me-2 fs-4"></i>
+                                <div>
+                                    <small class="d-block text-muted">Connecté en tant que</small>
+                                    <strong id="display-username"></strong>
+                                </div>
+                            </div>
+                        </li>
 
                         <div class="offcanvas-body navbarmenu" >
                             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -59,9 +70,16 @@
                                         <i class="bi bi-envelope me-2"></i>Contact
                                     </a>
                                 </li>
-                                <!-- <li class="nav-item border-bottom border-secondary ms-3">
-                                    <a class="nav-link text-white my-2" href="connexion.html">Connexion</a>
-                                </li> -->
+                                <li class="nav-item border-bottom border-secondary ms-3" id="login-nav">
+                                    <a class="nav-link text-white my-2" href="connexion.html">
+                                        Connexion
+                                    </a>
+                                </li>
+                                <li class="nav-item border-bottom border-secondary ms-3" id="signup-btn">
+                                    <a class="nav-link text-white my-2" href="inscription.html">
+                                        Inscription     
+                                    </a>
+                                </li>
                                 <li class="nav-item border-bottom border-secondary ms-3" id="logout-nav">
                                     <a class="nav-link text-white my-2" href="#" onclick="logout(); return false;">
                                         <i class="bi bi-box-arrow-right me-2"></i>Déconnexion
@@ -72,12 +90,8 @@
                     </div>
                 </div>
             </nav>
-
         </header>
-        
-        <div>
-            <button onclick="logout()">Déconnexion</button>
-        </div>
+
         <main class="fs-6 py-5">
             <div class="container py-5">
                 <h1 class="display-1 text-center py-5 mb-4 fw-bold mt-5">Ajouter un contact</h1>
@@ -142,7 +156,7 @@
                 </div>
             </div>
 
-            <section class="col-12 col-md-8 container d-flex justify-content-center align-items-center py-5">
+            <section class="col-12 col-sm-11 col-md-10 container d-flex justify-content-center align-items-center py-5">
                 <article class="card-item-details bg-white container py-5 d-flex flex-column justify-content-center rounded-3">
                     <div class="favoris-image-profil d-flex justify-content-center align-items-start my-2 my-sm-4">
                         <div>
@@ -234,6 +248,7 @@
                                             <option value="Prospect">Prospect</option>
                                             <option value="Partenaire">Partenaire</option>
                                         </select>
+                                        <small id="small-type-contact" class="text-danger"></small>
                                     </div>
                                 </div> 
                             </div>
@@ -246,6 +261,7 @@
                                     </div>
                                     <div class="col-12 col-sm-8">
                                         <input class="form-control border-black" type="date" name="date" id="date" placeholder="Date">
+                                        <small id="small-date" class="text-danger"></small>
                                     </div>
                                 </div> 
                             </div>
@@ -262,6 +278,7 @@
                                             <option value="A relancer">A relancer</option>
                                             <option value="Fait">Fait</option>
                                         </select>
+                                        <small id="small-statut" class="text-danger"></small>
                                     </div>
                                 </div> 
                             </div>
@@ -289,9 +306,9 @@
         </main>
 
         <!-- link de script  -->
-        <!-- <script src="/js/config.js"></script>
-        <script src="/js/connection.js"></script> -->
+        <script src="/js/navbar-manager.js"></script>
         <script src="/js/validation.js"></script>
+        <script src="/js/validation-listener.js"></script>
         <script src="/js/outils.js"></script>
         <script src="/js/ajouter.js"></script>
 

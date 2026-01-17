@@ -81,6 +81,9 @@ body{
 #logo{
     height: var(--width-height-150);
 }
+#logout-nav{
+    display: none;
+}
 
 
 /*********************************************************************************************
@@ -136,6 +139,19 @@ footer {
       width: 80%;
       margin: 10px 0;
       padding: 10px;  
+}
+/* modification.js et outils.js */
+/* empêcher le scroll à l'intérieur du modal de modification */
+#editModal.no-scroll {
+    overflow: hidden !important;
+}
+/* désactiver le pointeur sur tout le contenu du modal sauf le modal photo */
+#editModal.no-scroll > * {
+    pointer-events: none;
+}
+/* réactiver le pointeur sur le modal photo */
+#profil-Modulo {
+    pointer-events: all;
 }
 
 /*********************************************************************************************

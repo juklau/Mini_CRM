@@ -79,8 +79,10 @@ async function checkEmailExists(email) {
     }
 }
 
+/***********************************************************************************************
+                            validation du formulaire d'inscription
+************************************************************************************************/
 
-//validation du formulaire d'inscription
 function validateForm(username, email, password, confirmPassword) {
     let isValid = true;
     
@@ -164,7 +166,10 @@ function showMessage(message, type = 'success') {
 }
 
 
-//création un nouvel user dans Airtable
+/***********************************************************************************************
+                            création un nouvel user dans Airtable
+************************************************************************************************/
+
 async function createUser(username, email, hashedPassword, apiToken) {
 
     try {
@@ -201,10 +206,9 @@ async function createUser(username, email, hashedPassword, apiToken) {
 }
 
 
-// ============================================
-// FONCTION PRINCIPALE D'INSCRIPTION
-// ============================================
-
+/***********************************************************************************************
+                            FONCTION PRINCIPALE D'INSCRIPTION
+************************************************************************************************/
 
 async function handleInscription(event) {
 

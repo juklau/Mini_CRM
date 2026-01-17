@@ -21,8 +21,8 @@
     </head>
     <body class="fs-6"> 
         <header id="header" class="border-bottom border-secondary" >
-            <nav class="navbar navbar-expand-lg position-fixed w-100" data-bs-theme="dark">
-                <div class="container-fluid container-xxl d-flex justify-content-lg-between">
+            <nav class="navbar navbar-expand-lg position-fixed w-100 " data-bs-theme="dark">
+                <div class="container-fluid container-xxl d-flex justify-content-lg-between  ">
                     <div class="logo-CRM d-flex align-items-center ps-xl-5">
                         <img id="logo" src="../image/logo CRM2.jpg" alt="logo">
                      </div>
@@ -36,6 +36,17 @@
                             <h5 class="offcanvas-title text-white ms-3 mt-5" id="navbarSupportedContentLabel">Menu</h5>
                             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>
+
+                        <!-- Informations utilisateur connecté -->
+                        <li class="nav-item border-bottom border-secondary ms-3" id="user-info-nav" style="display: none;">
+                            <div class="nav-link text-white my-2 d-flex align-items-center">
+                                <i class="bi bi-person-circle me-2 fs-4"></i>
+                                <div>
+                                    <small class="d-block text-muted">Connecté en tant que</small>
+                                    <strong id="display-username"></strong>
+                                </div>
+                            </div>
+                        </li>
 
                         <div class="offcanvas-body navbarmenu" >
                             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -59,9 +70,16 @@
                                         <i class="bi bi-envelope me-2"></i>Contact
                                     </a>
                                 </li>
-                                <!-- <li class="nav-item border-bottom border-secondary ms-3">
-                                    <a class="nav-link text-white my-2" href="connexion.html">Connexion</a>
-                                </li> -->
+                                <li class="nav-item border-bottom border-secondary ms-3" id="login-nav">
+                                    <a class="nav-link text-white my-2" href="connexion.html">
+                                        Connexion
+                                    </a>
+                                </li>
+                                <li class="nav-item border-bottom border-secondary ms-3" id="signup-btn">
+                                    <a class="nav-link text-white my-2" href="inscription.html">
+                                        Inscription     
+                                    </a>
+                                </li>
                                 <li class="nav-item border-bottom border-secondary ms-3" id="logout-nav">
                                     <a class="nav-link text-white my-2" href="#" onclick="logout(); return false;">
                                         <i class="bi bi-box-arrow-right me-2"></i>Déconnexion
@@ -81,7 +99,7 @@
             <div class="container-fluid d-flex justify-content-center col-12 col-sm-10 col-xl-8">
                 <div class="search-container mx-auto lh-lg mt-3 mb-5 ps-2 border border-black bg-white rounded-2">
                     <i class="fa-solid fa-magnifying-glass mx-2"></i>
-                    <input class="p-1 rounded-2 fs-6" type="text" id="recherche" name="recherche" placeholder="Rechercher" title="Recherche par nom ou par entreprise...">
+                    <input class="p-1 rounded-2 fs-6" type="text" id="recherche" name="recherche" placeholder="Rechercher" title="Recherche par nom du contact ou par entreprise...">
                 </div>
             </div>
             
@@ -98,7 +116,7 @@
                 </div>
             </div>
 
-            <!-- ket sor modositva!!!! -->
+            <!-- ket sor modositva!!!! --> 
             <section class="container-contacts col-12 col-sm-10 col-lg-12 container-fluid d-flex flex-column align-items-center py-5">
                 <div id="resultat" class="container-resultats accordion col-12 col-sm-12 col-md-10 col-lg-12 mx-auto">
                     <!-- la place pour afficher les resultats --> 
@@ -483,11 +501,9 @@
                         <button class="modulo-btn btn btn-outline-secondary border border-2 rounded me-3" id="erreur-closeModulo">X</button>
                     </div>
                     <div class="modulo-body my-1">
-                        <p>Certains champs sont invalides <br>
-                            ou  <br>
-                            contiennent des caractères interdits(<, >, ", `, =, ;) <br>
-                            ou <br>
-                            le nom/prénom commence par un lettre minuscule.
+                        <p>
+                            Certains champs contiennent des erreurs. Veuillez vérifier les messages 
+                            en rouge sous les champs concernés et corriger les informations.
                         </p>
                     </div>
                     <div class="modulo-footer pt-2 my-2">
@@ -525,12 +541,13 @@
         </main>
 
         <!-- link de script  -->
+        <script src="/js/navbar-manager.js"></script>
         <script src="/js/DOM.js"></script>
+        <script src="/js/validation.js"></script>
+        <script src="/js/validation-listener.js"></script>
         <script src="/js/outils.js"></script>
-        <!-- <script src="/js/config.js"></script>
-        <script src="/js/connection.js"></script> -->
-        <script src="/js/affiche_contacts.js"></script>
         <script src="/js/modifier.js"></script>
+        <script src="/js/affiche_contacts.js"></script>
         <script src="/js/rechercher_par_nom_entreprise.js"></script>
         
         <!-- script de Bootstrap -->
@@ -558,7 +575,7 @@
                 </div>
             </section>
         
-            <hr class="my-3" />
+            <hr class="my-3"/>
 
             <section class="py-4">
                 <div class="row d-flex justify-content-center">
