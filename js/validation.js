@@ -151,7 +151,7 @@ function validateEmail(email) {
     }
     
     // vérifier la longueur
-    if (email.length > 254) {
+    if (email.length > 100) {
         errors.push("L'email est trop long");
     }
     
