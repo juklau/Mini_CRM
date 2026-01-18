@@ -346,6 +346,55 @@ function bindPhotoUpload(setUrlCallback) {
 }
 
 
+/***********************************************************************************************
+                             Bouton pour afficher/masquer le mot de passe
+************************************************************************************************/
+
+function initTogglePassword() {
+    const togglePasswordBtn = document.getElementById('toggle-password');
+    const toggleConfirmPasswordBtn = document.getElementById('toggle-confirm-password');
+    const passwordInput = document.getElementById('password');
+    const confirmPasswordInput = document.getElementById('confirm-password');
+    const eyeIcon = document.getElementById('eye-icon');
+    const eyeIcon2 = document.getElementById('eye-icon2');
+
+    if (togglePasswordBtn && passwordInput && eyeIcon) {
+        togglePasswordBtn.addEventListener('click', function() {
+            
+            if (passwordInput.type === 'password') {
+
+                // afficher le mot de passe
+                passwordInput.type = 'text';
+                eyeIcon.classList.remove('bi-eye');
+                eyeIcon.classList.add('bi-eye-slash');
+            } else {
+                // masquer le mot de passe
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('bi-eye-slash');
+                eyeIcon.classList.add('bi-eye');
+            }
+        });
+    }
+    if(toggleConfirmPasswordBtn && confirmPasswordInput && eyeIcon2){
+        toggleConfirmPasswordBtn.addEventListener('click', function() {
+            
+            if (confirmPasswordInput.type === 'password') {
+
+                // afficher le mot de passe
+                confirmPasswordInput.type = 'text';
+                eyeIcon2.classList.remove('bi-eye');
+                eyeIcon2.classList.add('bi-eye-slash');
+            } else {
+                // masquer le mot de passe
+                confirmPasswordInput.type = 'password';
+                eyeIcon2.classList.remove('bi-eye-slash');
+                eyeIcon2.classList.add('bi-eye');
+            }
+        });
+    }
+}
+
+
 /* ======================================================================================== */
 /*                          Activation du bouton "scroll top"*/
 /* ======================================================================================== */

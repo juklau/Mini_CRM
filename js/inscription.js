@@ -303,6 +303,9 @@ async function handleInscription(event) {
 //événement au chargement du DOM
 document.addEventListener('DOMContentLoaded', () => {
     const btnInscription = document.getElementById('btn-inscription');
+
+    //afficher et masquer le mdp => de outils.js
+    initTogglePassword();
     
     if (btnInscription) {
         btnInscription.addEventListener('click', handleInscription);

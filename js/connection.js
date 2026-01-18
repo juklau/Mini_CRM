@@ -152,6 +152,7 @@ async function updateLastLogin(userId){
 }
 
 
+
 /***********************************************************************************************
                              fonction pricipale de connexion
 ************************************************************************************************/
@@ -310,6 +311,9 @@ document.addEventListener('DOMContentLoaded', () =>{
 
         //vérifier l'authentification => rediriger si déjà connecté
         checkAuthentication();
+
+        //afficher et masquer le mdp => de outils.js
+        initTogglePassword();
 
         //évenement de soumission du formulaire de connexion
         const btnConnexion = document.getElementById('btn-connecter');
