@@ -346,6 +346,15 @@ body.no-scroll{
     height: 100vh;
 }
 
+/* désactiver le pointeur sur tout le contenu du modal sauf le modal photo */
+body.no-scroll > * {
+    pointer-events: none;
+}
+/* réactiver le pointeur sur le modal photo */
+#modulo-profil {
+    pointer-events: all;
+}
+
 /***********************************************************************************************
                                  Page de Rechercher les contacts
 ************************************************************************************************/
@@ -361,8 +370,14 @@ select{ /* partout où il faut choisir .... */
     padding: 10px;
     box-shadow: 2px 2px 2px var(--box-shadow-color1);
 }
-#body-recherche{
+#body-recherche{  /* pour coller le footer en bas */
     background: var(--main-background-color2);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+#body-recherche main{ /* pour coller le footer en bas */
+  flex: 1;
 }
 
 /*********************************************************************************************

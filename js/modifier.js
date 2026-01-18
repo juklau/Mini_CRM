@@ -195,7 +195,7 @@ document.addEventListener("click", function(event) {
         //vérification si j'arrive ouvrir le modulo pour changer l'image
         if(moduloProfil && profilContainer){
             moduloProfil.classList.add("show");
-            profilContainer.classList.add("hidden");
+            profilContainer.classList.add("hidden"); 
 
             // bloquer le scroll de l'arrière-plan
             document.getElementById("editModal").classList.add("no-scroll");

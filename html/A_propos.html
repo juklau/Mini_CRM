@@ -101,18 +101,27 @@
                         gestion a été pensé pour répondre aux besoins des freelances, auto-entrepreneurs et petites structures 
                         souhaitant organiser efficacement leurs contacts professionnels sans avoir recours à un CRM complexe ou payant.
                     </p>
+                    <p class="mt-3">
+                        L'application a récemment évolué avec l'intégration d'un <strong>système d'authentification</strong>
+                        (inscription / connexion) permettant une utilisation <strong>multi-clients</strong> :
+                        chaque utilisateur dispose désormais de <strong>son propre espace</strong> et n'accède qu'à <strong>ses</strong>
+                        contacts.
+                    </p>
                 </article>
                 <article class="my-4 container-fluid">
                     <p> L'application permet de :</p>
                     <ul class="list-unstyled ms-3 ms-md-5">
-                        <li>◈ <strong>Ajouter, modifier et supprimer des contacts facilement</strong></li>
+                        <li>◈ <strong>Créer un compte et se connecter</strong> pour accéder à son espace personnel</li>
+                        <li>◈ <strong>Ajouter, modifier et supprimer des contacts</strong> facilement</li>
+                        <li>◈ <strong>Afficher dynamiquement les fiches</strong> sous forme de cartes interactives</li>
+                        <li>◈ <strong>Filtrer et rechercher</strong> rapidement dans la base de données</li> 
                         <li>◈ <strong>Classer les contacts par type</strong> (client, prospect, partenaire)</li>
                         <li>◈ <strong>Suivre les relances grâce à un statut personnalisé</strong> (à relancer, fait)</li>
-                        <li>◈ <strong>Filtrer et rechercher</strong> rapidement dans la base de données</li> 
-                        <li>◈ <strong>Afficher dynamiquement les fiches</strong> sous forme de cartes interactives</li>
                         <li>◈ <strong>Gérer les favoris</strong> et associer une photo de profil à chaque contact</li>
+                        <li>◈ <strong>Isoler les données par utilisateur</strong> (chaque compte voit uniquement ses contacts)</li>
                         <li>◈ <strong>Sauvegarder temporairement certaines données</strong> grâce au localStorage</li>
                     </ul>
+                    
                 </article>
                 <article class="my-4 pb-5 container-fluid">
                     <p>
@@ -122,14 +131,20 @@
                         assure une mise en page responsive sur tout type d'écran.
                     </p>
                     <p class="my-4">
+                        L'ajout de l'authentification a nécessité une adaptation de la logique applicative :
+                        <strong>gestion des sessions</strong>, récupération de l'utilisateur connecté et
+                        <strong>filtrage dynamique des contacts</strong> afin de garantir la confidentialité des données
+                        entre les différents clients.
+                    </p>
+                    <p class="my-4">
                         Ce projet a été réalisé au début en binôme, avec une répartition des tâches entre le développement 
                         (SLAM) et la mise en place de l'environnement serveur local (SISR). 
                         Suite au départ de mon binôme, j'ai poursuivi et finalisé le projet seule...
                     </p>
                     <p class="my-4">
-                        Ce travail m'a permis de consolider mes compétences en développement web, intégration d'API, 
-                        gestion de données et organisation de projet, tout en réalisant une application fonctionnelle et 
-                        évolutive pouvant être installée sur un poste unique pour un usage individuel.
+                        Ce travail m'a permis de consolider mes compétences en développement web, intégration d'API,
+                        gestion des données et organisation de projet, tout en réalisant une application fonctionnelle et
+                        évolutive, désormais adaptée à un <strong>usage multi-utilisateurs</strong>.
                     </p>
                 </article>
             </section>

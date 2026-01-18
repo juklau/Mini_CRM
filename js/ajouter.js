@@ -260,7 +260,11 @@ if(profilePicBtn){
     profilePicBtn.addEventListener("click", function() {
         if(moduloProfil) moduloProfil.classList.add("show");
         if(profilContainer) profilContainer.classList.add("hidden");
+
+        // bloquer le scroll de l'arrière-plan
+        document.body.classList.add("no-scroll");
     });
+
 }
 
 //fermer le modal de photo
@@ -268,7 +272,10 @@ const closeImageBtn = document.getElementById("close-btn-image-ajout");
 if(closeImageBtn){
     closeImageBtn.addEventListener("click", function() {
         if(moduloProfil) moduloProfil.classList.remove("show");
-         if(profilContainer) profilContainer.classList.remove("hidden");
+        if(profilContainer) profilContainer.classList.remove("hidden");
+
+        // réactiver le scroll
+        document.body.classList.remove("no-scroll");
     });
 }
 
