@@ -459,7 +459,7 @@ select{ /* partout où il faut choisir .... */
     color: var(--danger-color) !important;
 }
 
-
+/* min-width => mobilfirst!! */
 @media screen and (min-width: 992px){
 
     main{

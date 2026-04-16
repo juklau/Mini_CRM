@@ -115,9 +115,9 @@ Des contacts de démonstration peuvent être présents selon la base Airtable co
 
 ## Documentation et ressources
 
-- Maquette Figma:
-    https://www.figma.com/design/9ogs0Hg8QeLXew9DdNP9AC/Klaudia-Juhasz-s-team-library?node-id=3314-2&p=f&t=7k7QL8tza0XojF4D-0 
-    (***Cette maquette a connu plusieurs améliorations depuis sa conception.***)
+- Maquette Figma :  
+  [Accéder à la maquette Figma](https://www.figma.com/design/9ogs0Hg8QeLXew9DdNP9AC/Klaudia-Juhasz-s-team-library?node-id=3314-2&p=f&t=7k7QL8tza0XojF4D-0)  
+  (***Cette maquette a connu plusieurs améliorations depuis sa conception.***)
 - README.md : présent dans le projet, il décrit l’installation, la structure et les fonctionnalités.
 - Commentaires dans mes codes : intégrés dans les fichiers pour expliquer les parties clés.
 
