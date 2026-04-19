@@ -60,8 +60,8 @@ Vous devrez fournir les informations suivantes :
 |-----------------------|----------------------------------------------|---------------------------|
 | **Nom d'utilisateur** | Identifiant unique (3-20 caractères)         | `juklau`                  |
 | **Email**             | Votre adresse email                          | `votre.email@example.com` |
-| **Mot de passe**      | Minimum 8 caractères, 1 majuscule, 1 chiffre | `MonMotDePasse123`        |
-| **Confirmation**      | Retapez votre mot de passe                   | `MonMotDePasse123`        |
+| **Mot de passe**      | Minimum 8 caractères, 1 majuscule, 1 chiffre | `MonMotDePasse123!`        |
+| **Confirmation**      | Retapez votre mot de passe                   | `MonMotDePasse123!`        |
 
 #### Étape 3 : Validation
 
@@ -417,7 +417,7 @@ Pendant que vous remplissez un formulaire, Mini CRM **valide automatiquement** v
 **Exemple d'erreurs courantes** :
 - Email : `"Veuillez entrer un email valide"`
 - Téléphone : `"Le téléphone doit contenir 10 à 15 chiffres"`
-- Mot de passe : `"Le mot de passe doit contenir au moins 8 caractères, 1 majuscule et 1 chiffre"`
+- Mot de passe : `"Le mot de passe doit contenir au moins 12 caractères,  une majuscule, une minuscule, un chiffre et un caractère spécial"`
 
 **Avantage** : Vous savez immédiatement si vous avez fait une erreur, sans attendre la soumission du formulaire.
 
@@ -499,9 +499,10 @@ Un bouton **⬆️** apparaît en bas à droite quand vous faites défiler la pa
 #### Recommandations de sécurité
 
 - **Choisissez un mot de passe fort**
-  - Minimum 8 caractères
-  - 1 majuscule
+  - Minimum 12 caractères
+  - 1 majuscule, 1 minuscule
   - 1 chiffre
+  - 1 caractère spécial (!@#$%^&*...)
   - Évitez les mots de passe évidents
 
 - **Ne partagez jamais votre mot de passe**

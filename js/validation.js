@@ -252,23 +252,39 @@ function validateUsername(username) {
 }
 
 
-//validation le mdp
+// validation le mdp
 function validatePassword(password) {
     const errors = [];
     
-    // vérifier la longueur
-    if (password.length < 8 || password.length > 100) {
-        errors.push("Le mot de passe doit contenir entre 8 et 100 caractères");
+    // vérifier la longueur (min 12)
+    if (password.length < 12 || password.length > 100) {
+        errors.push("Le mot de passe doit contenir entre 12 et 100 caractères");
     }
     
-    // vérifier la force (au moins une majuscule, une minuscule, un chiffre)
-    const passwordStrengthRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/;
-    if (!passwordStrengthRegex.test(password)) {
-        errors.push("Le mot de passe doit contenir au moins une majuscule, une minuscule et un chiffre");
+    // min 1 majuscule
+    if (!/[A-Z]/.test(password)) {
+        errors.push("Le mot de passe doit contenir au moins une majuscule");
+    }
+
+    // min 1 minuscule
+    if (!/[a-z]/.test(password)) {
+        errors.push("Le mot de passe doit contenir au moins une minuscule");
+    }
+
+    // min 1 chiffre
+    if (!/\d/.test(password)) {
+        errors.push("Le mot de passe doit contenir au moins un chiffre");
+    }
+
+    // min 1 caractère spécial
+    if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?`~]/.test(password)) {
+        errors.push("Le mot de passe doit contenir au moins un caractère spécial (!@#$%^&*...)");
     }
     
     return errors;
 }
+
+
 
 //validation du type de contact (select)
 function validateTypeContact(typeContact) {
