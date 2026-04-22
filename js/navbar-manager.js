@@ -39,7 +39,7 @@ function updateNavigationMenu(){
             }
         }
 
-        console.log("Menu mise à jour : utilisateur connecté : ", username);
+        // console.log("Menu mise à jour : utilisateur connecté : ", username);
 
     }else{  //=>user pas connecté
 
@@ -53,7 +53,7 @@ function updateNavigationMenu(){
         //masquer les infos de user
         if(userInfoNav) userInfoNav.style.display = 'none';
 
-        console.log("Menu mise à jour : utilisateur non connecté");
+        // console.log("Menu mise à jour : utilisateur non connecté");
 
     }
 

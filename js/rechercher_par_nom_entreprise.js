@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    console.log('Utilisateur connecté : ', currentUsername, 'Id : ', currentUserId);
+    // console.log('Utilisateur connecté : ', currentUsername, 'Id : ', currentUserId);
 
 });
 
@@ -83,8 +83,8 @@ document.querySelector("#recherche").addEventListener("input", async function ()
 
         const url = `https://api.airtable.com/v0/${CONFIG.BASE_ID}/${CONFIG.NOM_TABLE1}?filterByFormula=${encodedFormula}&view=Grid%20view`;
 
-        console.log("Formule de filtre :", filterFormula);
-        console.log("Recherche pour :", currentUsername, "| Terme :", searchTerme);
+        // console.log("Formule de filtre :", filterFormula);
+        // console.log("Recherche pour :", currentUsername, "| Terme :", searchTerme);
 
         //envoie la requête
         const response = await fetch(url, requestOptions);
@@ -94,14 +94,14 @@ document.querySelector("#recherche").addEventListener("input", async function ()
         }
 
         const data = await response.json();
-        console.log("Airtable raw response:", data);
+        // console.log("Airtable raw response:", data);
 
         if (data.error) {
             console.error("Airtable error:", data.error);
         }
 
         const contacts = data.records;
-        console.log(`${contacts.length} contact(s) trouvé(s) selon la recherche`);
+        // console.log(`${contacts.length} contact(s) trouvé(s) selon la recherche`);
 
          //si aucun contact  => il faut pas => most il affiche dynamiquement le résultat de la recherche
         // if(contacts.length === 0){

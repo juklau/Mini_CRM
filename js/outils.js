@@ -186,9 +186,9 @@ function getContactFormData(photoUrl){
     const imageUrl =  photoUrl ? [{ "url": photoUrl }] : []
     // "Photo" : photoUrl && !photoUrl.startsWith("data:") ? [{"url": photoUrl}] : [] //le bon format pour Airtable
 
-    console.log("Valeurs récupérées:", {
-        nom, prenom, entreprise, email, tel, typeContact, date, statutRelance, note
-    });
+    // console.log("Valeurs récupérées:", {
+    //     nom, prenom, entreprise, email, tel, typeContact, date, statutRelance, note
+    // });
     //-------------- validation tous les champs ---------------------------
 
     let hasErrors = false;
@@ -279,7 +279,7 @@ function getContactFormData(photoUrl){
 // certaines opérations prennent du temps (comme fetch, lire un fichier, etc.), 
 // et éviter de bloquer le reste du code pendant ce temps => async/wait
 async function uploadToCloudinary(file){
-    console.log("fichier sélectionné: ", file);
+    // console.log("fichier sélectionné: ", file);
 
     // préparation l'envoir de l'image à Cloudinary
     const formData = new FormData();
@@ -294,7 +294,7 @@ async function uploadToCloudinary(file){
 
         const data = await response.json();
         if(data.secure_url){
-            console.log(" Image hébergée sur Cloudinary :", data.secure_url);
+            // console.log(" Image hébergée sur Cloudinary :", data.secure_url);
             return data.secure_url;
         }else{
             console.error("Erreur : L'URL de l'image n'a pas été récupérée !");
@@ -398,6 +398,24 @@ function initTogglePassword() {
 /* ======================================================================================== */
 /*                          Activation du bouton "scroll top"*/
 /* ======================================================================================== */
+
+const afficherDetails = document.getElementById('affiche-details');
+
+if (afficherDetails) {
+    const observer = new MutationObserver(function () {
+        const scrollTopBtn = document.getElementById('scroll-top');
+        if (!afficherDetails.classList.contains('d-none')) {
+            scrollTopBtn.classList.remove('active');
+        } else {
+            if (window.scrollY > 200) {
+                scrollTopBtn.classList.add('active');
+            }
+        }
+    });
+
+    observer.observe(afficherDetails, { attributes: true, attributeFilter: ['class'] });
+}
+
 
 window.addEventListener("scroll", function(){
     let scrollTopBtn = document.getElementById("scroll-top");

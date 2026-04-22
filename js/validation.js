@@ -258,7 +258,7 @@ function validatePassword(password) {
     
     // vérifier la longueur (min 12)
     if (password.length < 12 || password.length > 100) {
-        errors.push("Le mot de passe doit contenir entre 12 et 100 caractères");
+        errors.push("Le mot de passe doit contenir entre 12 et 100 caractères"); 
     }
     
     // min 1 majuscule
@@ -348,7 +348,7 @@ function validateStatutRelance(statut) {
     }
     
     // Vérifier que c'est une valeur valide
-    const validStatuts = ['A relancer', 'Fait'];
+    const validStatuts = ['À relancer', 'Fait'];
     if (!validStatuts.includes(statut)) {
         errors.push("Statut de relance invalide");
     }

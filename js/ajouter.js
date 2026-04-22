@@ -71,7 +71,7 @@ document.addEventListener("click", async function(event){
                 return;
             }
 
-            console.log('Utilisateur connecté : ', currentUser.username, 'Id : ', userId);
+            // console.log('Utilisateur connecté : ', currentUser.username, 'Id : ', userId);
 
             // Afficher le spinner sur le bouton de confirmation
             const confirmYesBtn = document.getElementById("ajoutYes");
@@ -99,7 +99,7 @@ document.addEventListener("click", async function(event){
             //ajouter la date de création du contact
             contactData.created_at = new Date().toISOString(); 
 
-            console.log("Données du contact à envoyer : ", contactData);
+            // console.log("Données du contact à envoyer : ", contactData);
 
             //préparer le body de la requête
             const raw = JSON.stringify({
@@ -128,7 +128,7 @@ document.addEventListener("click", async function(event){
             }
 
             const result = await response.json();
-            console.log("Contact ajouté avec succès : ", result);
+            // console.log("Contact ajouté avec succès : ", result);
 
             // restaurer le bouton
             confirmYesBtn.disabled = false;
@@ -170,7 +170,7 @@ document.addEventListener("click", async function(event){
             }
 
             alert(errorMessage);
-            console.log("Détails de l'erreur:", error);
+            // console.log("Détails de l'erreur:", error);
 
             //réactiver le bouton en cas d'échec
             if(ajouterBtn){
@@ -291,7 +291,7 @@ if(uploadBtn){
 // Utiliser la fonction bindPhotoUpload du fichier outils.js
 bindPhotoUpload((url) => {
     profileImageUrl = url;
-    console.log("Photo de profil mise à jour avec l'URL : ", profileImageUrl);
+    // console.log("Photo de profil mise à jour avec l'URL : ", profileImageUrl);
 
 });
 

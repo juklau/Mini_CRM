@@ -2,3 +2,16 @@
 
 js/config.js
 js/code_ancien.js
+
+# Fichiers Claude/Byan
+_byan/
+_byan-output/
+.claude/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Éditeurs
+.vscode/
+.idea/

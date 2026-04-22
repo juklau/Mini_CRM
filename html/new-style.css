@@ -16,7 +16,7 @@
 
     --width-height-45: 45px;
     --width-height-50: 50px;
-    --width-height-100: 100px;
+    --width-height-80: 80px;
     --width-height-150: 150px;
     --width-height-200: 200px;
     --width-height-250: 250px;
@@ -47,16 +47,16 @@ body{
                                         Navbar
 **********************************************************************************************/
 .logo-CRM{
-    height: var(--width-height-100);
+    height: var(--width-height-80);
     overflow: hidden;
 }
 .navbar{
     background-color: var(--main-background-color) !important;
     z-index: 999999999;
 }
-.navbar a{
+/* .navbar a{
     font-size: 18px;
-}
+} */
 .menu-ouvert{
     width: var(--width-height-250) !important;
     background-color: var(--main-background-color) !important;
@@ -204,7 +204,7 @@ footer {
 }
 #upload-btn,
 #remove-btn{
-    width: var(--width-height-100);
+    width: var(--width-height-80);
 }
 .modulo-btn:hover,
 #submit-btn:hover{
@@ -347,8 +347,13 @@ body.no-scroll{
 }
 
 /* désactiver le pointeur sur tout le contenu du modal sauf le modal photo */
-body.no-scroll > * {
+/* body.no-scroll > * {
     pointer-events: none;
+} */
+/* pour pouvoir scroller quand s'affiche la carte en détails */
+#affiche-details,
+#affiche-details * { 
+    pointer-events: all; 
 }
 /* réactiver le pointeur sur le modal photo */
 #modulo-profil {
@@ -448,8 +453,8 @@ select{ /* partout où il faut choisir .... */
 }
 .fejlec h1{
     padding-top: 200px;
-    font-size: 4rem;
-    font-weight: 900;
+    font-size: 3rem;
+    font-weight: 800;
 } 
 #cible-a-trouver{
     width: 100%;

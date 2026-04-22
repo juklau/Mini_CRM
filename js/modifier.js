@@ -22,7 +22,7 @@ document.addEventListener("click", function(event){
     if(event.target && event.target.classList.contains("modifier-pen")){
         
         // console.log("Bouton Modifier cliqué !");
-        const confirmModal = document.getElementById("confirm-Modulo");
+        const confirmModal = document.getElementById("confirm-Modulo"); 
         // console.log("Modal trouvé :", document.getElementById("confirm-Modulo"));
 
         if (confirmModal) {
@@ -61,7 +61,7 @@ document.addEventListener("click", async function(event){
             const photoElement = document.getElementById("profile-pic");
             const photoUrl = photoElement ? photoElement.src : null;
             // const photoUrl = photoElement && !photoElement.src.startsWith("data:") ? photoElement.src : null;
-            console.log("Photo envoyée à Airtable :", photoUrl ? [{ "url": photoUrl }] : " Aucune image valide");
+            // console.log("Photo envoyée à Airtable :", photoUrl ? [{ "url": photoUrl }] : " Aucune image valide");
 
             const contactData = getContactFormData(photoUrl);
 
@@ -96,7 +96,7 @@ document.addEventListener("click", async function(event){
             }
 
             const result = await response.json();
-            console.log("Contact modifié avec succès :", result);
+            // console.log("Contact modifié avec succès :", result);
 
             // restaurer le bouton
             confirmYesBtn.disabled = false;
@@ -291,7 +291,7 @@ document.addEventListener("click", async function(event){
             }
 
             const result = await response.text();
-            console.log("Contact supprimé avec succès :", result);
+            // console.log("Contact supprimé avec succès :", result);
 
             // Restaurer le bouton
             deleteYesBtn.disabled = false;

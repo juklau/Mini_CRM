@@ -11,7 +11,7 @@ function createContactCard(contact, photoURL){
 
     let creationCard = `
         <div class="bg-white border border-black rounded-2 px-2 my-3">
-            <div class="d-flex flex-column mb-3" id="nom-photo">
+            <div class="d-flex flex-column mb-2" id="nom-photo">
                 <div id="photo" class="text-center mt-3 ps-0 ">
                     <div class="d-md-flex mb-2 me-5">
                         <button class="star-button card-star-button text-start ms-4 ms-sm-5 ${contact.fields.Favoris === 1 ? 'checked' : ''}">★</button>
@@ -21,25 +21,25 @@ function createContactCard(contact, photoURL){
                 <div id="nom-prenom" class="row justify-content-center"> 
                     <div class="col-12 col-sm-10 row justify-content-between">
                         <div class="infos noms col-12 col-sm-6">
-                            <h5><strong>Nom :</strong></h5>
-                            <p class="lh-lg border border-black rounded-2 mt-2 mb-4 ps-3">${contact.fields.Nom || "Nom inconnu"}</p>
+                            <h6><strong>Nom :</strong></h6>
+                            <p class="lh-lg border border-black rounded-2 mt-1 mb-4 ps-3">${contact.fields.Nom || "Nom inconnu"}</p>
                         </div>
 
                         <div class="infos noms col-12 col-sm-6">
-                            <h5> <strong>Prénom :</strong></h5>
-                            <p class="lh-lg border border-black rounded-2 mt-2 mb-4 ps-3">${contact.fields.Prénom || "Prénom inconnu"}</p>
+                            <h6> <strong>Prénom :</strong></h6>
+                            <p class="lh-lg border border-black rounded-2 mt-1 mb-4 ps-3">${contact.fields.Prénom || "Prénom inconnu"}</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row justify-content-center mb-4">
                 <div class="col-12 col-sm-10 ">
-                    <h5><strong>Type de contact :</strong></h5>
-                    <p class="lh-lg border border-black rounded-2 mt-2 mb-4 ps-3"> ${contact.fields["Type de contact"] || "Type de contact inconnu"}</p>
+                    <h6><strong>Type de contact :</strong></h6>
+                    <p class="lh-lg border border-black rounded-2 mt-1 mb-4 ps-3"> ${contact.fields["Type de contact"] || "Type de contact inconnu"}</p>
                 </div>
                 <div class="col-12 col-sm-10 ">
-                    <h5><strong>Statut de relance :</strong></h5>
-                    <p class="lh-lg border border-black rounded-2 mt-2 mb-4 ps-3"> ${contact.fields["Statut de relance"] || "Statut de relance inconnu"}</p>
+                    <h6><strong>Statut de relance :</strong></h6>
+                    <p class="lh-lg border border-black rounded-2 mt-1 mb-4 ps-3"> ${contact.fields["Statut de relance"] || "Statut de relance inconnu"}</p>
                 </div>
             </div>
         </div>
@@ -68,7 +68,7 @@ function get_insert_dom(contact, photoURL, isFavoris)
                     </div>
                 </div>
                 <div class="modulo-footer btn-container mb-3">
-                    <button class="modulo-btn btn btn-outline-secondary btn-lg border border-2 rounded" id="close-btn-image-ajout">Fermer</button>
+                    <button class="modulo-btn btn btn-outline-secondary btn border border-2 rounded" id="close-btn-image-ajout">Fermer</button>
                 </div>
             </div>
 
@@ -201,7 +201,7 @@ function get_insert_dom(contact, photoURL, isFavoris)
                             </div>
                             <div class="col-12 col-sm-8">
                                 <select class="form-select border-black" id="statut" name="statut">
-                                    <option value="A relancer" ${contact.fields["Statut de relance"] === "A relancer" ? "selected" : ""}>A relancer</option>
+                                    <option value="À relancer" ${contact.fields["Statut de relance"] === "À relancer" ? "selected" : ""}>À relancer</option>
                                     <option value="Fait" ${contact.fields["Statut de relance"] === "Fait" ? "selected" : ""}>Fait</option>
                                 </select>
                                 <small id="small-statut" class="text-danger"></small>
@@ -210,7 +210,7 @@ function get_insert_dom(contact, photoURL, isFavoris)
                     </div>
                 </div>
 
-                <div class="row justify-content-center mt-2 mb-5">
+                <div class="row justify-content-center mt-2 mb-3">
                     <div class="col-12 col-sm-10">
                         <div class="row align-items-center mb-sm-2">
                             <div class="col-12 col-sm-4">
@@ -225,7 +225,7 @@ function get_insert_dom(contact, photoURL, isFavoris)
                 </div> 
             </div>
 
-            <div class="icon-container details mt-4 mb-3 my-md-5 d-flex justify-content-around align-items-center">
+            <div class="icon-container details mt-4 mb-3 my-md-3 d-flex justify-content-around align-items-center">
                 <img src="https://img.icons8.com/?size=100&id=avu7fhuOMreB&format=png&color=000000" alt="pen" class="modifier-pen" title="Modifier">
                 <img src="https://img.icons8.com/?size=100&id=67884&format=png&color=000000" alt="delete" id="delete" title="Supprimer">
             </div>

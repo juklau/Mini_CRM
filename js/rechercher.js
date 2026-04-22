@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    console.log('Utilisateur connecté : ', username, 'Id : ', userId);
+    // console.log('Utilisateur connecté : ', username, 'Id : ', userId);
 
     //initialiser le sytème de recherche
     setupSearchSystem(userId, username);
@@ -49,7 +49,7 @@ function setupSearchSystem(userId, username) {
             let typeContact = document.getElementById("search").value;
             let statutRelance =  document.getElementById("search2").value;
 
-            console.log("Recherche avec filtres : ", { typeContact, statutRelance });
+            // console.log("Recherche avec filtres : ", { typeContact, statutRelance });
 
             // préparer les headers => appel la fonction du outils.js 
             const myHeaders = createHeaders(true);
@@ -85,8 +85,8 @@ function setupSearchSystem(userId, username) {
 
             const apiURL = `https://api.airtable.com/v0/${CONFIG.BASE_ID}/${CONFIG.NOM_TABLE1}?filterByFormula=${encodedFormula}&view=Grid%20view`;
 
-            console.log("Formule de filtre :", filterFormula);
-            console.log('Chargement des contacts pour l\'utilisateur:' , userId);
+            // console.log("Formule de filtre :", filterFormula);
+            // console.log('Chargement des contacts pour l\'utilisateur:' , userId);
 
             //envoie la requête
             const response = await fetch(apiURL, requestOptions);
@@ -96,7 +96,7 @@ function setupSearchSystem(userId, username) {
             }
 
             const data = await response.json();
-            console.log("Airtable raw response:", data);
+            // console.log("Airtable raw response:", data);
 
             if (data.error) {
                 console.error("Airtable error:", data.error);
@@ -104,7 +104,7 @@ function setupSearchSystem(userId, username) {
 
             const contacts = data.records;
 
-            console.log(`${contacts.length} contact(s) trouvé(s) selon les filtres de recherche`);
+            // console.log(`${contacts.length} contact(s) trouvé(s) selon les filtres de recherche`);
 
             //pour éviter que les contacts affiche plusieurs fois, il faut vider les anciens résultats
             //avant qu'on ajoute les nouvelles

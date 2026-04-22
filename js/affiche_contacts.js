@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    console.log('Utilisateur connecté : ', username, 'Id : ', userId);
+    // console.log('Utilisateur connecté : ', username, 'Id : ', userId);
 
     loadUserContacts(userId, username);
 });
@@ -52,7 +52,7 @@ async function loadUserContacts(userId, username){
 
         const url = `https://api.airtable.com/v0/${CONFIG.BASE_ID}/${CONFIG.NOM_TABLE1}?filterByFormula=${encodedFormula}&view=Grid%20view`;
          
-        console.log('Chargement des contacts pour l\'utilisateur:' , userId);
+        // console.log('Chargement des contacts pour l\'utilisateur:' , userId);
 
         //envoie la requête
         const response = await fetch(url, requestOptions);
@@ -62,7 +62,7 @@ async function loadUserContacts(userId, username){
         }
 
         const data = await response.json();
-        console.log("Airtable raw response:", data);
+        // console.log("Airtable raw response:", data);
 
         if (data.error) {
             console.error("Airtable error:", data.error);
@@ -70,7 +70,7 @@ async function loadUserContacts(userId, username){
 
         const contacts = data.records; 
 
-        console.log(`${contacts.length} contact(s) trouvé(s) pour cet utilisateur`);
+        // console.log(`${contacts.length} contact(s) trouvé(s) pour cet utilisateur`);
         
         //vérification s'il y a des contacts
         if(contacts.length === 0){
