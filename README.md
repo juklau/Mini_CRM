@@ -8,6 +8,8 @@
 Mini CRM est une application web légère et responsive permettant de gérer des contacts professionnels (freelances, auto-entrepreneurs, petites structures).  
 Le projet repose sur une architecture **100% front-end (HTML/CSS/JavaScript)** et s’appuie sur des services externes via API : **Airtable** (données) et **Cloudinary** (images).
 
+> 🌐 **Application disponible en ligne :** [https://mini-crm-klaudia.iris.a3n.fr:4433/](https://mini-crm-klaudia.iris.a3n.fr:4433/)
+
 Depuis la première version mono-utilisateur, l’application a évolué avec l’ajout d’un **système d’authentification (inscription/connexion)** et une logique **multi-utilisateurs** permettant d’isoler les données : chaque utilisateur visualise et manipule uniquement ses propres contacts.
 
 ---
@@ -51,6 +53,9 @@ Depuis la première version mono-utilisateur, l’application a évolué avec l�
 
 2. Ouvrir le projet (recommandé) avec Live Server (VS Code) :
 	- `html/index.html`
+
+> 🌐 **Version en ligne :** [https://mini-crm-klaudia.iris.a3n.fr:4433/](https://mini-crm-klaudia.iris.a3n.fr:4433/)
+Des contacts de démonstration peuvent être présents selon la base Airtable configurée.
 
 Des contacts de démonstration peuvent être présents selon la base Airtable configurée.
 
